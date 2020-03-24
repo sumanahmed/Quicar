@@ -19,7 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->unique();
             $table->string('image')->nullable();
-            $table->string('user_key');
+            $table->text('user_key');
+            $table->tinyInteger('status')->default(0)->comment('0=Off,1=On');
             $table->decimal('referrel_income', 10, 2)->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
