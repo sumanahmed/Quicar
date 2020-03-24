@@ -15,6 +15,11 @@ class CreateUpazilasTable extends Migration
     {
         Schema::create('upazilas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('district_id');
+            $table->string('name');
+            $table->string('bn_name');
+            $table->string('url')->nullable();
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

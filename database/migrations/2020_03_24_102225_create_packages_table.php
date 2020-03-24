@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDriversTable extends Migration
+class CreatePackagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateDriversTable extends Migration
      */
     public function up()
     {
-        Schema::create('drivers', function (Blueprint $table) {
+        Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('owner_id');
-            $table->string('name');
-            $table->string('phone')->unique();
-            $table->string('address')->nullable();
-            $table->string('license_number');
+            $table->unsignedBigInteger('car_id');
+            $table->decimal('price',10,2);
+            $table->tinyInteger('type')->default(0)->comment('1=Daily, 2=Weekly 3=Monthly');
             $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateDriversTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('drivers');
+        Schema::dropIfExists('packages');
     }
 }

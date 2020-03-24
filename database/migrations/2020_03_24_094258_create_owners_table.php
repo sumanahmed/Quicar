@@ -15,6 +15,20 @@ class CreateOwnersTable extends Migration
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email')->nullable();
+            $table->string('phone')->unique();
+            $table->string('image')->nullable();
+            $table->string('address')->nullable();
+            $table->string('owner_key');
+            $table->string('nid')->nullable();
+            $table->unsignedBigInteger('district_id')->nullable();
+            $table->unsignedBigInteger('upazila_id')->nullable();
+            $table->decimal('total_point', 10, 2)->default(0);
+            $table->decimal('total_amount', 10, 2)->default(0);
+            $table->decimal('referrel_income', 10, 2)->default(0);
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('upazila_id')->references('id')->on('upazilas')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
