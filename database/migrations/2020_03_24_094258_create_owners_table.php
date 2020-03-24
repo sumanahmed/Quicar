@@ -20,7 +20,8 @@ class CreateOwnersTable extends Migration
             $table->string('phone')->unique();
             $table->string('image')->nullable();
             $table->string('address')->nullable();
-            $table->string('owner_key');
+            $table->text('owner_key');
+            $table->tinyInteger('status')->default(0)->comment('0=Off,1=On');
             $table->string('nid')->nullable();
             $table->unsignedBigInteger('district_id')->nullable();
             $table->unsignedBigInteger('upazila_id')->nullable();
