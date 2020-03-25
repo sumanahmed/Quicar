@@ -17,10 +17,10 @@ class CreateReferrelsTable extends Migration
             $table->id();
             $table->string('referrel_phone', 30);
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('driver_id')->nullable();
+            $table->unsignedBigInteger('owner_id')->nullable();
             $table->double('amount');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
