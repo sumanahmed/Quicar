@@ -11,4 +11,5 @@ Route::post('user_login','Api\AuthController@userLogin');
 
 Route::group(['prefix'=>'user', 'middleware'=>'api_user_auth' ],function(){
     Route::get('/logout', 'Api\UserController@logout');
+    Route::get('/detail', 'Api\UserController@detail');
 });
