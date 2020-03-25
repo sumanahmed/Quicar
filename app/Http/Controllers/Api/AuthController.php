@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Str;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -72,6 +73,35 @@ class AuthController extends Controller
                 'data' => 'User registration successfully',
                 'api_token' => $user->user_key
             ],201);
+        }
+    }
+
+    //user login
+    public function userLogin(Request $request){
+        $user = User::where('phone', $request->phone)->first();
+        if($user == null){
+            return response()->json([
+                'status' => 'error',
+                'data' => 'You not yet registered',
+                'api_token' => "Token not found"
+            ],409);
+        }else{
+            if(Auth::attempt(['phone'=>$request->phone, 'password'=>'123456'])) {
+                $user = Auth::user();
+                $user->status = 1;
+                $user->update();
+                return response()->json([
+                    'status'    => 'success',
+                    'data'      => 'You are logged in',
+                    'api_token' => $user->user_key
+                ],201);
+            } else{
+                return response()->json([
+                    'status'    => 'error',
+                    'data'      => 'Failed',
+                    'api_token' => "Token not found"
+                ],404);
+            }
         }
     }
 }
