@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User\UserResource;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,19 @@ class UserController extends Controller
                 'status' => "success",
                 'data' => 'Sorry, something went wrong'
             ],404);
+        }
+    }
+
+    //user detail
+    public function detail(Request $request){
+        $user = User::where('user_key', $request->api_token)->first();
+        if($user != null){
+            return response()->json(new UserResource($user), 200);
+        }else{
+            return response([
+                'status' => 'error',
+                'data' => 'User not found'
+            ], 404);
         }
     }
 }
