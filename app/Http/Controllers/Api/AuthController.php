@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Client;
 use App\Model\Owner;
 use App\Model\Profile;
 use App\Model\Referrel;
@@ -69,11 +70,23 @@ class AuthController extends Controller
                     $update_user->update();
                 }
             }
-            return response()->json([
-                'status' => 'success',
-                'data' => 'User registration successfully',
-                'api_token' => $user->user_key
-            ],201);
+            $msg    = "Dear ". $user->name .", Welcome to Quicar, you have successfully registered as a user.";
+            $client = new Client();
+            $sms    = $client->request("GET", "http://66.45.237.70/api.php?username=01670168919&password=TVZMBN3D&number=". $user->phone ."&message=".$msg);
+            $sms_status_code = $sms->getStatusCode();
+            if($sms_status_code == 200){
+                return response()->json([
+                    'status'    => 'success',
+                    'data'      => 'User registration successfully',
+                    'api_token' => $user->user_key
+                ],201);
+            }else{
+                return response()->json([
+                    'status'    => 'error',
+                    'data'      => 'Something went wrong',
+                    'api_token' => 'Token not found'
+                ], 403);
+            }
         }
     }
 
@@ -162,11 +175,23 @@ class AuthController extends Controller
                         $update_owner->update();
                     }
                 }
-                return response()->json([
-                    'status'    => 'success',
-                    'data'      => 'Owner registration successfully',
-                    'api_token' => $owner->owner_key
-                ],201);
+                $msg    = "Dear ". $owner->name .", Welcome to Quicar, you have successfully registered as a owner.";
+                $client = new Client();
+                $sms    = $client->request("GET", "http://66.45.237.70/api.php?username=01670168919&password=TVZMBN3D&number=". $owner->phone ."&message=".$msg);
+                $sms_status_code = $sms->getStatusCode();
+                if($sms_status_code == 200){
+                    return response()->json([
+                        'status'    => 'success',
+                        'data'      => 'Owner registration successfully',
+                        'api_token' => $owner->owner_key
+                    ],201);
+                }else{
+                    return response()->json([
+                        'status'    => 'error',
+                        'data'      => 'Something went wrong',
+                        'api_token' => 'Token not found'
+                    ], 403);
+                }
             }
         }
     }
