@@ -15,3 +15,7 @@ Route::group(['prefix'=>'user', 'middleware'=>'api_user_auth' ],function(){
     Route::get('/logout', 'Api\UserController@logout');
     Route::get('/detail', 'Api\UserController@detail');
 });
+
+Route::group(['prefix'=>'owner', 'middleware'=>'api_owner_auth' ],function(){
+    Route::get('/logout', 'Api\UserController@logout');
+});
