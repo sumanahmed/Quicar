@@ -10,6 +10,7 @@ Route::post('user_register','Api\AuthController@userRegister');
 Route::post('user_login','Api\AuthController@userLogin');
 Route::post('owner_register','Api\AuthController@ownerRegister');
 Route::post('owner_login','Api\AuthController@ownerLogin');
+Route::get('get_car_types','Api\CarTypeController@getCarTypes');
 
 Route::group(['prefix'=>'user', 'middleware'=>'api_user_auth' ],function(){
     Route::get('/logout', 'Api\UserController@logout');
