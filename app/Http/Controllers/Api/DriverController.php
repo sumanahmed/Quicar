@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Model\Car;
 use App\Model\Driver;
 use App\Model\Owner;
 use Illuminate\Http\Request;
@@ -47,6 +48,51 @@ class DriverController extends Controller
                     return response()->json([
                         'status'    => 'success',
                         'data'      => 'Driver registration successfully'
+                    ],201);
+                }else{
+                    return response()->json([
+                        'status'    => 'error',
+                        'data'      => 'Something went wrong'
+                    ], 403);
+                }
+            }
+        }
+    }
+
+    //car register
+    public function carRegister(Request $request){
+        $owner = Owner::select()->where('owner_key', $request->api_token)->first();
+        $car   = Car::where('registration_no', $request->registration_no)->first();
+        if($car != null){
+            return response()->json([
+                'status'    => 'error',
+                'data'      => 'This car already registered'
+            ],409);
+        }else{
+            $validator=Validator::make($request->all(),[
+                'name'              =>'required|max:111',
+                'car_type_id'       =>'required',
+                'registration_no'   =>'required',
+                'sit_capacity'      =>'required',
+            ]);
+            if($validator->fails()) {
+                return response()->json([
+                    'status' => 'error',
+                    'data'   => 'Sorry, required column missing'
+                ],403);
+            }else{
+                //car store
+                $car                    = new Car();
+                $car->owner_id          = $owner->id;
+                $car->car_type_id       = $request->car_type_id;
+                $car->name              = $request->name;
+                $car->registration_no   = $request->registration_no;
+                $car->sit_capacity      = $request->sit_capacity;
+                $car->save();
+                if($car->save()){
+                    return response()->json([
+                        'status'    => 'success',
+                        'data'      => 'Car registration successfully'
                     ],201);
                 }else{
                     return response()->json([
