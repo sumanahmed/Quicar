@@ -20,5 +20,6 @@ Route::group(['prefix'=>'user', 'middleware'=>'api_user_auth' ],function(){
 Route::group(['prefix'=>'owner', 'middleware'=>'api_owner_auth' ],function(){
     Route::get('/logout', 'Api\OwnerController@logout');
     Route::get('/detail', 'Api\OwnerController@detail');
-    
+    Route::post('/driver_register', 'Api\DriverController@driverRegister');
+
 });
