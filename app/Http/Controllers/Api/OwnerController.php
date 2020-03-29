@@ -26,4 +26,20 @@ class OwnerController extends Controller
             ],404);
         }
     }
+
+    //owner detail
+    public function detail(Request $request){
+        $owner = Owner::where('owner_key', $request->api_token)->first();
+        if($owner != null){
+            return response([
+                'status' => 'error',
+                'data'   => $owner
+            ], 200);
+        }else{
+            return response([
+                'status' => 'error',
+                'data'   => []
+            ], 404);
+        }
+    }
 }
