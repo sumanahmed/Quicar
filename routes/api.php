@@ -22,4 +22,5 @@ Route::group(['prefix'=>'owner', 'middleware'=>'api_owner_auth' ],function(){
     Route::get('/detail', 'Api\OwnerController@detail');
     Route::post('/driver_register', 'Api\DriverController@driverRegister');
     Route::post('/car_register', 'Api\DriverController@carRegister');
+    Route::apiResource('/packages', 'Api\PackageController');
 });
