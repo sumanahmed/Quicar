@@ -17,8 +17,11 @@ class CreatePackagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('owner_id');
             $table->unsignedBigInteger('car_id');
+            $table->string('name');
             $table->decimal('price',10,2);
             $table->tinyInteger('type')->default(0)->comment('1=Daily, 2=Weekly 3=Monthly');
+            $table->foreign('start');
+            $table->foreign('end');
             $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
