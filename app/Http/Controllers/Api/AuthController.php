@@ -47,7 +47,7 @@ class AuthController extends Controller
                 $name           = Str::random(10);
                 $image          = $request->image;
                 $decodedImage   = base64_decode("$image");
-                $directory      = "quicar/backend/images/users/";
+                $directory      = "quicar/backend/uploads/images/users/";
                 file_put_contents($directory.$name.".JPG", $decodedImage);
                 $imageUrl       = $directory.$name.".JPG";
                 $user->image    = $imageUrl;
@@ -152,7 +152,7 @@ class AuthController extends Controller
                     $name           = Str::random(10);
                     $image          = $request->image;
                     $decodedImage   = base64_decode("$image");
-                    $directory      = "quicar/backend/images/owners/";
+                    $directory      = "quicar/backend/uploads/images/owners/";
                     file_put_contents($directory.$name.".JPG", $decodedImage);
                     $imageUrl       = $directory.$name.".JPG";
                     $owner->image    = $imageUrl;
