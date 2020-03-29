@@ -14,7 +14,7 @@ class DriverController extends Controller
 {
     //driver register
     public function driverRegister(Request $request) {
-        $owner = Owner::select()->where('owner_key', $request->api_token)->first();
+        $owner = Owner::select('id')->where('owner_key', $request->api_token)->first();
         $driver = Driver::where('phone', $request->phone)->first();
         if($driver != null){
             return response()->json([
@@ -61,7 +61,7 @@ class DriverController extends Controller
 
     //car register
     public function carRegister(Request $request){
-        $owner = Owner::select()->where('owner_key', $request->api_token)->first();
+        $owner = Owner::select('id')->where('owner_key', $request->api_token)->first();
         $car   = Car::where('registration_no', $request->registration_no)->first();
         if($car != null){
             return response()->json([
