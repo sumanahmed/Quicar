@@ -27,6 +27,7 @@ class AuthController extends Controller
         }else{
             $validator=Validator::make($request->all(),[
                 'name'  => 'required|max:111',
+                'email' => 'required',
                 'phone' => 'required|unique:users|max:14|min:11'
             ]);
             if($validator->fails()) {
@@ -38,11 +39,12 @@ class AuthController extends Controller
             }
             $user               = new User();
             $user->name         = $request->name;
-            $user->email        = $request->email ? $request->email : NULL;
+            $user->email        = $request->email;
             $user->phone        = $request->phone;
             $user->password     = bcrypt(123456);
             $user->user_key     = $user->createToken('QuicarApi')->accessToken;
             $user->status       = 1;
+            $user->language     = $request->language;
             if($request->image){
                 $name           = Str::random(10);
                 $image          = $request->image;
