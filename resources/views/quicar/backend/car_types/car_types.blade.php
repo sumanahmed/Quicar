@@ -15,6 +15,7 @@
                                 <thead class="thead-dark">
                                 <tr>
                                     <th>Name</th>
+                                    <th>Name(Bn)</th>
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
                                 </thead>
@@ -24,6 +25,7 @@
                                     @foreach($car_types as $car_type)
                                         <tr class="car_type-{{ $car_type->id }}">
                                             <td>{{ $car_type->name }}</td>
+                                            <td>{{ $car_type->bn_name }}</td>
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <button value="{{ $car_type->id }}" class="btn btn-raised btn-info edit_modal"><i class="fas fa-edit"></i></button>
                                             </td>
@@ -32,7 +34,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="5" class="text-center">No Data Found</td>
+                                        <td colspan="3" class="text-center">No Data Found</td>
                                     </tr>
                                 @endif
                                 </tbody>
