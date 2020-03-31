@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Model\Upazila;
 use App\Model\CarType;
+use App\Model\Banner;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -14,7 +15,7 @@ class AdminController extends Controller
     public function dashboard(){
         return view('quicar.backend.dashboard.dashboard');
     }
-    
+
     //get all car types
     public function carTypes(){
         $car_types = CarType::all();
@@ -75,5 +76,11 @@ class AdminController extends Controller
     public function getUpazila($id){
         $upazila = Upazila::where('district_id',$id)->get();
         return response()->json($upazila);
+    }
+
+    //get all banners
+    public function getBanner(){
+        $banners = Banner::all();
+        return view('quicar.backend.banner.banner', compact('banners'));
     }
 }

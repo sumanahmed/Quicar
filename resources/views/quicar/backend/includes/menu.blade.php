@@ -9,7 +9,8 @@
     <div class="aside-body" style="padding: 0px 16px;">
         <ul class="nav nav-aside">
             <li id="dashboard" class="nav-item"><a href="{{ route('backend.dashboard') }}" class="nav-link"><i data-feather="database"></i> <span>Dashboard</span></a></li>
-            <li id="car_type" class="nav-item"><a href="{{ route('backend.car_types') }}" class="nav-link"><i data-feather="share-2"></i> <span>Car Types</span></a></li>
+            <li id="car_type" class="nav-item"><a href="{{ route('backend.car_types') }}" class="nav-link"><i data-feather="share-2"></i> <span>Car Type</span></a></li>
+            <li id="banner" class="nav-item"><a href="{{ route('backend.banner') }}" class="nav-link"><i data-feather="share-2"></i> <span>Banner</span></a></li>
         </ul>
     </div>
 </aside>
