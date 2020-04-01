@@ -29,7 +29,8 @@
                                             <td><img src="{{ asset($banner->image) }}" style="width:100px;height:50px"/></td>
                                             <td><?php echo $banner->status == 1 ? "Show" : "Hide"; ?></td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <button value="{{ $banner->id }}" class="btn btn-raised btn-info edit_modal"><i class="fas fa-edit"></i></button>
+                                                <button value="{{ $banner->id }}" class="btn btn-raised btn-info"><i class="fas fa-edit"></i></button>
+                                                <button value="{{ $banner->id }}" class="btn btn-raised btn-danger delete_modal"><i class="fas fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -45,6 +46,24 @@
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->
+    </div>
+    <!-- Delete User Modal -->
+    <div id="deleteBannerModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete ?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="del_id"/>
+                    <button type="button" class="btn btn-danger btn-raised mr-2" id="bannerDelete"><i class="fas fa-trash-alt"></i> Proceed</button>
+                    <button type="button" class="btn btn-warning btn-raised" data-dismiss="modal" aria-label="Close"><i class="fas fa-backspace"></i> Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 @section('scripts')
