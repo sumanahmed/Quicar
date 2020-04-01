@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User\UserResource;
+use App\Model\Banner;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -40,4 +41,21 @@ class UserController extends Controller
             ], 404);
         }
     }
+
+    //get banner for user app
+    public function getBanner(Request $request){
+        $banners = Banner::select('title','image')->where('banner_for', 1)->get();
+        if($banners->count() > 0){
+            return response([
+                'status' => 'success',
+                'data'   => $banners
+            ], 200);
+        }else{
+            return response([
+                'status' => 'error',
+                'data'   => []
+            ], 404);
+        }
+    }
+
 }
