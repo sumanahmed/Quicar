@@ -22,53 +22,66 @@ class AdminController extends Controller
         return view('quicar.backend.car_types.car_types', compact('car_types'));
     }
 
+    //car types create
+    public function carTypesCreate(){
+        return view('quicar.backend.car_types.create');
+    }
+
     //car types store
     public function carTypesStore(Request $request){
-        $validator=Validator::make($request->all(),[
+        $this->validate($request,[
             'name'=>'required',
-            'monthly_charge'=>'required',
-            'admin_commisssion'=>'required',
-            'dealer_commisssion'=>'required',
+            'bn_name'=>'required',
+            'image'=>'required',
         ]);
-        if($validator->fails()) {
-            return response()->json([
-                'status' => 'error',
-                'data' => 'Sorry, required column missing',
-                'api_token' => 'Token not found',
-            ],403);
-        }else{
-            $car_type                       = new CarType();
-            $car_type->name                 = $request->name;
-            $car_type->monthly_charge       = $request->monthly_charge;
-            $car_type->admin_commisssion    = $request->admin_commisssion;
-            $car_type->dealer_commisssion   = $request->dealer_commisssion;
-            $car_type->save();
-            return response()->json($car_type);
+        $car_type            = new CarType();
+        $car_type->name      = $request->name;
+        $car_type->bn_name   = $request->bn_name;
+        if($request->hasFile('image')){
+            $image      = $request->file('image');
+            $imageName  = time().".".$image->getClientOriginalExtension();
+            $directory  = 'quicar/backend/uploads/images/car_types/';
+            $image->move($directory, $imageName);
+            $imageUrl   = $directory.$imageName;
+            $car_type->image = $imageUrl;
         }
+        if($car_type->save()){
+            return redirect()->route('backend.car_types')->with('message','Car Type Created Successfully');
+        }else{
+            return redirect()->route('backend.car_types')->with('error_message','Sorry Something Went Wrong');
+        }
+    }
+
+    //car types edit
+    public function carTypesEdit($id){
+        $car_type = CarType::find($id);
+        return view('quicar.backend.car_types.edit',compact('car_type'));
     }
 
     //car types update
     public function carTypesUpdate(Request $request){
-        $validator=Validator::make($request->all(),[
+        $this->validate($request,[
             'name'=>'required',
-            'monthly_charge'=>'required',
-            'admin_commisssion'=>'required',
-            'dealer_commisssion'=>'required',
+            'bn_name'=>'required'
         ]);
-        if($validator->fails()) {
-            return response()->json([
-                'status' => 'error',
-                'data' => 'Sorry, required column missing',
-                'api_token' => 'Token not found',
-            ],403);
+        $car_type            = CarType::find($request->car_type_id);
+        $car_type->name      = $request->name;
+        $car_type->bn_name   = $request->bn_name;
+        if($request->hasFile('image')){
+            if($car_type->image != null){
+                unlink($car_type->image);
+            }
+            $image      = $request->file('image');
+            $imageName  = time().".".$image->getClientOriginalExtension();
+            $directory  = 'quicar/backend/uploads/images/car_types/';
+            $image->move($directory, $imageName);
+            $imageUrl   = $directory.$imageName;
+            $car_type->image = $imageUrl;
+        }
+        if($car_type->update()){
+            return redirect()->route('backend.car_types')->with('message','Car Type Updated Successfully');
         }else{
-            $car_type                       = CarType::find($request->id);
-            $car_type->name                 = $request->name;
-            $car_type->monthly_charge       = $request->monthly_charge;
-            $car_type->admin_commisssion    = $request->admin_commisssion;
-            $car_type->dealer_commisssion   = $request->dealer_commisssion;
-            $car_type->update();
-            return response()->json($car_type);
+            return redirect()->route('backend.car_types')->with('error_message','Sorry Something Went Wrong');
         }
     }
 
@@ -94,6 +107,7 @@ class AdminController extends Controller
         $this->validate($request,[
             'title'  => 'required',
             'image'  => 'required',
+            'banner_for'  => 'required',
             'status' => 'required',
         ]);
         $banner         = new Banner();
@@ -125,7 +139,7 @@ class AdminController extends Controller
     public function bannerUpdate(Request $request){
         $this->validate($request,[
             'title'  => 'required',
-            'image'  => 'required',
+            'banner_for'  => 'required',
             'status' => 'required',
         ]);
         $banner         = Banner::find($request->banner_id);

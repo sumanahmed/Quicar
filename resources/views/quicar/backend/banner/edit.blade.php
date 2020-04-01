@@ -28,7 +28,7 @@
                                 <div class="form-row">
                                     <div class="form-group  col-md-6 offset-md-3">
                                         <label for="image">Update Image <span class="text-danger text-bold" title="Required Field">*</span></label>
-                                        <input type="file" name="image" id="image" class="form-control" required>
+                                        <input type="file" name="image" id="image" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-row">
