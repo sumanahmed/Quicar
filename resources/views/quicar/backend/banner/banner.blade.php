@@ -29,7 +29,7 @@
                                             <td><img src="{{ asset($banner->image) }}" style="width:100px;height:50px"/></td>
                                             <td><?php echo $banner->status == 1 ? "Show" : "Hide"; ?></td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <button value="{{ $banner->id }}" class="btn btn-raised btn-info"><i class="fas fa-edit"></i></button>
+                                                <a href="{{ route('backend.banner.edit', $banner->id) }}" class="btn btn-raised btn-info"><i class="fas fa-edit"></i></a>
                                                 <button value="{{ $banner->id }}" class="btn btn-raised btn-danger delete_modal"><i class="fas fa-trash-alt"></i></button>
                                             </td>
                                         </tr>

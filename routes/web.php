@@ -18,4 +18,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'admin'], function(){
     Route::get('/banner', 'Web\AdminController@getBanner')->name('backend.banner');
     Route::get('/banner-create', 'Web\AdminController@bannerCreate')->name('backend.banner.create');
     Route::post('/banner-store', 'Web\AdminController@bannerStore')->name('backend.banner.store');
+    Route::get('/banner-edit/{banner_id}', 'Web\AdminController@bannerEdit')->name('backend.banner.edit');
+    Route::post('/banner-update', 'Web\AdminController@bannerUpdate')->name('backend.banner.update');
+    Route::post('/banner-delete', 'Web\AdminController@bannerDelete')->name('backend.banner.delete');
 });

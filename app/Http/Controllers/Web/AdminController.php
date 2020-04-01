@@ -90,7 +90,7 @@ class AdminController extends Controller
     }
 
     //banner store
-    public function bannerStore(Request $request){  
+    public function bannerStore(Request $request){
         $this->validate($request,[
             'title'  => 'required',
             'image'  => 'required',
@@ -112,5 +112,47 @@ class AdminController extends Controller
         }else{
             return redirect()->route('backend.banner')->with('error_message','Sorry Something Went Wrong');
         }
+    }
+
+    //banner Edit
+    public function bannerEdit($id){
+        $banner = Banner::find($id);
+        return view('quicar.backend.banner.edit', compact('banner'));
+    }
+
+    //banner update
+    public function bannerUpdate(Request $request){
+        $this->validate($request,[
+            'title'  => 'required',
+            'image'  => 'required',
+            'status' => 'required',
+        ]);
+        $banner         = Banner::find($request->banner_id);
+        $banner->title  = $request->title;
+        $banner->status = $request->status;
+        if($request->hasFile('image')){
+            if($banner->image != null){
+                unlink($banner->image);
+            }
+            $image      = $request->file('image');
+            $imageName  = time().".".$image->getClientOriginalExtension();
+            $directory  = 'quicar/backend/uploads/images/banners/';
+            $image->move($directory, $imageName);
+            $imageUrl   = $directory.$imageName;
+            $banner->image = $imageUrl;
+        }
+        if($banner->update()){
+            return redirect()->route('backend.banner')->with('message','Banner Created Successfully');
+        }else{
+            return redirect()->route('backend.banner')->with('error_message','Sorry Something Went Wrong');
+        }
+    }
+
+    //banner delete
+    public function bannerDelete(Request $request){
+        $banner = Banner::find($request->id);
+        unlink($banner->image);
+        $banner->delete();
+        return response()->json();
     }
 }

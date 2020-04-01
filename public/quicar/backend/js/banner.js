@@ -15,8 +15,8 @@ $('#bannerDelete').click(function () {
             id: $('input[name=del_id]').val()
         },
         success: function (data) {
-            $('#deleteCategoryModal').modal('hide');
-            $('.category-' + $('input[name=del_id]').val()).remove();
+            $('#deleteBannerModal').modal('hide');
+            $('.banner-' + $('input[name=del_id]').val()).remove();
             toastr.success('Banner Delete Successfully')
         }
     });
