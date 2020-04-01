@@ -17,7 +17,7 @@ class CreateBannersTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('image');
-            $table->tinyInteger('type')->comment('1=Show, 2=Hide')->default(1);
+            $table->tinyInteger('status')->comment('1=Show, 2=Hide')->default(1);
             $table->timestamps();
         });
     }

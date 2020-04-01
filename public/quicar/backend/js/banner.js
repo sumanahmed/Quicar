@@ -1,16 +1,60 @@
-//Get upazila by district_id
-$("#district_id").on('change', function(){
-    var district_id = $(this).val();
-    $.get("get-upazila/"+district_id, function( data ) {
-        $('#upazila_id').empty();
-        $('#upazila_id').append("<option selected disabled>Select Upazila</option>");
-        for(i=0; i<=data.length; i++){
-            $('#upazila_id').append('<option value="'+ data[i].id +'">'+ data[i].name +'</option>');
-        }
-    });
-})
+// Add Banner
+$(document).ready(function() {
+    $("#create").click(function (e) {
+        e.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url:'/admin/banner-store',
+            method:'POST',
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            data:new FormData($("#saveBannerForm")[0]),
+            success:function(data){
+                if((data.errors)){
+                    if(data.errors.title){
+                        $('.titleError').text(data.errors.title);
+                    }else{
+                        $('.titleError').text('');
+                    }
+                    if (data.errors.status) {
+                        $('.statusError').text(data.errors.status);
+                    }else{
+                        $('.statusError').text('');
+                    }
+                }else{
+                    $('#addModal').modal('hide');
+                    var status = data.sta == 1 ? 'Show' : 'Hide';
+                    $("#bannerData").append(
+                        '<tr class="banner-' + data.id + '">' +
+                            '<td>' + data.title + '</td>' +
+                            '<td><img src="' + data.image + '" style="width:100px;height:80px"/></td>' +
+                            '<td>'+ status +'</td>' +
+                            '<td  style="vertical-align: middle;text-align: center;">' +
+                                '<button value="' + data.id + '" class="btn btn-raised btn-info edit_modal"><i class="fas fa-edit"></i></button>'+
+                                '<button value="' + data.id + '" class="btn btn-raised btn-danger delete_modal"><i class="fas fa-trash-alt"></i></button>'+
+                            '</td>' +
+                            '<input type="hidden" id="title_'+ data.id+'" value="' + data.title + '"/>\n' +
+                            '<input type="hidden" id="image_'+ data.id+'" value="' + data.image + '"/>\n' +
+                            '<input type="hidden" id="status_'+ data.id+'" value="' + data.status + '"/>\n' +
+                        '</tr>'
+                    );
+                    $('input[name=title]').val('');
+                    $('input[name=image]').val('');
+                    $('input[name=status]').val('');
+                    toastr.success('Banner Created Successfully')
+                }
+            }
+        });
 
-// Add Dealer
+    });
+});
+
+
 $('#create').click(function(){
     var name        = $('input[name=name]').val();
     var email       = $('input[name=email]').val();
@@ -22,7 +66,7 @@ $('#create').click(function(){
 
     $.ajax({
         type:'POST',
-        url:'/admin/dealers-store',
+        url:'/admin/banners-store',
         headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
         data:{
             name:name,
@@ -78,8 +122,8 @@ $('#create').click(function(){
                 }
             }else{
                 $('#addModal').modal('hide');
-                $("#dealerData").append(
-                    '<tr class="dealer-' + data.id + '">' +
+                $("#bannerData").append(
+                    '<tr class="banner-' + data.id + '">' +
                         '<td>' + data.name + '</td>' +
                         '<td>' + data.email + '</td>' +
                         '<td>' + data.phone + '</td>' +
