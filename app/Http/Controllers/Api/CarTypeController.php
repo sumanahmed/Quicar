@@ -10,7 +10,7 @@ class CarTypeController extends Controller
 {
     //get all car types
     public function getCarTypes(){
-        $car_types = CarType::all();
+        $car_types = CarType::select('id','name','bn_name','image')->get();
         if($car_types->count() > 0){
             return response()->json([
                 'status'    => 'success',
