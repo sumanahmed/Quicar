@@ -85,6 +85,14 @@ class AdminController extends Controller
         }
     }
 
+    //car type delete
+    public function carTypesDelete(Request $request){
+        $car_type = CarType::find($request->id);
+        unlink($car_type->image);
+        $car_type->delete();
+        return response()->json();
+    }
+
     //get upazila
     public function getUpazila($id){
         $upazila = Upazila::where('district_id',$id)->get();

@@ -17,6 +17,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'admin'], function(){
     Route::post('/car-types-store', 'Web\AdminController@carTypesStore')->name('backend.car_types.store');
     Route::get('/car-types-edit/{car_type_id}', 'Web\AdminController@carTypesEdit')->name('backend.car_types.edit');
     Route::post('/car-types-update', 'Web\AdminController@carTypesUpdate')->name('backend.car_types.update');
+    Route::post('/car-types-delete', 'Web\AdminController@carTypesDelete')->name('backend.car_types.delete');
     Route::get('/banner', 'Web\AdminController@getBanner')->name('backend.banner');
     Route::get('/banner-create', 'Web\AdminController@bannerCreate')->name('backend.banner.create');
     Route::post('/banner-store', 'Web\AdminController@bannerStore')->name('backend.banner.store');
