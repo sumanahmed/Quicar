@@ -17,6 +17,7 @@ class CreateBannersTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('image');
+            $table->tinyInteger('banner_for')->comment('1=User App, 2=Owner App')->default(1);
             $table->tinyInteger('status')->comment('1=Show, 2=Hide')->default(1);
             $table->timestamps();
         });
