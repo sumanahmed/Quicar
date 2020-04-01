@@ -33,6 +33,16 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group  col-md-6 offset-md-3">
+                                        <label for="status">Banner For <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                        <select class="form-control" id="banner_for" name="banner_for">
+                                            <option value="1" @if($banner->banner_for == 1) selected @endif>User App</option>
+                                            <option value="2" @if($banner->banner_for == 1) selected @endif>Owner App</option>
+                                        </select>
+                                        <span class="text-danger statusError"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group  col-md-6 offset-md-3">
                                         <label for="status">Status <span class="text-danger text-bold" title="Required Field">*</span></label>
                                         <select class="form-control" id="status" name="status">
                                             <option value="1" @if($banner->status == 1) selected @endif>Show</option>

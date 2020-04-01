@@ -16,6 +16,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Image</th>
+                                    <th>Banner For</th>
                                     <th>Status</th>
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
@@ -27,6 +28,7 @@
                                         <tr class="banner-{{ $banner->id }}">
                                             <td>{{ $banner->title }}</td>
                                             <td><img src="{{ asset($banner->image) }}" style="width:100px;height:50px"/></td>
+                                            <td><?php echo $banner->banner_for == 1 ? "User App" : "Driver App"; ?></td>
                                             <td><?php echo $banner->status == 1 ? "Show" : "Hide"; ?></td>
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <a href="{{ route('backend.banner.edit', $banner->id) }}" class="btn btn-raised btn-info"><i class="fas fa-edit"></i></a>

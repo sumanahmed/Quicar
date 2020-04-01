@@ -98,6 +98,7 @@ class AdminController extends Controller
         ]);
         $banner         = new Banner();
         $banner->title  = $request->title;
+        $banner->banner_for = $request->banner_for;
         $banner->status = $request->status;
         if($request->hasFile('image')){
             $image      = $request->file('image');
@@ -129,6 +130,7 @@ class AdminController extends Controller
         ]);
         $banner         = Banner::find($request->banner_id);
         $banner->title  = $request->title;
+        $banner->banner_for = $request->banner_for;
         $banner->status = $request->status;
         if($request->hasFile('image')){
             if($banner->image != null){
