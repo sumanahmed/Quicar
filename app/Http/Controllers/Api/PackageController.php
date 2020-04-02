@@ -19,7 +19,9 @@ class PackageController extends Controller
         }else{
             $sort = "desc";
         }
-        $packages = Package::orderBy('id', $sort)->get();
+        $packages = Package::select('id','owner_id','car_id','name','price','type','image')
+                            ->orderBy('id', $sort)
+                            ->get();
         if($packages != null){
             return response([
                 'status' => 'error',
