@@ -24,4 +24,5 @@ Route::group(['prefix'=>'admin', 'middleware' => 'admin'], function(){
     Route::get('/banner-edit/{banner_id}', 'Web\AdminController@bannerEdit')->name('backend.banner.edit');
     Route::post('/banner-update', 'Web\AdminController@bannerUpdate')->name('backend.banner.update');
     Route::post('/banner-delete', 'Web\AdminController@bannerDelete')->name('backend.banner.delete');
+    Route::get('/package', 'Web\AdminController@package')->name('backend.package');
 });
