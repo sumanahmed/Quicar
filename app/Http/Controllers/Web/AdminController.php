@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Upazila;
 use App\Model\CarType;
 use App\Model\Banner;
+use App\Model\Package;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -178,5 +179,11 @@ class AdminController extends Controller
         unlink($banner->image);
         $banner->delete();
         return response()->json();
+    }
+
+    //get packages
+    public function package(){
+        $packages = Package::all();
+        return view('quicar.backend.package.package', compact('packages'));
     }
 }
