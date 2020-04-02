@@ -25,6 +25,8 @@ class PackageResource extends JsonResource
             'start_time'      => $this->start != null ? date("H:i:s", strtotime($this->start)) : 'null',
             'end_date'        => $this->end != null ? date("Y-m-d", strtotime($this->end)) : 'null',
             'end_time'        => $this->end != null ? date("H:i:s", strtotime($this->end)) : 'null',
+            'image'           => $this->image != null ? $this->image : 'null',
+            'status'          => $this->status
         ];
     }
 }
