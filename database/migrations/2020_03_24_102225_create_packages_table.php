@@ -22,6 +22,8 @@ class CreatePackagesTable extends Migration
             $table->tinyInteger('type')->default(0)->comment('1=Daily, 2=Weekly 3=Monthly');
             $table->foreign('start');
             $table->foreign('end');
+            $table->text('image');
+            $table->tinyInteger('status')->comment('1=Show, 0=Hide')->default(0);
             $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
