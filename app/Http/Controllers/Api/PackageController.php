@@ -8,6 +8,7 @@ use App\Model\Owner;
 use App\Model\Package;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Str;
 
 class PackageController extends Controller
 {
@@ -57,6 +58,16 @@ class PackageController extends Controller
             $package->type      = $request->type;
             $package->start     = date('Y-m-d H:i:s', strtotime($request->start));
             $package->end       = date('Y-m-d H:i:s', strtotime($request->end));
+            if($request->image){
+                $name           = Str::random(10);
+                $image          = $request->image;
+                $decodedImage   = base64_decode("$image");
+                $directory      = "quicar/backend/uploads/images/packages/";
+                file_put_contents($directory.$name.".JPG", $decodedImage);
+                $imageUrl       = $directory.$name.".JPG";
+                $package->image = $imageUrl;
+            }
+            $package->status    = 0;
             if($package->save()){
                 return response([
                     'status' => 'success',
