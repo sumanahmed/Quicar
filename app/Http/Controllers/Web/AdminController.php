@@ -186,4 +186,51 @@ class AdminController extends Controller
         $packages = Package::all();
         return view('quicar.backend.package.package', compact('packages'));
     }
+
+    //package edit
+    public function packageEdit($id){
+        $package = Package::find($id);
+        return view('quicar.backend.package.edit', compact('package'));
+    }
+
+    //package update
+    public function packageUpdate(Request $request){  
+        $this->validate($request,[
+            'name'   => 'required',
+            'price'  => 'required',
+            'type'   => 'required',
+            'status' => 'required',
+        ]);
+        $package         = Package::find($request->package_id);
+        $package->name   = $request->name;
+        $package->price  = $request->price;
+        $package->type   = $request->type;
+        $package->status = $request->status;
+        if($request->hasFile('image')){
+            if($package->image != null){
+                unlink($package->image);
+            }
+            $image      = $request->file('image');
+            $imageName  = time().".".$image->getClientOriginalExtension();
+            $directory  = 'quicar/backend/uploads/images/packages/';
+            $image->move($directory, $imageName);
+            $imageUrl   = $directory.$imageName;
+            $package->image = $imageUrl;
+        }
+        if($package->update()){
+            return redirect()->route('backend.package')->with('message','Package Updated Successfully');
+        }else{
+            return redirect()->route('backend.package')->with('error_message','Sorry Something Went Wrong');
+        }
+    }
+
+    //package delete
+    public function packageDelete(Request $request){
+        $package = Package::find($request->id);
+        if($package->image != null){
+            unlink($package->image);
+        }
+        $package->delete();
+        return response()->json();
+    }
 }

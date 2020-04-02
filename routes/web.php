@@ -25,4 +25,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'admin'], function(){
     Route::post('/banner-update', 'Web\AdminController@bannerUpdate')->name('backend.banner.update');
     Route::post('/banner-delete', 'Web\AdminController@bannerDelete')->name('backend.banner.delete');
     Route::get('/package', 'Web\AdminController@package')->name('backend.package');
+    Route::get('/package-edit/{package_id}', 'Web\AdminController@packageEdit')->name('backend.package.edit');
+    Route::post('/package-update', 'Web\AdminController@packageUpdate')->name('backend.package.update');
+    Route::post('/package-delete', 'Web\AdminController@packageDelete')->name('backend.package.delete');
 });

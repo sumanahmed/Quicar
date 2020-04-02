@@ -46,14 +46,14 @@
                                             <td><img src="{{ asset($package->image) }}" style="width:100px;height:50px"/></td>
                                             <td><?php echo $package->status == 1 ? "Show" : "Hide"; ?></td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-info"><i class="fas fa-edit"></i></a>
+                                                <a href="{{ route('backend.package.edit',$package->id) }}" class="btn btn-raised btn-info"><i class="fas fa-edit"></i></a>
                                                 <button value="{{ $package->id }}" class="btn btn-raised btn-danger delete_modal"><i class="fas fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="4" class="text-center">No Data Found</td>
+                                        <td colspan="10" class="text-center">No Data Found</td>
                                     </tr>
                                 @endif
                                 </tbody>
@@ -65,7 +65,7 @@
         </div><!-- container -->
     </div>
     <!-- Delete User Modal -->
-    <div id="deletepackageModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div id="deletePackageModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content text-center">
                 <div class="modal-header">

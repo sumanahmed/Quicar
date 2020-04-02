@@ -10,23 +10,23 @@ $('#packageTable').DataTable({
 // open delete user modal
 $(document).on('click', '.delete_modal', function () {
     var id = $(this).val();
-    $('#deleteCarTypeModal').modal('show');
+    $('#deletePackageModal').modal('show');
     $('input[name=del_id]').val(id);
 });
 
 // delete user
-$('#cartypeDelete').click(function () {
+$('#packageDelete').click(function () {
     $.ajax({
         type: 'POST',
-        url: '/admin/car-types-delete',
+        url: '/admin/package-delete',
         headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
         data: {
             id: $('input[name=del_id]').val()
         },
         success: function (data) {
-            $('#deleteCarTypeModal').modal('hide');
-            $('.car_type-' + $('input[name=del_id]').val()).remove();
-            toastr.success('Car Type Delete Successfully')
+            $('#deletePackageModal').modal('hide');
+            $('.package-' + $('input[name=del_id]').val()).remove();
+            toastr.success('Package Delete Successfully')
         }
     });
 });
