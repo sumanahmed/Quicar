@@ -7,6 +7,7 @@ use App\Model\Upazila;
 use App\Model\CarType;
 use App\Model\Banner;
 use App\Model\Package;
+use App\Model\TopDestination;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -194,7 +195,7 @@ class AdminController extends Controller
     }
 
     //package update
-    public function packageUpdate(Request $request){  
+    public function packageUpdate(Request $request){
         $this->validate($request,[
             'name'   => 'required',
             'price'  => 'required',
@@ -231,6 +232,87 @@ class AdminController extends Controller
             unlink($package->image);
         }
         $package->delete();
+        return response()->json();
+    }
+
+    //get top destination
+    public function topDestination(){
+        $top_destinations = TopDestination::select('id','name','image')
+                                            ->orderBy('id', 'DESC')
+                                            ->get();
+        return view('quicar.backend.top_destination.top_destination', compact('top_destinations'));
+    }
+
+    //get top destination create
+    public function topDestinationCreate(){
+        return view('quicar.backend.top_destination.create');
+    }
+
+    //get top destination store
+    public function topDestinationStore(Request $request){
+        $this->validate($request,[
+            'name'  => 'required',
+            'image'  => 'required',
+            'status' => 'required',
+        ]);
+        $top_destination    = new TopDestination();
+        $top_destination->name       = $request->name;
+        $top_destination->status     = $request->status;
+        if($request->hasFile('image')){
+            $image      = $request->file('image');
+            $imageName  = time().".".$image->getClientOriginalExtension();
+            $directory  = 'quicar/backend/uploads/images/top_destination/';
+            $image->move($directory, $imageName);
+            $imageUrl   = $directory.$imageName;
+            $top_destination->image = $imageUrl;
+        }
+        if($top_destination->save()){
+            return redirect()->route('backend.top-destination')->with('message','Top Destination Created Successfully');
+        }else{
+            return redirect()->route('backend.top-destination')->with('error_message','Sorry Something Went Wrong');
+        }
+    }
+
+    //get top destination edit
+    public function topDestinationEdit($id){
+        $top_destination    = TopDestination::find($id);
+        return view('quicar.backend.top_destination.edit',compact('top_destination'));
+    }
+
+    //get top destination update
+    public function topDestinationUpdate(Request $request){
+        $this->validate($request,[
+            'name'  => 'required',
+            'status' => 'required',
+        ]);
+        $top_destination    = TopDestination::find($request->top_destination_id);
+        $top_destination->name       = $request->name;
+        $top_destination->status     = $request->status;
+        if($request->hasFile('image')){
+            if($top_destination->image != null){
+                unlink($top_destination->image);
+            }
+            $image      = $request->file('image');
+            $imageName  = time().".".$image->getClientOriginalExtension();
+            $directory  = 'quicar/backend/uploads/images/top_destination/';
+            $image->move($directory, $imageName);
+            $imageUrl   = $directory.$imageName;
+            $top_destination->image = $imageUrl;
+        }
+        if($top_destination->save()){
+            return redirect()->route('backend.top-destination')->with('message','Top Destination Created Successfully');
+        }else{
+            return redirect()->route('backend.top-destination')->with('error_message','Sorry Something Went Wrong');
+        }
+    }
+
+    //top destination delete
+    public function topDestinationDelete(Request $request){
+        $top_destination = TopDestination::find($request->id);
+        if($top_destination->image != null){
+            unlink($top_destination->image);
+        }
+        $top_destination->delete();
         return response()->json();
     }
 }

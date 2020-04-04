@@ -12,6 +12,7 @@
             <li id="car_type" class="nav-item"><a href="{{ route('backend.car_types') }}" class="nav-link"><i data-feather="share-2"></i> <span>Car Type</span></a></li>
             <li id="banner" class="nav-item"><a href="{{ route('backend.banner') }}" class="nav-link"><i data-feather="share-2"></i> <span>Banner</span></a></li>
             <li id="package" class="nav-item"><a href="{{ route('backend.package') }}" class="nav-link"><i data-feather="share-2"></i> <span>Package</span></a></li>
+            <li id="top_destination" class="nav-item"><a href="{{ route('backend.top-destination') }}" class="nav-link"><i data-feather="share-2"></i> <span>Top Destination</span></a></li>
         </ul>
     </div>
 </aside>

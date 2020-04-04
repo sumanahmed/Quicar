@@ -28,4 +28,10 @@ Route::group(['prefix'=>'admin', 'middleware' => 'admin'], function(){
     Route::get('/package-edit/{package_id}', 'Web\AdminController@packageEdit')->name('backend.package.edit');
     Route::post('/package-update', 'Web\AdminController@packageUpdate')->name('backend.package.update');
     Route::post('/package-delete', 'Web\AdminController@packageDelete')->name('backend.package.delete');
+    Route::get('/top-destination', 'Web\AdminController@topDestination')->name('backend.top-destination');
+    Route::get('/top-destination-create', 'Web\AdminController@topDestinationCreate')->name('backend.top-destination.create');
+    Route::post('/top-destination-store', 'Web\AdminController@topDestinationStore')->name('backend.top-destination.store');
+    Route::get('/top-destination-edit/{top_destination_id}', 'Web\AdminController@topDestinationEdit')->name('backend.top-destination.edit');
+    Route::post('/top-destination-update', 'Web\AdminController@topDestinationUpdate')->name('backend.top-destination.update');
+    Route::post('/top-destination-delete', 'Web\AdminController@topDestinationDelete')->name('backend.top-destination.delete');
 });
