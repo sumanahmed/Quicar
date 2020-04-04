@@ -26,6 +26,9 @@ class CreateCarsTable extends Migration
             $table->string('monthly_price')->nullable();
             $table->unsignedBigInteger('district_id')->nullable();
             $table->unsignedBigInteger('upazila_id')->nullable();
+            $table->text('front_image');
+            $table->text('inside_image')->nullable();
+            $table->text('back_image')->nullable();
             $table->tinyInteger('approval_status')->default(0)->comment('0=Unapproved,1=Approved');
             $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade')->onUpdate('cascade');
