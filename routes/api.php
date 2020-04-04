@@ -14,6 +14,7 @@ Route::get('get_car_types','Api\CarTypeController@getCarTypes');
 Route::get('get_banners','Api\UserController@getBanner');
 Route::get('get_packages','Api\PackageController@index');
 Route::get('get_top_destinations','Api\TopDestinationController@index');
+Route::get('get_cars','Api\DriverController@getCars');
 
 Route::group(['prefix'=>'user', 'middleware'=>'api_user_auth' ],function(){
     Route::get('/logout', 'Api\UserController@logout');
