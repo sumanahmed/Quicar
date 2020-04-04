@@ -131,4 +131,23 @@ class DriverController extends Controller
             }
         }
     }
+
+    //get all cars in user app
+    public function getCars(){
+        $cars = Car::select('id','name','front_image')
+                            ->orderBy('id', 'DESC')
+                            ->where('status', 1)
+                            ->get();
+        if($cars->count() > 0){
+            return response([
+                'status' => 'error',
+                'data'   => $cars
+            ], 200);
+        }else{
+            return response([
+                'status' => 'error',
+                'data'   => []
+            ], 404);
+        }
+    }
 }
