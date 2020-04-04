@@ -74,6 +74,7 @@ class DriverController extends Controller
                 'car_type_id'       =>'required',
                 'registration_no'   =>'required',
                 'sit_capacity'      =>'required',
+                'front_image'       =>'required',
             ]);
             if($validator->fails()) {
                 return response()->json([
@@ -88,6 +89,33 @@ class DriverController extends Controller
                 $car->name              = $request->name;
                 $car->registration_no   = $request->registration_no;
                 $car->sit_capacity      = $request->sit_capacity;
+                if($request->front_image){
+                    $name           = Str::random(10);
+                    $image          = $request->front_image;
+                    $decodedImage   = base64_decode("$image");
+                    $directory      = "quicar/backend/uploads/images/cars/";
+                    file_put_contents($directory.$name.".JPG", $decodedImage);
+                    $imageUrl       = $directory.$name.".JPG";
+                    $car->front_image    = $imageUrl;
+                }
+                if($request->inside_image){
+                    $name           = Str::random(10);
+                    $image          = $request->inside_image;
+                    $decodedImage   = base64_decode("$image");
+                    $directory      = "quicar/backend/uploads/images/cars/";
+                    file_put_contents($directory.$name.".JPG", $decodedImage);
+                    $imageUrl       = $directory.$name.".JPG";
+                    $car->inside_image    = $imageUrl;
+                }
+                if($request->back_image){
+                    $name           = Str::random(10);
+                    $image          = $request->back_image;
+                    $decodedImage   = base64_decode("$image");
+                    $directory      = "quicar/backend/uploads/images/cars/";
+                    file_put_contents($directory.$name.".JPG", $decodedImage);
+                    $imageUrl       = $directory.$name.".JPG";
+                    $car->back_image    = $imageUrl;
+                }
                 $car->save();
                 if($car->save()){
                     return response()->json([
