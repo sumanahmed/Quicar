@@ -48,3 +48,7 @@ Route::group(['prefix'=>'admin/drivers', 'middleware' => 'admin'], function(){
 Route::group(['prefix'=>'admin/owners', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\OwnerController@index')->name('backend.owner.index');
 });
+
+Route::group(['prefix'=>'admin/users', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\UserController@index')->name('backend.user.index');
+});
