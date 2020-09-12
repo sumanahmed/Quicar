@@ -74,17 +74,7 @@
 @endsection
 @section('scripts')
 <script src="{{ asset('quicar/backend/js/user.js')}}"></script>
-    <script>
-        $("#user").addClass('active');
-    </script>
-    @if(Session::has('error_message'))
-        <script>
-            toastr.error("{{ Session::get('error_message') }}")
-        </script>
-    @endif
-    @if(Session::has('message'))
-        <script>
-            toastr.success("{{ Session::get('message') }}")
-        </script>
-    @endif
+<script>
+    $("#user").addClass('active');
+</script>
 @endsection
