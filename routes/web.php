@@ -51,4 +51,5 @@ Route::group(['prefix'=>'admin/owners', 'middleware' => 'admin'], function(){
 
 Route::group(['prefix'=>'admin/users', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\UserController@index')->name('backend.user.index');
+    Route::get('/status/update', 'Web\UserController@statusUpdate')->name('backend.user.status.update');
 });
