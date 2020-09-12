@@ -47,6 +47,7 @@ Route::group(['prefix'=>'admin/drivers', 'middleware' => 'admin'], function(){
 
 Route::group(['prefix'=>'admin/owners', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\OwnerController@index')->name('backend.owner.index');
+    Route::get('/status/update', 'Web\OwnerController@statusUpdate')->name('backend.owner.status.update');
 });
 
 Route::group(['prefix'=>'admin/users', 'middleware' => 'admin'], function(){
