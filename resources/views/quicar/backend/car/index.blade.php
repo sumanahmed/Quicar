@@ -11,7 +11,7 @@
                             <a class="btn btn-success float-right cursor-pointer" href="#"><i data-feather="plus"></i>&nbsp; Add New</a>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered" id="carTypeTable">
+                            <table class="table table-bordered" id="carTable">
                                 <thead class="thead-dark">
                                 <tr>
                                     <th>Name</th>
@@ -20,7 +20,7 @@
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
                                 </thead>
-                                <tbody id="carTypeData">
+                                <tbody id="carData">
                                 @if(isset($cars) && count($cars) > 0)
                                     @php $i=1; @endphp
                                     @foreach($cars as $car)
@@ -67,17 +67,7 @@
 @endsection
 @section('scripts')
 <script src="{{ asset('quicar/backend/js/car-type.js')}}"></script>
-    <script>
-        $("#car").addClass('active');
-    </script>
-    @if(Session::has('error_message'))
-        <script>
-            toastr.warning("{{ Session::get('error_message') }}")
-        </script>
-    @endif
-    @if(Session::has('message'))
-        <script>
-            toastr.success("{{ Session::get('message') }}")
-        </script>
-    @endif
+<script>
+    $("#car").addClass('active');
+</script>    
 @endsection
