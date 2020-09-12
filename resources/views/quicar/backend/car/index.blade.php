@@ -8,7 +8,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="mt-2 tx-spacing--1 float-left">All Cars</h4>
-                            <a class="btn btn-success float-right cursor-pointer" href="#"><i data-feather="plus"></i>&nbsp; Add New</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered" id="carTable">
@@ -29,7 +28,9 @@
                                             <td>{{ $car->model }}</td>
                                             <td>{{ $car->year }}</td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-info"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-raised btn-success" title="Verify"><i class="fas fa-unlock-alt"></i></a>
+                                                <a href="#" class="btn btn-raised btn-info" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-raised btn-warning" title="Details"><i class="fas fa-eye"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -66,7 +67,7 @@
     </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('quicar/backend/js/car-type.js')}}"></script>
+<script src="{{ asset('quicar/backend/js/car.js')}}"></script>
 <script>
     $("#car").addClass('active');
 </script>    
