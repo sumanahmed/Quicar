@@ -10,33 +10,41 @@
                             <h4 class="mt-2 tx-spacing--1 float-left">All Users</h4>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered" id="carTypeTable">
+                            <table class="table table-bordered" id="userTable">
                                 <thead class="thead-dark">
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Joining Date & Time</th>
+                                    <th>Image</th>
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody id="userData">
-                                @if(isset($users) && count($users) > 0)
-                                    @php $i=1; @endphp
-                                    @foreach($users as $user)
-                                        <tr class="user-{{ $user->id }}">
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->phone }}</td>
-                                            <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-info"><i class="fas fa-edit"></i></a>
-                                            </td>
+                                    @if(isset($users) && count($users) > 0)
+                                        @foreach($users as $user)
+                                            <tr class="user-{{ $user->id }}">
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->phone }}</td>
+                                                <td>{{ date('d.m.Y', strtotime($user->date))." ".date('h:i:s a', strtotime($user->time)) }}</td>
+                                                <td><img src="{{ asset($user->img) }}" style="width:80px;height:60px"/>
+                                                <td style="vertical-align: middle;text-align: center;">
+                                                    @if($user->account_status == "1")                                            
+                                                        <a href="{{ route('backend.user.status.update',['user_id'=> $user->id, 'status'=>1]) }}" class="btn btn-raised btn-danger" title="Deactive"><i class="fas fa-angle-down"></i></a>
+                                                    @else
+                                                        <a href="{{ route('backend.user.status.update',['user_id'=> $user->id, 'status'=>1]) }}" class="btn btn-raised btn-success" title="Active"><i class="fas fa-angle-up"></i></a>
+                                                    @endif                                                    
+                                                    <a href="#" class="btn btn-raised btn-info" title="Send Notification"><i class="fas fa-bell"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="4" class="text-center">No Data Found</td>
                                         </tr>
-                                    @endforeach
-                                @else
-                                    <tr>
-                                        <td colspan="4" class="text-center">No Data Found</td>
-                                    </tr>
-                                @endif
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -67,11 +75,11 @@
 @section('scripts')
 <script src="{{ asset('quicar/backend/js/user.js')}}"></script>
     <script>
-        $("#car").addClass('active');
+        $("#user").addClass('active');
     </script>
     @if(Session::has('error_message'))
         <script>
-            toastr.warning("{{ Session::get('error_message') }}")
+            toastr.error("{{ Session::get('error_message') }}")
         </script>
     @endif
     @if(Session::has('message'))
