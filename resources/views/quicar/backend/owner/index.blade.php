@@ -1,5 +1,5 @@
 @extends('quicar.backend.layout.admin')
-@section('title','Owners')
+@section('title','Partners')
 @section('content')
     <div class="content-body">
         <div class="container-fluid pd-x-0">
@@ -7,37 +7,44 @@
                 <div class="col-sm-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="mt-2 tx-spacing--1 float-left">All Owners</h4>
-                            <a class="btn btn-success float-right cursor-pointer" href="#"><i data-feather="plus"></i>&nbsp; Add New</a>
+                            <h4 class="mt-2 tx-spacing--1 float-left">All Partners</h4>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered" id="carTypeTable">
+                            <table class="table table-bordered" id="ownerTable">
                                 <thead class="thead-dark">
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Status</th>
+                                    <th>Joining Date & Time</th>
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
                                 </thead>
-                                <tbody id="ownerData">
-                                @if(isset($owners) && count($owners) > 0)
-                                    @php $i=1; @endphp
-                                    @foreach($owners as $owner)
-                                        <tr class="owner-{{ $owner->id }}">
-                                            <td>{{ $owner->name }}</td>
-                                            <td>{{ $owner->email }}</td>
-                                            <td>{{ $owner->phone }}</td>
-                                            <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-info"><i class="fas fa-edit"></i></a>
-                                            </td>
+                                <tbody id="partnerData">
+                                    @if(isset($owners) && count($owners) > 0)
+                                        @php $i=1; @endphp
+                                        @foreach($owners as $owner)
+                                            <tr class="owner-{{ $owner->id }}">
+                                                <td>{{ $owner->name }}</td>
+                                                <td>{{ $owner->email }}</td>
+                                                <td>{{ $owner->phone }}</td>
+                                                <td>{{ date('d.m.Y', strtotime($owner->date))." ".date('h:i:s a', strtotime($owner->time)) }}</td>
+                                                <td><img src="{{ asset($owner->img) }}" style="width:80px;height:60px"/>
+                                                <td style="vertical-align: middle;text-align: center;">
+                                                 @if($owner->account_status == "1")                                            
+                                                        <a href="{{ route('backend.owner.status.update',['owner_id'=> $owner->id, 'status'=>1]) }}" class="btn btn-raised btn-danger" title="Deactive"><i class="fas fa-angle-down"></i></a>
+                                                    @else
+                                                        <a href="{{ route('backend.owner.status.update',['owner_id'=> $owner->id, 'status'=>1]) }}" class="btn btn-raised btn-success" title="Active"><i class="fas fa-angle-up"></i></a>
+                                                    @endif  
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="4" class="text-center">No Data Found</td>
                                         </tr>
-                                    @endforeach
-                                @else
-                                    <tr>
-                                        <td colspan="4" class="text-center">No Data Found</td>
-                                    </tr>
-                                @endif
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -66,9 +73,9 @@
     </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('quicar/backend/js/car-type.js')}}"></script>
+<script src="{{ asset('quicar/backend/js/owner.js')}}"></script>
     <script>
-        $("#car").addClass('active');
+        $("#owner").addClass('active');
     </script>
     @if(Session::has('error_message'))
         <script>
