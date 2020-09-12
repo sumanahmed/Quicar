@@ -13,10 +13,20 @@
 <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>
 <script>
     CKEDITOR.inline('ckeditor');
-    </script>
+</script>
 <script>
     $('.selectable').select2();
 </script>
+@if(Session::has('error_message'))
+    <script>
+        toastr.error("{{ Session::get('error_message') }}")
+    </script>
+@endif
+@if(Session::has('message'))
+    <script>
+        toastr.success("{{ Session::get('message') }}")
+    </script>
+@endif
 @yield('scripts')
 </body>
 </html>
