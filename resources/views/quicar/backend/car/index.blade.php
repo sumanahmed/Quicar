@@ -13,9 +13,11 @@
                             <table class="table table-bordered" id="carTable">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Model</th>
-                                    <th>Year</th>
+                                    <th>Car Name</th>
+                                    <th>Owner Name</th>
+                                    <th>Owner Phone</th>
+                                    <th>Current Status</th>
+                                    <th>Image</th>
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
                                 </thead>
@@ -25,11 +27,13 @@
                                     @foreach($cars as $car)
                                         <tr class="car-{{ $car->id }}">
                                             <td>{{ $car->name }}</td>
-                                            <td>{{ $car->model }}</td>
-                                            <td>{{ $car->year }}</td>
+                                            <td>{{ $car->owner_name }}</td>
+                                            <td>{{ $car->owner_phone }}</td>
+                                            <td>{{ $car->c_status == 0 ? 'Off Ride' : 'On Ride' }}</td>
+                                            <th><img src="{{ asset($car->img1) }}" style="width:80px;height:60px;"/></th>
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <a href="#" class="btn btn-raised btn-success" title="Verify"><i class="fas fa-unlock-alt"></i></a>
-                                                <a href="#" class="btn btn-raised btn-info" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="{{ route('backend.car.edit', $car->id) }}" class="btn btn-raised btn-info" title="Edit"><i class="fas fa-edit"></i></a>
                                                 <a href="#" class="btn btn-raised btn-warning" title="Details"><i class="fas fa-eye"></i></a>
                                             </td>
                                         </tr>
@@ -46,24 +50,6 @@
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->
-    </div>
-     <!-- Delete Car Type Modal -->
-     <div id="deleteCarTypeModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content text-center">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete ?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="del_id"/>
-                    <button type="button" class="btn btn-danger btn-raised mr-2" id="cartypeDelete"><i class="fas fa-trash-alt"></i> Proceed</button>
-                    <button type="button" class="btn btn-warning btn-raised" data-dismiss="modal" aria-label="Close"><i class="fas fa-backspace"></i> Cancel</button>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
 @section('scripts')
