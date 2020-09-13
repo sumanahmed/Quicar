@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Model\Car;
+use App\Model\CarModel;
+use App\Model\CarBrand;
+use App\Model\CarClass;
+use App\Model\CarColor;
+use App\Model\CarDistrict;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -15,5 +20,16 @@ class CarController extends Controller
                             'owners.phone as owner_phone')
                     ->get();
         return view('quicar.backend.car.index', compact('cars'));
+    }
+
+    //show edit page
+    public function edit($id){
+        $car        = Car::find($id);
+        $models     = CarModel::all();
+        $brands     = CarBrand::all();
+        $classes    = CarClass::all();
+        $colors     = CarColor::all();
+        $districts  = CarDistrict::all();
+        return view('quicar.backend.car.edit', compact('car'));
     }
 }
