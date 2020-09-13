@@ -10,7 +10,10 @@ class CarController extends Controller
 {
     //show all cars
     public function index(){
-        $cars = Car::all();
+        $cars = Car::join('owners','owners.api_token','cars.owner_id')
+                    ->select('cars.id','cars.name','cars.img1','cars.c_status','owners.name as owner_name',
+                            'owners.phone as owner_phone')
+                    ->get();
         return view('quicar.backend.car.index', compact('cars'));
     }
 }
