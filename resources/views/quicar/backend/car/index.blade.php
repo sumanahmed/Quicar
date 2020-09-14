@@ -16,6 +16,7 @@
                                     <th>Car Name</th>
                                     <th>Owner Name</th>
                                     <th>Owner Phone</th>
+                                    <th>Driver Name</th>
                                     <th>Current Status</th>
                                     <th>Image</th>
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
@@ -29,6 +30,11 @@
                                             <td>{{ $car->name }}</td>
                                             <td>{{ $car->owner_name }}</td>
                                             <td>{{ $car->owner_phone }}</td>
+                                            <td>
+                                                <a href="#" data-toggle="modal" id="driverDetail" data-target="#driverDetailModal" data-driver_name="{{ $car->driver_name }}" data-driver_phone="{{ $car->driver_phone }}" data-driver_current_status="{{ $car->driver_current_status }}" data-license="{{ $car->license }}" data-nid="{{ $car->nid }}" data-account_status="{{ $car->account_status }}">
+                                                    {{ $car->driver_name }}
+                                                </a>
+                                            </td>
                                             <td>{{ $car->c_status == 0 ? 'Off Ride' : 'On Ride' }}</td>
                                             <th><img src="{{ asset($car->img1) }}" style="width:80px;height:60px;"/></th>
                                             <td style="vertical-align: middle;text-align: center;">
@@ -50,6 +56,49 @@
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->
+    </div>
+    <!-- driver details -->
+    <div class="modal fade" tabindex="-1" id="driverDetailModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-default" role="document">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title text-center w-100">Driver Details</h5>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Name</th>
+                                <td id="driver_name"></td>
+                            </tr>
+                            <tr>
+                                <th>Phone</th>
+                                <td id="driver_phone"></td>
+                            </tr>
+                            <tr>
+                                <th>Current Status</th>
+                                <td id="current_status"></td>
+                            </tr>
+                            <tr>
+                                <th>Nid</th>
+                                <td id="nid"></td>
+                            </tr>
+                            <tr>
+                                <th>Account Status</th>
+                                <td id="account_status"></td>
+                            </tr>
+                            <tr>
+                                <th>License</th>
+                                <td><img id="driver_license" style="width:100px;height:60px;"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 @endsection
 @section('scripts')
