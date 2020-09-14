@@ -15,6 +15,7 @@
     CKEDITOR.inline('ckeditor');
 </script>
 <script>
+    var image_base_path = "http://localhost:8000/";
     $('.selectable').select2();
 </script>
 @if(Session::has('error_message'))
