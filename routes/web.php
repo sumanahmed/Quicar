@@ -70,3 +70,17 @@ Route::group(['prefix'=>'admin/models', 'middleware' => 'admin'], function(){
     Route::post('/update', 'Web\CarModelController@update')->name('backend.model.update');
     Route::post('/destroy', 'Web\CarModelController@destroy')->name('backend.model.destroy');
 });
+
+Route::group(['prefix'=>'admin/years', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\CarYearController@index')->name('backend.year.index');
+    Route::post('/store', 'Web\CarYearController@store')->name('backend.year.store');
+    Route::post('/update', 'Web\CarYearController@update')->name('backend.year.update');
+    Route::post('/destroy', 'Web\CarYearController@destroy')->name('backend.year.destroy');
+});
+
+Route::group(['prefix'=>'admin/class', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\CarClassController@index')->name('backend.class.index');
+    Route::post('/store', 'Web\CarClassController@store')->name('backend.class.store');
+    Route::post('/update', 'Web\CarClassController@update')->name('backend.class.update');
+    Route::post('/destroy', 'Web\CarClassController@destroy')->name('backend.class.destroy');
+});
