@@ -15,5 +15,10 @@
     <link rel="stylesheet" href="{{ asset('quicar/frontend/css/jquery.datetimepicker.min.css') }}">
     <link href="{{ asset('quicar/backend/css/toastr.css') }}" rel="stylesheet">
     @yield('styles')
+    <style>
+        .modal-footer{
+            text-align:right !important;
+        }
+    </style>
 </head>
 <body>

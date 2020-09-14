@@ -59,4 +59,7 @@ Route::group(['prefix'=>'admin/users', 'middleware' => 'admin'], function(){
 
 Route::group(['prefix'=>'admin/brands', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\CarBrandController@index')->name('backend.brand.index');
+    Route::post('/store', 'Web\CarBrandController@store')->name('backend.brand.store');
+    Route::post('/update', 'Web\CarBrandController@store')->name('backend.brand.update');
+    Route::post('/destroy', 'Web\CarBrandController@destroy')->name('backend.brand.destroy');
 });
