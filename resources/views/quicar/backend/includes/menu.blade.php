@@ -20,7 +20,7 @@
                 </a>
                 <ul>
                     <li id="brand"><a href="{{ route('backend.brand.index') }}">Brands</a></li>
-                    <li id="model"><a href="">Model</a></li>
+                    <li id="model"><a href="{{ route('backend.model.index') }}">Model</a></li>
                     <li id="year"><a href="">Year</a></li>
                     <li id="class"><a href="">Classes</a></li>
                     <li id="color"><a href="">Colors</a></li>
