@@ -73,14 +73,4 @@
     <script>
         $("#banner").addClass('active');
     </script>
-    @if(Session::has('error_message'))
-        <script>
-            toastr.warning("{{ Session::get('error_message') }}")
-        </script>
-    @endif
-    @if(Session::has('message'))
-        <script>
-            toastr.success("{{ Session::get('message') }}")
-        </script>
-    @endif
 @endsection

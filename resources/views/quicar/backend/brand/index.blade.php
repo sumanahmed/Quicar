@@ -27,7 +27,7 @@
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $brand->value }}</td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-info" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-raised btn-info"  data-toggle="modal" id="editBrand" data-target="#editBrandModal" data-id="{{ $brand->id }}" data-name="{{ $brand->value }}" title="Edit"><i class="fas fa-edit"></i></a>
                                                 <a href="#" class="btn btn-raised btn-danger delete_modal" value="{{ $brand->id }}" title="Delete"><i class="fas fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
