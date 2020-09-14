@@ -84,3 +84,10 @@ Route::group(['prefix'=>'admin/class', 'middleware' => 'admin'], function(){
     Route::post('/update', 'Web\CarClassController@update')->name('backend.class.update');
     Route::post('/destroy', 'Web\CarClassController@destroy')->name('backend.class.destroy');
 });
+
+Route::group(['prefix'=>'admin/colors', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\CarColorController@index')->name('backend.color.index');
+    Route::post('/store', 'Web\CarColorController@store')->name('backend.color.store');
+    Route::post('/update', 'Web\CarColorController@update')->name('backend.color.update');
+    Route::post('/destroy', 'Web\CarColorController@destroy')->name('backend.color.destroy');
+});
