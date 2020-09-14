@@ -56,3 +56,7 @@ Route::group(['prefix'=>'admin/users', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\UserController@index')->name('backend.user.index');
     Route::get('/status/update', 'Web\UserController@statusUpdate')->name('backend.user.status.update');
 });
+
+Route::group(['prefix'=>'admin/brands', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\CarBrandController@index')->name('backend.brand.index');
+});

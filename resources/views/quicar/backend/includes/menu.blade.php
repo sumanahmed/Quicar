@@ -11,8 +11,22 @@
             <li id="dashboard" class="nav-item"><a href="{{ route('backend.dashboard') }}" class="nav-link"><i data-feather="database"></i> <span>Dashboard</span></a></li>
             <li id="user" class="nav-item"><a href="{{ route('backend.user.index') }}" class="nav-link"><i data-feather="share-2"></i> <span>Users</span></a></li>
             <li id="owner" class="nav-item"><a href="{{ route('backend.owner.index') }}" class="nav-link"><i data-feather="share-2"></i> <span>Partners</span></a></li>
-            <li id="car" class="nav-item"><a href="{{ route('backend.car.index') }}" class="nav-link"><i data-feather="share-2"></i> <span>Cars</span></a></li>
-            <li id="car" class="nav-item"><a href="{{ route('backend.driver.index') }}" class="nav-link"><i data-feather="share-2"></i> <span>Drivers</span></a></li>
+            <li id="car" class="nav-item"><a href="{{ route('backend.car.index') }}" class="nav-link"><i data-feather="truck"></i> <span>Cars</span></a></li>
+            <li id="driver" class="nav-item"><a href="{{ route('backend.driver.index') }}" class="nav-link"><i data-feather="share-2"></i> <span>Drivers</span></a></li>
+            <li class="nav-item with-sub">
+                <a href="#" class="nav-link">
+                <i data-feather="settings"></i>
+                    <span>Settings</span>
+                </a>
+                <ul>
+                    <li id="brand"><a href="{{ route('backend.brand.index') }}">Brands</a></li>
+                    <li id="model"><a href="">Model</a></li>
+                    <li id="year"><a href="">Year</a></li>
+                    <li id="class"><a href="">Classes</a></li>
+                    <li id="color"><a href="">Colors</a></li>
+                    <li id="district"><a href="">Disctrict</a></li>
+                </ul>
+            </li>
             
         </ul>
     </div>
