@@ -113,6 +113,18 @@ class CarController extends Controller
                 $image5Url          = $directory.$image5Name;
                 $car->img5          = $image5Url;
             }
+            if($car->update()){
+                return redirect()->route('backend.car.index')->with('message','Car update successfully');
+            }else{
+                return redirect()->route('backend.car.index')->with('error_message','Sorry, something went wrong');
+            }
         }   
     }
+
+    //car details
+    public function details($id){
+        $car = Car::find($id);
+        return view('quicar.backend.car.details', compact('car'));
+    }
+
 }
