@@ -11,6 +11,7 @@ use App\Model\CarClass;
 use App\Model\CarColor;
 use App\Model\CarDistrict;
 use Illuminate\Http\Request;
+use Validator;
 
 class CarController extends Controller
 {
@@ -36,5 +37,82 @@ class CarController extends Controller
         $colors     = CarColor::all();
         $districts  = CarDistrict::all();
         return view('quicar.backend.car.edit', compact('car','years','models','brands','classes','colors','districts'));
+    }
+
+    //car update
+    public function update(Request $request, $id){
+        $validators=Validator::make($request->all(),[
+            'name'    => 'required',
+        ]);
+        if($validators->fails()){
+            return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
+        }else{
+            $car                    = Car::find($id);
+            $car->name              = $request->name;
+            $car->registration_no   = $request->registration_no;
+            $car->year              = $request->year;
+            $car->model             = $request->model;
+            $car->brand             = $request->brand;
+            $car->car_class         = $request->car_class;
+            $car->color             = $request->color;
+            $car->capacity          = $request->capacity;
+            $car->tax               = $request->tax;
+            $car->fitness           = $request->fitness;
+            if($request->hasFile('img1')){
+                if(($car->img1 != null) && file_exists($car->img1)){
+                    unlink($car->img1);
+                }
+                $image1             = $request->file('img1');
+                $image1Name         = "img1".time().".".$image1->getClientOriginalExtension();
+                $directory          = 'shobuj_bazar/backend/uploads/images/product/image_one/';
+                $image1->move($directory, $image1Name);
+                $image1Url          = $directory.$image1Name;
+                $car->img1      = $image1Url;
+            }
+            if($request->hasFile('img2')){
+                if(($car->img2 != null) && file_exists($car->img2)){
+                    unlink($car->img2);
+                }
+                $image2             = $request->file('img2');
+                $image2Name         = "img2".time().".".$image2->getClientOriginalExtension();
+                $directory          = 'shobuj_bazar/backend/uploads/images/product/image_one/';
+                $image2->move($directory, $image2Name);
+                $image2Url          = $directory.$image2Name;
+                $car->img2          = $image2Url;
+            }
+            if($request->hasFile('img3')){
+                if(($car->img3 != null) && file_exists($car->img3)){
+                    unlink($car->img3);
+                }
+                $image3             = $request->file('img3');
+                $image3Name         = "img3".time().".".$image3->getClientOriginalExtension();
+                $directory          = 'shobuj_bazar/backend/uploads/images/product/image_one/';
+                $image3->move($directory, $image3Name);
+                $image3Url          = $directory.$image3Name;
+                $car->img3          = $image3Url;
+            }
+            if($request->hasFile('img4')){
+                if(($car->img4 != null) && file_exists($car->img4)){
+                    unlink($car->img4);
+                }
+                $image4             = $request->file('img4');
+                $image4Name         = "img4".time().".".$image4->getClientOriginalExtension();
+                $directory          = 'shobuj_bazar/backend/uploads/images/product/image_one/';
+                $image4->move($directory, $image4Name);
+                $image4Url          = $directory.$image4Name;
+                $car->img4          = $image4Url;
+            }
+            if($request->hasFile('img5')){
+                if(($car->img5 != null) && file_exists($car->img5)){
+                    unlink($car->img5);
+                }
+                $image5             = $request->file('img5');
+                $image5Name         = "img5".time().".".$image5->getClientOriginalExtension();
+                $directory          = 'shobuj_bazar/backend/uploads/images/product/image_one/';
+                $image5->move($directory, $image5Name);
+                $image5Url          = $directory.$image5Name;
+                $car->img5          = $image5Url;
+            }
+        }   
     }
 }
