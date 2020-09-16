@@ -5,7 +5,8 @@
         <div class="container-fluid pd-x-0">
             <div class="row row-xs">
                 <div class="col-sm-12 col-lg-12">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('backend.car.update', $car->id) }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="mt-2 tx-spacing--1 float-left">Update Car</h4>
@@ -119,9 +120,93 @@
                                         </div>
                                     </div>
                                 </div> 
-                                
-                                
+
                                 <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-header">Product Images</div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="img1">Image One <span class="text-danger" title="Required">*</span></label>
+                                                            <div class="avatar-upload">
+                                                                <div class="avatar-edit">
+                                                                    <input type='file' name="img1" id="img1Upload" accept=".png, .jpg, .jpeg" required/>
+                                                                    <label for="img1Upload"><i class="fas fa-pencil-alt"></i></label>
+                                                                </div>
+                                                                <div class="avatar-preview" style="width:100%">
+                                                                    <div id="img1Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="img2">Image Two </label>
+                                                            <div class="avatar-upload">
+                                                                <div class="avatar-edit">
+                                                                    <input type='file' name="img2" id="img2Upload" accept=".png, .jpg, .jpeg"/>
+                                                                    <label for="img2Upload"><i class="fas fa-pencil-alt"></i></label>
+                                                                </div>
+                                                                <div class="avatar-preview" style="width:100%">
+                                                                    <div id="img2Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" style="margin-top:30px;">
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="img3">Image Three </label>
+                                                            <div class="avatar-upload">
+                                                                <div class="avatar-edit">
+                                                                    <input type='file' name="img3" id="img3Upload" accept=".png, .jpg, .jpeg"/>
+                                                                    <label for="img3Upload"><i class="fas fa-pencil-alt"></i></label>
+                                                                </div>
+                                                                <div class="avatar-preview" style="width:100%">
+                                                                    <div id="img3Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="img4">Image Three </label>
+                                                            <div class="avatar-upload">
+                                                                <div class="avatar-edit">
+                                                                    <input type='file' name="img4" id="img4Upload" accept=".png, .jpg, .jpeg"/>
+                                                                    <label for="img4Upload"><i class="fas fa-pencil-alt"></i></label>
+                                                                </div>
+                                                                <div class="avatar-preview" style="width:100%">
+                                                                    <div id="img4Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="img5">Image Three </label>
+                                                            <div class="avatar-upload">
+                                                                <div class="avatar-edit">
+                                                                    <input type='file' name="img5" id="img5Upload" accept=".png, .jpg, .jpeg"/>
+                                                                    <label for="img5Upload"><i class="fas fa-pencil-alt"></i></label>
+                                                                </div>
+                                                                <div class="avatar-preview" style="width:100%">
+                                                                    <div id="img5Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                
+                                <div class="row mt-4">
                                     <div class="col-4">
                                         <div class="form-group">
                                             <input type="submit" class="btn btn-success" value="Update"/>
