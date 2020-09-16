@@ -40,7 +40,7 @@
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <a href="#" class="btn btn-raised btn-success" title="Verify"><i class="fas fa-unlock-alt"></i></a>
                                                 <a href="{{ route('backend.car.edit', $car->id) }}" class="btn btn-raised btn-info" title="Edit"><i class="fas fa-edit"></i></a>
-                                                <a href="#" class="btn btn-raised btn-warning" title="Details"><i class="fas fa-eye"></i></a>
+                                                <a href="{{ route('backend.car.details', $car->id) }}" class="btn btn-raised btn-warning" title="Details"><i class="fas fa-eye"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
