@@ -24,7 +24,7 @@
                     <li id="year"><a href="{{ route('backend.year.index') }}">Year</a></li>
                     <li id="class"><a href="{{ route('backend.class.index') }}">Classes</a></li>
                     <li id="color"><a href="{{ route('backend.color.index') }}">Colors</a></li>
-                    <li id="district"><a href="">Disctrict</a></li>
+                    <li id="district"><a href="{{ route('backend.district.index') }}">Disctrict</a></li>
                 </ul>
             </li>
             
