@@ -99,3 +99,7 @@ Route::group(['prefix'=>'admin/districts', 'middleware' => 'admin'], function(){
     Route::post('/update', 'Web\CarDistrictController@update')->name('backend.district.update');
     Route::post('/destroy', 'Web\CarDistrictController@destroy')->name('backend.district.destroy');
 });
+
+Route::group(['prefix'=>'admin/incomes', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\IncomeController@index')->name('backend.income.index');
+});
