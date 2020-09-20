@@ -103,3 +103,7 @@ Route::group(['prefix'=>'admin/districts', 'middleware' => 'admin'], function(){
 Route::group(['prefix'=>'admin/incomes', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\IncomeController@index')->name('backend.income.index');
 });
+
+Route::group(['prefix'=>'admin/feedbacks', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\FeedbackController@index')->name('backend.feedback.index');
+});
