@@ -27,6 +27,15 @@
                     <li id="district"><a href="{{ route('backend.district.index') }}">Disctrict</a></li>
                 </ul>
             </li>
+            <li class="nav-item with-sub">
+                <a href="#" class="nav-link">
+                <i data-feather="square"></i>
+                    <span>Accounts</span>
+                </a>
+                <ul>
+                    <li id="income"><a href="{{ route('backend.income.index') }}">Income</a></li>
+                </ul>
+            </li>
             
         </ul>
     </div>
