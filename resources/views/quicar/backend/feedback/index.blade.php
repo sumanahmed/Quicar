@@ -10,7 +10,7 @@
                             <h4 class="mt-2 tx-spacing--1 float-left">All Feedback</h4>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered" id="packageTable">
+                            <table class="table table-bordered" id="feedbackTable">
                                 <thead class="thead-dark">
                                 <tr>                                  
                                     <th>Feedback</th>                                   
