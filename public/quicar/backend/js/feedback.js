@@ -1,3 +1,12 @@
+$('#feedbackTable').DataTable({
+    responsive: true,
+    language: {
+        searchPlaceholder: 'Search...',
+        sSearch: '',
+        lengthMenu: '_MENU_ items/page',
+    }
+});
+
 //open edit Color modal
 $(document).on('click', '#replyFeedback', function () {
     $('#replyFeedbackModal').modal('show');
