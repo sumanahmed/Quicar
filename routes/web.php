@@ -106,4 +106,6 @@ Route::group(['prefix'=>'admin/incomes', 'middleware' => 'admin'], function(){
 
 Route::group(['prefix'=>'admin/feedbacks', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\FeedbackController@index')->name('backend.feedback.index');
+    Route::post('/reply', 'Web\FeedbackController@reply')->name('backend.feedback.reply');
+    Route::post('/destroy', 'Web\FeedbackController@destroy')->name('backend.feedback.destroy');
 });
