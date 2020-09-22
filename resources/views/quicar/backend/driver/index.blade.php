@@ -11,7 +11,7 @@
                             <a class="btn btn-success float-right cursor-pointer" href="#"><i data-feather="plus"></i>&nbsp; Add New</a>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered" id="carTypeTable">
+                            <table class="table table-bordered" id="driverTable">
                                 <thead class="thead-dark">
                                 <tr>
                                     <th>Name</th>
@@ -66,8 +66,8 @@
     </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('quicar/backend/js/car-type.js')}}"></script>
+<script src="{{ asset('quicar/backend/js/driver.js')}}"></script>
     <script>
-        $("#car").addClass('active');
+        $("#driver").addClass('active');
     </script>
 @endsection
