@@ -29,8 +29,8 @@
                                             <td>{{ $feedback->date }}</td>
                                             <td>{{ $feedback->time }}</td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="editColor" data-target="#editColorModal" data-id="{{ $feedback->id }}" title="Reply"><i class="fas fa-reply"></i></a>
-                                                <a href="#" class="btn btn-raised btn-danger" data-toggle="modal" id="deleteColor" data-target="#deleteColorModal" data-id="{{ $feedback->id }}" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                                                <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="replyFeedback" data-target="#replyFeedbackModal" data-id="{{ $feedback->id }}" data-feedback="{{ $feedback->feedback }}" data-reply="{{ $feedback->replay }}" title="Reply"><i class="fas fa-reply"></i></a>
+                                                <button href="#" class="btn btn-raised btn-danger" data-toggle="modal" id="deleteFeedback" data-target="#deleteFeedbackModal" data-id="{{ $feedback->id }}" title="Delete"><i class="fas fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -49,11 +49,11 @@
     </div>
 
     <!-- Car Class Edit Modal -->
-    <div id="editColorModal" class="modal fade bd-example-modal-xl mt-3" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div id="replyFeedbackModal" class="modal fade bd-example-modal-xl mt-3" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content tx-14">
                 <div class="modal-header bg-success">
-                    <h5 class="modal-title text-white" id="exampleModalLabel">Edit Car Color</h5>
+                    <h5 class="modal-title text-white" id="exampleModalLabel">Feedback Reply</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -62,10 +62,16 @@
                     <div class="mg-b-0" style="padding: 2px 15px !important;">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="name">Name <span class="text-danger text-bold" title="Required Field">*</span></label>
-                                <input type="text" name="name" id="edit_name" class="form-control"placeholder="Enter Color Name" required>
-                                <input type="hidden" id="edit_id" />
-                                <span class="text-danger nameError"></span>
+                                <label for="name">Feedback</label>                                
+                                <textarea id="feedback_feedback" class="form-control" rows="4" readonly></textarea>
+                                <input type="hidden" id="feedback_id" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="name">Reply <span class="text-danger text-bold" title="Required Field">*</span></label>                                
+                                <textarea id="feedback_reply" class="form-control" rows="4"></textarea>
+                                <span class="text-danger replyError"></span>
                             </div>
                         </div>
                     </div>
@@ -73,7 +79,7 @@
                 <div class="modal-footer">
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <button type="button" class="btn btn-success tx-13" id="updateColor">Update</button>
+                            <button type="button" class="btn btn-success tx-13" id="feedbackReply">Reply</button>
                             <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
@@ -83,7 +89,7 @@
     </div>
 
     <!-- Delete Class Modal -->
-    <div id="deleteColorModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div id="deleteFeedbackModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content text-center">
                 <div class="modal-header">
@@ -94,7 +100,7 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="del_id"/>
-                    <button type="button" class="btn btn-danger btn-raised mr-2" id="destroyColor"><i class="fas fa-trash-alt"></i> Proceed</button>
+                    <button type="button" class="btn btn-danger btn-raised mr-2" id="destroyFeedback"><i class="fas fa-trash-alt"></i> Proceed</button>
                     <button type="button" class="btn btn-warning btn-raised" data-dismiss="modal" aria-label="Close"><i class="fas fa-backspace"></i> Cancel</button>
                 </div>
             </div>
@@ -102,8 +108,8 @@
     </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('quicar/backend/js/color.js')}}"></script>
+<script src="{{ asset('quicar/backend/js/feedback.js')}}"></script>
     <script>
-        $("#class").addClass('active');
+        $("#feedback").addClass('active');
     </script>    
 @endsection
