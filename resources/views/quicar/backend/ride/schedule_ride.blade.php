@@ -57,6 +57,7 @@
 @section('scripts')
 <script src="{{ asset('quicar/backend/js/ride.js')}}"></script>
     <script>
+        $(".menu-order-dropdown").addClass('show');
         $("#schedule_ride").addClass('active');
     </script>
 @endsection
