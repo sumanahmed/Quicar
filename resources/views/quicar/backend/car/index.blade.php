@@ -62,8 +62,8 @@
         <div class="modal-dialog modal-default" role="document">
             <form method="POST" enctype="multipart/form-data">
                 <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
-                        <h5 class="modal-title text-center w-100">Driver Details</h5>
+                    <div class="modal-header bg-success">
+                        <h5 class="modal-title text-center text-white w-100">Driver Details</h5>
                     </div>
                     <div class="modal-body">
                         <table class="table table-bordered">
