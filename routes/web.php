@@ -46,6 +46,7 @@ Route::group(['prefix'=>'admin/cars', 'middleware' => 'admin'], function(){
 
 Route::group(['prefix'=>'admin/drivers', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\DriverController@index')->name('backend.driver.index');
+    Route::post('/store', 'Web\DriverController@store')->name('backend.driver.store');
 });
 
 Route::group(['prefix'=>'admin/owners', 'middleware' => 'admin'], function(){
