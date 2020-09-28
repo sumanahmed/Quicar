@@ -15,7 +15,7 @@ class RideController extends Controller
     }
 
     //show current rides
-    public function scheduleRide(){
+    public function scheduleRide(){ 
         $rides = Ride::where('ride_type', 2)->get();
         return view('quicar.backend.ride.schedule_ride', compact('rides'));
     }
