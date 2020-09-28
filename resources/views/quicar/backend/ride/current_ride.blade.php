@@ -8,7 +8,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="mt-2 tx-spacing--1 float-left">All Current Rides</h4>
-                            <a class="btn btn-success float-right cursor-pointer" data-toggle="modal" data-target="#createrideModal"><i data-feather="plus"></i>&nbsp; Add New</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered">
@@ -58,6 +57,6 @@
 @section('scripts')
 <script src="{{ asset('quicar/backend/js/ride.js')}}"></script>
     <script>
-        $("#ride").addClass('active');
+        $("#current_ride").addClass('active');
     </script>
 @endsection
