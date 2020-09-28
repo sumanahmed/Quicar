@@ -76,7 +76,7 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="tax">Tax </label>                                            
-                                        <input type="text" id="tax" name="tax" class="form-control" value="{{ $car->tax }}" readonly/>
+                                        <input type="text" id="tax" class="form-control" value="{{ $car->tax }}" readonly/>
                                         <span class="text-danger errorTax"></span>
                                     </div>
                                 </div>
@@ -95,23 +95,23 @@
                                 }                                
                             @endphp
 
-                            @if($car->driver_id != 0)
+                            @if(isset($car->driver_id) && $car->driver_id != 0)
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="card">
-                                            <div class="card-header">Driver Details</div>
+                                            <div class="card-header bg-info text-white">Driver Details</div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="capacity">Name</label>                                            
+                                                            <label for="capacity">Driver Name</label>                                            
                                                             <input type="text" class="form-control" value="{{ $driver->name }}" readonly />
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="tax">Phone </label>                                            
-                                                            <input type="text" name="tax" class="form-control" value="{{ $driver->phone }}" readonly/>
+                                                            <label for="tax">Driver Phone </label>                                            
+                                                            <input type="text" class="form-control" value="{{ $driver->phone }}" readonly/>
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
@@ -150,36 +150,104 @@
                                 </div>
                             @endif
 
-                            <div class="row mt-4">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-header">Current Ride Details</div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label for="img1">Image One</label>
-                                                        <div class="avatar-upload">
-                                                            <div class="avatar-edit">
-                                                                <input type='file' name="img1" id="img1Upload" accept=".png, .jpg, .jpeg" required/>
-                                                                <label for="img1Upload"><i class="fas fa-pencil-alt"></i></label>
+                            @php                                
+                                if(isset($car->current_ride_id) && $car->current_ride_id != 0){
+                                    $ride = \App\Model\Ride::find($car->current_ride_id);  
+                                    if($ride != null){
+                                        if($ride->status == 0){
+                                            $status = 'Requesting';
+                                        }else if($ride->status == 1){
+                                            $status = 'Accepted';
+                                        }else if($ride->status == 2){
+                                            $status = 'Started';
+                                        }else if($ride->status == 3){
+                                            $status = 'Finished';
+                                        }else if($ride->status == 4){
+                                            $status = 'Completed';
+                                        }else{
+                                            $status = 'Cancelled';
+                                        }
+                                        
+                                        if($ride->ride_type == 1){
+                                            $ride_type = 'City Ride';
+                                        }else if($ride->status == 2){
+                                            $ride_type = 'Logn/Schedule Ride';
+                                        }else if($ride->status == 3){
+                                            $ride_type = 'Ambulance Ride';
+                                        }else{
+                                            $ride_type = 'Package Ride';
+                                        }
+                                    }
+                                }                                
+                            @endphp
+
+                            @if(isset($car->current_ride_id) && $car->current_ride_id != 0)
+                                @if($ride != null)
+                                    <div class="row mt-4">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-header bg-info text-white">Current Ride Details</div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="capacity">Starting Address</label>                                            
+                                                                <input type="text" class="form-control" value="{{ $ride->starting_address }}" readonly />
                                                             </div>
-                                                            <div class="avatar-preview" style="width:100%">
-                                                                <div id="img1Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="tax">Ending Address</label>                                            
+                                                                <input type="text" class="form-control" value="{{ $ride->ending_address }}" readonly/>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label for="img2">Image Two </label>
-                                                        <div class="avatar-upload">
-                                                            <div class="avatar-edit">
-                                                                <input type='file' name="img2" id="img2Upload" accept=".png, .jpg, .jpeg"/>
-                                                                <label for="img2Upload"><i class="fas fa-pencil-alt"></i></label>
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <div class="form-group">
+                                                                <label for="capacity">Status</label>                                            
+                                                                <input type="text" class="form-control" value="{{ $status }}" readonly />
                                                             </div>
-                                                            <div class="avatar-preview" style="width:100%">
-                                                                <div id="img2Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="form-group">
+                                                                <label for="tax">Ride Type</label>                                            
+                                                                <input type="text" class="form-control" value="{{ $ride_type }}" readonly/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="form-group">
+                                                                <label for="tax">Date</label>                                            
+                                                                <input type="text" class="form-control" value="{{ $ride->date }}" readonly />
+                                                                <span class="text-danger errorFitness"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="form-group">
+                                                                <label for="tax">Time</label>                                            
+                                                                <input type="text" class="form-control" value="{{ date('H:i:s a', strtotime($ride->time)) }}" readonly />
+                                                                <span class="text-danger errorFitness"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <div class="form-group">
+                                                                <label for="capacity">Owner Assign</label>                                            
+                                                                <input type="text" class="form-control" value="{{ $ride->owner_assign }}" readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <div class="form-group">
+                                                                <label for="tax">Amount</label>                                            
+                                                                <input type="text" class="form-control" value="{{ $ride->amount }}" readonly/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <div class="form-group">
+                                                                <label for="tax">Payment Status</label>                                            
+                                                                <input type="text" class="form-control" value="{{ $ride->payment_status == 0 ? 'Unpaid' : 'Paid' }}" readonly />
+                                                                <span class="text-danger errorFitness"></span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -187,93 +255,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-header">Product Images</div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label for="img1">Image One</label>
-                                                        <div class="avatar-upload">
-                                                            <div class="avatar-edit">
-                                                                <input type='file' name="img1" id="img1Upload" accept=".png, .jpg, .jpeg" required/>
-                                                                <label for="img1Upload"><i class="fas fa-pencil-alt"></i></label>
-                                                            </div>
-                                                            <div class="avatar-preview" style="width:100%">
-                                                                <div id="img1Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label for="img2">Image Two </label>
-                                                        <div class="avatar-upload">
-                                                            <div class="avatar-edit">
-                                                                <input type='file' name="img2" id="img2Upload" accept=".png, .jpg, .jpeg"/>
-                                                                <label for="img2Upload"><i class="fas fa-pencil-alt"></i></label>
-                                                            </div>
-                                                            <div class="avatar-preview" style="width:100%">
-                                                                <div id="img2Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row" style="margin-top:30px;">
-                                                <div class="col-4">
-                                                    <div class="form-group">
-                                                        <label for="img3">Image Three </label>
-                                                        <div class="avatar-upload">
-                                                            <div class="avatar-edit">
-                                                                <input type='file' name="img3" id="img3Upload" accept=".png, .jpg, .jpeg"/>
-                                                                <label for="img3Upload"><i class="fas fa-pencil-alt"></i></label>
-                                                            </div>
-                                                            <div class="avatar-preview" style="width:100%">
-                                                                <div id="img3Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-4">
-                                                    <div class="form-group">
-                                                        <label for="img4">Image Three </label>
-                                                        <div class="avatar-upload">
-                                                            <div class="avatar-edit">
-                                                                <input type='file' name="img4" id="img4Upload" accept=".png, .jpg, .jpeg"/>
-                                                                <label for="img4Upload"><i class="fas fa-pencil-alt"></i></label>
-                                                            </div>
-                                                            <div class="avatar-preview" style="width:100%">
-                                                                <div id="img4Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-4">
-                                                    <div class="form-group">
-                                                        <label for="img5">Image Three </label>
-                                                        <div class="avatar-upload">
-                                                            <div class="avatar-edit">
-                                                                <input type='file' name="img5" id="img5Upload" accept=".png, .jpg, .jpeg"/>
-                                                                <label for="img5Upload"><i class="fas fa-pencil-alt"></i></label>
-                                                            </div>
-                                                            <div class="avatar-preview" style="width:100%">
-                                                                <div id="img5Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>   
+                                @endif   
+                            @endif   
                         </div>
                     </div>
                 </div><!-- col -->
