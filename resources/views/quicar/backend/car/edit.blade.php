@@ -5,7 +5,7 @@
         <div class="container-fluid pd-x-0">
             <div class="row row-xs">
                 <div class="col-sm-12 col-lg-12">
-                    <form action="{{ route('backend.car.update', $car->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('backend.car.update', $car->id) }}" method="post" enctype="multipart/form-data" novalidate>
                         @csrf
                         <div class="card">
                             <div class="card-header">
@@ -107,15 +107,15 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="tax">Tax </label>                                            
-                                            <input type="text" id="tax" name="tax" class="form-control" value="{{ $car->tax }}"/>
+                                            <label for="tax">Tax <span class="text-danger" title="Required">*</span></label>                                            
+                                            <input type="text" id="tax" name="tax" class="form-control" value="{{ $car->tax }}" required/>
                                             <span class="text-danger errorTax"></span>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="tax">Fitness </label>                                            
-                                            <input type="text" id="fitness" name="fitness" class="form-control" value="{{ $car->fitness }}" />
+                                            <label for="tax">Fitness <span class="text-danger" title="Required">*</span></label>                                            
+                                            <input type="text" id="fitness" name="fitness" class="form-control" value="{{ $car->fitness }}" required/>
                                             <span class="text-danger errorFitness"></span>
                                         </div>
                                     </div>
