@@ -20,7 +20,7 @@
                     <span>Rides</span>
                 </a>
                 <ul>
-                    <li id="current_ride"><a href="">Current Ride</a></li>
+                    <li id="current_ride"><a href="{{ route('backend.ride.current_ride') }}">Current Ride</a></li>
                     <li id="package_order"><a href="">Package Order</a></li>
                     <li id="bid"><a href="">Bid</a></li>
                     <li id="ambulance_ride"><a href="">Ambulance Ride</a></li>
