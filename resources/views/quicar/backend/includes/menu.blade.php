@@ -21,9 +21,9 @@
                 </a>
                 <ul>
                     <li id="current_ride"><a href="{{ route('backend.ride.current_ride') }}">Current Ride</a></li>
-                    <li id="package_order"><a href="">Package Order</a></li>
-                    <li id="bid"><a href="">Bid</a></li>
-                    <li id="ambulance_ride"><a href="">Ambulance Ride</a></li>
+                    <li id="schedule_ride"><a href="{{ route('backend.ride.schedule_ride') }}">Schedule Ride</a></li>
+                    <li id="ambulance_ride"><a href="{{ route('backend.ride.ambulance_ride') }}">Ambulance Ride</a></li>
+                    <li id="pakcage_ride"><a href="{{ route('backend.ride.package_ride') }}">Package Ride</a></li>
                 </ul>
             </li>
             <li class="nav-item with-sub">
