@@ -6,13 +6,26 @@
 <script src="{{ asset('quicar/backend/js/dashforge.js')}}"></script>
 <script src="{{ asset('quicar/backend/js/dashforge.aside.js')}}"></script>
 <script src="{{ asset('quicar/backend/js/toastr.js')}}"></script>
-<script src="{{ asset('quicar/frontend/js/jquery.datetimepicker.full.min.js') }}"></script>
 <script src="{{ asset('quicar/backend/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{ asset('quicar/backend/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{ asset('quicar/backend/js/responsive.dataTables.min.js')}}"></script>
 <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
     CKEDITOR.inline('ckeditor');
+    $(document).ready(function(){
+        $('.datePicker').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1990,
+            maxYear: parseInt(moment().format('YYYY'),10),
+            locale: {
+            format: 'YYYY-MM-DD'
+            }
+        });
+    });
+    
 </script>
 <script>
     var image_base_path = "http://localhost:8000/";
