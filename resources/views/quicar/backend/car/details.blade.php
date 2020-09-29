@@ -4,7 +4,7 @@
     <div class="content-body">
         <div class="container-fluid pd-x-0">
             <div class="row row-xs">
-                <div class="col-sm-12 col-lg-12">                   
+                <div class="col-12">                   
                     <div class="card">
                         <div class="card-header">
                             <h4 class="mt-2 tx-spacing--1 float-left">Car Details</h4>
@@ -128,7 +128,7 @@
                                                             <label for="capacity">Image</label>                                            
                                                             <div class="avatar-upload">
                                                                 <div class="avatar-preview" style="width:100%">
-                                                                    <div id="img1Preview" style="background-image: url({{ asset($driver->image) }});"></div>
+                                                                    <div id="img1Preview" style="background-image: url({{ asset($driver->img) }});"></div>
                                                                 </div>
                                                             </div>                                                            
                                                         </div>
