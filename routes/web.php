@@ -107,6 +107,7 @@ Route::group(['prefix'=>'admin/incomes', 'middleware' => 'admin'], function(){
 
 Route::group(['prefix'=>'admin/rides', 'middleware' => 'admin'], function(){
     Route::get('/current-ride', 'Web\RideController@currentRide')->name('backend.ride.current_ride');
+    Route::get('/current-ride/{ride_id}', 'Web\RideController@currentRideDetails')->name('backend.ride.current_ride_details');
     Route::get('/schedule-ride', 'Web\RideController@scheduleRide')->name('backend.ride.schedule_ride');
     Route::get('/ambulance-ride', 'Web\RideController@ambulanceRide')->name('backend.ride.ambulance_ride');
     Route::get('/package-ride', 'Web\RideController@packageRide')->name('backend.ride.package_ride');
