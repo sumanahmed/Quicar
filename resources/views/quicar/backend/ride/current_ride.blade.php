@@ -13,14 +13,14 @@
                             <table class="table table-bordered">
                                 <thead class="thead-dark">
                                     <tr>                                       
-                                        <th>Starting Address</th>
-                                        <th>Ending Address</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th>Bid Accept Date</th>
-                                        <th>Bid Accept Time</th>
-                                        <th>Fare</th>
-                                        <th style="vertical-align: middle;text-align: center;">Action</th>
+                                        <th style="width:15px">Starting Address</th>
+                                        <th style="width:15px">Ending Address</th>
+                                        <th style="width:10px">Date</th>
+                                        <th style="width:10px">Time</th>
+                                        <th style="width:10px">Bid Accept Date</th>
+                                        <th style="width:10px">Bid Accept Time</th>
+                                        <th style="width:10px">Fare</th>
+                                        <th style="width:20px" style="vertical-align: middle;text-align: center;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="allCurrentRide">
@@ -36,7 +36,7 @@
                                             <td>{{ $ride->amount }}</td>
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <a href="#" class="btn btn-raised btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                                <a href="#" class="btn btn-raised btn-warning btn-sm" title="Details"><i class="fas fa-eye"></i></a>
+                                                <a href="{{ route('backend.ride.current_ride_details', $ride->id) }}" class="btn btn-raised btn-warning" title="Details"><i class="fas fa-eye"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
