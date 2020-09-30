@@ -17,6 +17,8 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Image</th>
+                                    <th>Status</th>
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
                                 </thead>
@@ -28,8 +30,13 @@
                                             <td>{{ $driver->name }}</td>
                                             <td>{{ $driver->email }}</td>
                                             <td>{{ $driver->phone }}</td>
+                                            <td><img src="http://quicarbd.com/{{ $driver->img }}" style="width:80px;height:60px"/>
+                                            <td>{{ $driver->account_status == 1 ? 'Active' : 'Inactive' }} </td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-info"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-raised btn-info" data-toggle="modal" id="editDriver" data-target="#editDriverModal" data-id="{{ $driver->id }}" data-name="{{ $driver->name }}"
+                                                data-email="{{ $driver->email }}" data-phone="{{ $driver->phone }}" data-dob="{{ $driver->dob }}" data-owner_id="{{ $driver->owner_id }}" data-nid="{{ $driver->nid }}"
+                                                data-division="{{ $driver->division }}" data-district="{{ $driver->district }}" data-address="{{ $driver->address }}" data-img="{{ $driver->img }}"
+                                                 data-license="{{ $driver->license }}"><i class="fas fa-edit"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -149,34 +156,111 @@
     <!-- Driver Edit Modal -->
     <div id="editDriverModal" class="modal fade bd-example-modal-xl mt-3" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content tx-14">
-                <div class="modal-header bg-success">
-                    <h5 class="modal-title text-white" id="exampleModalLabel">Edit Car Driver</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="mg-b-0" style="padding: 2px 15px !important;">
+            <form id="editDriverForm" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }} {{ method_field('POST') }}
+                <div class="modal-content tx-14">
+                    <div class="modal-header bg-success">
+                        <h5 class="modal-title text-white" id="exampleModalLabel">Update Driver</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mg-b-0" style="padding: 2px 15px !important;">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="name">Name <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                    <input type="text" name="name" id="edit_name" class="form-control"placeholder="Enter Name" required>
+                                    <input type="hidden" id="edit_id" />
+                                    <span class="text-danger nameError"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="email">Email </label>
+                                    <input type="text" name="email" id="edit_email" class="form-control"placeholder="Enter Email">
+                                    <span class="text-danger nameError"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="phone">Phone <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                    <input type="text" name="phone" id="edit_phone" class="form-control"placeholder="Enter Phone" required>
+                                    <span class="text-danger phoneError"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="dob">Date of Birth <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                    <input type="text" name="dob" id="edit_dob" class="form-control datePicker" required>
+                                    <span class="text-danger dobError"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="phone">Owner <span class="text-danger text-bold" title="Required Field">*</span></label>                                
+                                    <select id="edit_owner_id" class="form-control" name="owner_id">
+                                        @foreach($owners as $owner)
+                                            <option value="{{ $owner->api_token }}">{{ $owner->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger ownerError"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="nid">NID <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                    <input type="text" name="nid" id="edit_nid" class="form-control" placeholder="Enter NID Number" required>
+                                    <span class="text-danger nidError"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="division">Division <span class="text-danger text-bold" title="Required Field">*</span></label>                                
+                                    <input type="text" name="division" id="edit_division" class="form-control" placeholder="Enter Division" required>
+                                    <span class="text-danger divisionError"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="district">District <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                    <input type="text" name="district" id="edit_district" class="form-control" placeholder="Enter District" required>
+                                    <span class="text-danger districtError"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="address">Address <span class="text-danger text-bold" title="Required Field">*</span></label>                                
+                                    <input type="text" name="address" id="edit_address" class="form-control" placeholder="Enter Address" required>
+                                    <span class="text-danger addressError"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="image">Previous Image <span class="text-danger text-bold" title="Required Field">*</span></label>                                
+                                    <img src="" id="previous_image" style="width:100px;height:80px;"/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="image">Update Image <span class="text-danger text-bold" title="Required Field">*</span></label>                                
+                                    <input type="file" name="image" id="edit_image" class="form-control">
+                                    <span class="text-danger imageError"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="license">Previous License <span class="text-danger text-bold" title="Required Field">*</span></label>  
+                                    <img src="" id="previous_license" style="width:100px;height:80px;"/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="license">UpdateLicense <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                    <input type="file" name="license" id="edit_license" class="form-control">
+                                    <span class="text-danger licenseError"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="name">Name <span class="text-danger text-bold" title="Required Field">*</span></label>
-                                <input type="text" name="name" id="edit_name" class="form-control"placeholder="Enter Driver Name" required>
-                                <input type="hidden" id="edit_id" />
-                                <span class="text-danger nameError"></span>
+                                <button type="button" class="btn btn-success tx-13" id="updateDriver">Update</button>
+                                <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <button type="button" class="btn btn-success tx-13" id="updateDriver">Update</button>
-                            <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 
