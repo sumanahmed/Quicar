@@ -18,6 +18,7 @@
                                     <th>Phone</th>
                                     <th>Joining Date & Time</th>
                                     <th>Image</th>
+                                    <th>Status</th>
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
                                 </thead>
@@ -30,9 +31,10 @@
                                                 <td>{{ $user->phone }}</td>
                                                 <td>{{ date('d.m.Y', strtotime($user->date))." ".date('h:i:s a', strtotime($user->time)) }}</td>
                                                 <td><img src="http://quicarbd.com/{{ $user->img }}" style="width:80px;height:60px"/>
+                                                <td>{{ $user->account_status == 1 ? 'Active' : 'Inactive' }} </td>
                                                 <td style="vertical-align: middle;text-align: center;">
                                                     @if($user->account_status == "1")                                            
-                                                        <a href="{{ route('backend.user.status.update',['user_id'=> $user->id, 'status'=>1]) }}" class="btn btn-raised btn-danger" title="Deactive"><i class="fas fa-angle-down"></i></a>
+                                                        <a href="{{ route('backend.user.status.update',['user_id'=> $user->id, 'status'=>0]) }}" class="btn btn-raised btn-danger" title="Deactive"><i class="fas fa-angle-down"></i></a>
                                                     @else
                                                         <a href="{{ route('backend.user.status.update',['user_id'=> $user->id, 'status'=>1]) }}" class="btn btn-raised btn-success" title="Active"><i class="fas fa-angle-up"></i></a>
                                                     @endif                                                    
