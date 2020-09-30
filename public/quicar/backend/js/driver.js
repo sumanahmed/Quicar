@@ -80,7 +80,7 @@ $("#createDriver").click(function (e) {
                         '<td>'+ response.data.email +'</td>\n' +
                         '<td>'+ response.data.phone +'</td>\n' +
                         '<td style="vertical-align: middle;text-align: center;">\n' +                        
-                            '<button class="btn btn-warning" data-toggle="modal" id="editDriver" data-target="#editDriverModal" data-id="'+ response.data.id +'" data-name="'+ response.data.value +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +                            
+                            '<button class="btn btn-info" data-toggle="modal" id="editDriver" data-target="#editDriverModal" data-id="'+ response.data.id +'" data-name="'+ response.data.value +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +                            
                         '</td>\n' +
                     '</tr>'+
                 '');
@@ -97,4 +97,22 @@ $("#createDriver").click(function (e) {
             }
         }
     });
+});
+
+//open edit Color modal
+$(document).on('click', '#editDriver', function () {
+    console.log('yess');
+    $('#editDriverModal').modal('show');
+    $('#edit_id').val($(this).data('id'));
+    $('#edit_name').val($(this).data('name'));
+    $('#edit_email').val($(this).data('email'));
+    $('#edit_phone').val($(this).data('phone'));
+    $('#edit_dob').val($(this).data('dob'));
+    $('#edit_owner_id').val($(this).data('owner_id'));
+    $('#edit_nid').val($(this).data('nid'));
+    $('#edit_division').val($(this).data('division'));
+    $('#edit_district').val($(this).data('district'));
+    $('#edit_address').val($(this).data('address'));
+    $("#previous_image").attr("src", 'http://quicarbd.com/'+'img');
+    $("#previous_license").attr("src", 'http://quicarbd.com/'+'license');
 });
