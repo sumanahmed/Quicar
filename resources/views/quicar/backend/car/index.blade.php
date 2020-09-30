@@ -36,7 +36,7 @@
                                                 </a>
                                             </td>
                                             <td>{{ $car->c_status == 0 ? 'Off Ride' : 'On Ride' }}</td>
-                                            <th><img src="{{ asset($car->img1) }}" style="width:80px;height:60px;"/></th>
+                                            <th><img src="http://quicarbd.com/{{ $car->img1 }}" style="width:80px;height:60px;"/></th>
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <a href="#" class="btn btn-raised btn-success" title="Verify"><i class="fas fa-unlock-alt"></i></a>
                                                 <a href="{{ route('backend.car.edit', $car->id) }}" class="btn btn-raised btn-info" title="Edit"><i class="fas fa-edit"></i></a>
