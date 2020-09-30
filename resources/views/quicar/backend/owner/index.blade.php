@@ -30,7 +30,7 @@
                                                 <td>{{ $owner->email }}</td>
                                                 <td>{{ $owner->phone }}</td>
                                                 <td>{{ date('d.m.Y', strtotime($owner->date))." ".date('h:i:s a', strtotime($owner->time)) }}</td>
-                                                <td><img src="{{ asset($owner->img) }}" style="width:80px;height:60px"/>
+                                                <td><img src="http://quicarbd.com/{{ $owner->img }}" style="width:80px;height:60px"/>
                                                 <td style="vertical-align: middle;text-align: center;">
                                                  @if($owner->account_status == "1")                                            
                                                         <a href="{{ route('backend.owner.status.update',['owner_id'=> $owner->id, 'status'=>1]) }}" class="btn btn-raised btn-danger" title="Deactive"><i class="fas fa-angle-down"></i></a>
