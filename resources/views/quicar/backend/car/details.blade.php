@@ -128,7 +128,7 @@
                                                             <label for="capacity">Image</label>                                            
                                                             <div class="avatar-upload">
                                                                 <div class="avatar-preview" style="width:100%">
-                                                                    <div id="img1Preview" style="background-image: url({{ asset($driver->img) }});"></div>
+                                                                    <div id="img1Preview" style="background-image: url(http://quicarbd.com/{{ $driver->img }});"></div>
                                                                 </div>
                                                             </div>                                                            
                                                         </div>
@@ -138,7 +138,7 @@
                                                             <label for="capacity">License</label>                                            
                                                             <div class="avatar-upload">
                                                                 <div class="avatar-preview" style="width:100%">
-                                                                    <div id="img1Preview" style="background-image: url({{ asset($driver->license) }});"></div>
+                                                                    <div id="img1Preview" style="background-image: url(http://quicarbd.com/{{ asset($driver->license) }});"></div>
                                                                 </div>
                                                             </div>                                                            
                                                         </div>
