@@ -35,7 +35,7 @@
                                                 <td>{{ $owner->account_status == 1 ? 'Active' : 'Inactive' }} </td>
                                                 <td style="vertical-align: middle;text-align: center;">
                                                  @if($owner->account_status == "1")                                            
-                                                        <a href="{{ route('backend.owner.status.update',['owner_id'=> $owner->id, 'status'=>1]) }}" class="btn btn-raised btn-danger" title="Deactive"><i class="fas fa-angle-down"></i></a>
+                                                        <a href="{{ route('backend.owner.status.update',['owner_id'=> $owner->id, 'status'=>0]) }}" class="btn btn-raised btn-danger" title="Deactive"><i class="fas fa-angle-down"></i></a>
                                                     @else
                                                         <a href="{{ route('backend.owner.status.update',['owner_id'=> $owner->id, 'status'=>1]) }}" class="btn btn-raised btn-success" title="Active"><i class="fas fa-angle-up"></i></a>
                                                     @endif  
