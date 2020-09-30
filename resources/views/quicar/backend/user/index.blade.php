@@ -29,7 +29,7 @@
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->phone }}</td>
                                                 <td>{{ date('d.m.Y', strtotime($user->date))." ".date('h:i:s a', strtotime($user->time)) }}</td>
-                                                <td><img src="{{ asset($user->img) }}" style="width:80px;height:60px"/>
+                                                <td><img src="http://quicarbd.com/{{ $user->img }}" style="width:80px;height:60px"/>
                                                 <td style="vertical-align: middle;text-align: center;">
                                                     @if($user->account_status == "1")                                            
                                                         <a href="{{ route('backend.user.status.update',['user_id'=> $user->id, 'status'=>1]) }}" class="btn btn-raised btn-danger" title="Deactive"><i class="fas fa-angle-down"></i></a>
