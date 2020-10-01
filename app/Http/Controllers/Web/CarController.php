@@ -64,7 +64,7 @@ class CarController extends Controller
                 }
                 $image1             = $request->file('img1');
                 $image1Name         = "img1".time().".".$image1->getClientOriginalExtension();
-                $directory          = 'shobuj_bazar/backend/uploads/images/product/image_one/';
+                $directory          = '../mobileapi/asset/car/';
                 $image1->move($directory, $image1Name);
                 $image1Url          = $directory.$image1Name;
                 $car->img1      = $image1Url;
@@ -75,7 +75,7 @@ class CarController extends Controller
                 }
                 $image2             = $request->file('img2');
                 $image2Name         = "img2".time().".".$image2->getClientOriginalExtension();
-                $directory          = 'shobuj_bazar/backend/uploads/images/product/image_one/';
+                $directory          = '../mobileapi/asset/car/';
                 $image2->move($directory, $image2Name);
                 $image2Url          = $directory.$image2Name;
                 $car->img2          = $image2Url;
@@ -86,7 +86,7 @@ class CarController extends Controller
                 }
                 $image3             = $request->file('img3');
                 $image3Name         = "img3".time().".".$image3->getClientOriginalExtension();
-                $directory          = 'shobuj_bazar/backend/uploads/images/product/image_one/';
+                $directory          = '../mobileapi/asset/car/';
                 $image3->move($directory, $image3Name);
                 $image3Url          = $directory.$image3Name;
                 $car->img3          = $image3Url;
@@ -97,7 +97,7 @@ class CarController extends Controller
                 }
                 $image4             = $request->file('img4');
                 $image4Name         = "img4".time().".".$image4->getClientOriginalExtension();
-                $directory          = 'shobuj_bazar/backend/uploads/images/product/image_one/';
+                $directory          = '../mobileapi/asset/car/';
                 $image4->move($directory, $image4Name);
                 $image4Url          = $directory.$image4Name;
                 $car->img4          = $image4Url;
@@ -108,7 +108,7 @@ class CarController extends Controller
                 }
                 $image5             = $request->file('img5');
                 $image5Name         = "img5".time().".".$image5->getClientOriginalExtension();
-                $directory          = 'shobuj_bazar/backend/uploads/images/product/image_one/';
+                $directory          = '../mobileapi/asset/car/';
                 $image5->move($directory, $image5Name);
                 $image5Url          = $directory.$image5Name;
                 $car->img5          = $image5Url;
