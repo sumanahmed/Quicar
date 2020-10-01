@@ -20,7 +20,8 @@
                                             <span class="text-danger errorName"></span>
                                         </div>
                                     </div>
-                                    <div class="col-6">                                        <div class="form-group">
+                                    <div class="col-6">                                        
+                                        <div class="form-group">
                                             <label for="registration_no"> Registration No <span class="text-danger" title="Required">*</span></label>
                                             <input type="text" id="registration_no" name="registration_no" value="{{ $car->registration_no }}" class="form-control" required>
                                             <span class="text-danger errorRegistrationNo"></span>
@@ -136,7 +137,7 @@
                                                                     <label for="img1Upload"><i class="fas fa-pencil-alt"></i></label>
                                                                 </div>
                                                                 <div class="avatar-preview" style="width:100%">
-                                                                    <div id="img1Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
+                                                                    <div id="img1Preview" style="background-image: url(http://quicarbd.com{{ $car->img1 }});"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -150,7 +151,7 @@
                                                                     <label for="img2Upload"><i class="fas fa-pencil-alt"></i></label>
                                                                 </div>
                                                                 <div class="avatar-preview" style="width:100%">
-                                                                    <div id="img2Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
+                                                                    <div id="img2Preview" style="background-image: url(http://quicarbd.com{{ $car->img2 }});"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -167,35 +168,35 @@
                                                                     <label for="img3Upload"><i class="fas fa-pencil-alt"></i></label>
                                                                 </div>
                                                                 <div class="avatar-preview" style="width:100%">
-                                                                    <div id="img3Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
+                                                                    <div id="img3Preview" style="background-image: url(http://quicarbd.com{{ $car->img3 }});"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="img4">Image Three </label>
+                                                            <label for="img4">Image Four </label>
                                                             <div class="avatar-upload">
                                                                 <div class="avatar-edit">
                                                                     <input type='file' name="img4" id="img4Upload" accept=".png, .jpg, .jpeg"/>
                                                                     <label for="img4Upload"><i class="fas fa-pencil-alt"></i></label>
                                                                 </div>
                                                                 <div class="avatar-preview" style="width:100%">
-                                                                    <div id="img4Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
+                                                                    <div id="img4Preview" style="background-image: url(http://quicarbd.com{{ $car->img4 }});"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="img5">Image Three </label>
+                                                            <label for="img5">Image Five </label>
                                                             <div class="avatar-upload">
                                                                 <div class="avatar-edit">
                                                                     <input type='file' name="img5" id="img5Upload" accept=".png, .jpg, .jpeg"/>
                                                                     <label for="img5Upload"><i class="fas fa-pencil-alt"></i></label>
                                                                 </div>
                                                                 <div class="avatar-preview" style="width:100%">
-                                                                    <div id="img5Preview" style="background-image: url({{ asset('quicar/backend/img/upload2.jpg') }});"></div>
+                                                                    <div id="img5Preview" style="background-image: url(http://quicarbd.com{{ $car->img5 }});"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
