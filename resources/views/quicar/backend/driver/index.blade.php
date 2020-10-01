@@ -34,9 +34,11 @@
                                             <td>{{ $driver->account_status == 1 ? 'Active' : 'Inactive' }} </td>
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <a href="#" class="btn btn-raised btn-info" data-toggle="modal" id="editDriver" data-target="#editDriverModal" data-id="{{ $driver->id }}" data-name="{{ $driver->name }}"
-                                                data-email="{{ $driver->email }}" data-phone="{{ $driver->phone }}" data-dob="{{ $driver->dob }}" data-owner_id="{{ $driver->owner_id }}" data-nid="{{ $driver->nid }}"
-                                                data-division="{{ $driver->division }}" data-district="{{ $driver->district }}" data-address="{{ $driver->address }}" data-img="{{ $driver->img }}"
-                                                 data-license="{{ $driver->license }}"><i class="fas fa-edit"></i></a>
+                                                    data-email="{{ $driver->email }}" data-phone="{{ $driver->phone }}" data-dob="{{ $driver->dob }}" data-owner_id="{{ $driver->owner_id }}" data-nid="{{ $driver->nid }}"
+                                                    data-division="{{ $driver->division }}" data-district="{{ $driver->district }}" data-address="{{ $driver->address }}" data-img="http://quicarbd.com/{{ $driver->img }}"
+                                                    data-license="http://quicarbd.com/{{ $driver->license }}"><i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-danger" data-toggle="modal" id="deleteDriver" data-target="#deleteDriverModal" data-id="{{ $driver->id }}" title="Delete"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -230,7 +232,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="image">Previous Image <span class="text-danger text-bold" title="Required Field">*</span></label>                                
-                                    <img src="" id="previous_image" style="width:100px;height:80px;"/>
+                                    <img src="" id="previous_image" style="width:80px;height:80px;"/>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="image">Update Image <span class="text-danger text-bold" title="Required Field">*</span></label>                                
@@ -241,10 +243,10 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="license">Previous License <span class="text-danger text-bold" title="Required Field">*</span></label>  
-                                    <img src="" id="previous_license" style="width:100px;height:80px;"/>
+                                    <img src="" id="previous_license" style="width:80px;height:80px;"/>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="license">UpdateLicense <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                    <label for="license">Update License <span class="text-danger text-bold" title="Required Field">*</span></label>
                                     <input type="file" name="license" id="edit_license" class="form-control">
                                     <span class="text-danger licenseError"></span>
                                 </div>
