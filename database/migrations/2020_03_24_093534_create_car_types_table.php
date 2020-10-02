@@ -16,8 +16,6 @@ class CreateCarTypesTable extends Migration
         Schema::create('car_types', function (Blueprint $table) {
             $table->id();
             $table->string('name', 111);
-            $table->string('bn_name', 111);
-            $table->text('image')->nullable();
             $table->timestamps();
         });
     }
