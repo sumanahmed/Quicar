@@ -6,8 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Model\Upazila;
 use App\Model\CarType;
 use App\Model\Banner;
+use App\Model\Car;
+use App\Model\Driver;
+use App\Model\Owner;
 use App\Model\Package;
+use App\Model\Ride;
 use App\Model\TopDestination;
+use App\User;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -15,7 +20,25 @@ class AdminController extends Controller
 {
     //dashboard
     public function dashboard(){
-        return view('quicar.backend.dashboard.dashboard');
+        $data['total_user'] = User::count();
+        $data['total_owner'] = Owner::count();
+        $data['total_driver'] = Driver::count();
+        $data['total_car'] = Car::count();
+        $data['total_car'] = Car::count();
+        $data['total_inactive_car'] = Car::where('verified', 0)->count();
+        $data['total_active_car'] = Car::where('verified', 1)->count();
+        $data['total_complete_ride'] = Ride::where('status', 4)->count();
+        $data['total_pending_ride'] = Ride::where('status', 2)->count();
+        $data['total_current_ride'] = Car::where('verified', 1)->where('c_status', 1)->where('current_ride_id', '!=', 0)->count();        
+        $data['total_schedule_ride'] = Ride::where('ride_type', 2)->count();
+        $data['total_package_ride'] = Ride::where('ride_type', 4)->count();
+        $data['total_package'] = Package::count();
+        $data['total_active_package'] = Package::where('status', 1)->count();
+        $data['total_pending_package'] = Package::where('status', 0)->count();
+        $data['total_income'] = Ride::where('status', 4)->sum('amount');
+        $data['total_cancel_ride'] = Ride::where('status', 5)->count();
+      
+        return view('quicar.backend.dashboard.dashboard', $data);
     }
 
     //get all car types
