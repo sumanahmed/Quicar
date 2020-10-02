@@ -4,54 +4,143 @@
     <div class="content-body">
         <div class="container-fluid pd-x-0">
             <div class="row row-xs">
-                <div class="col-sm-6 col-lg-3">
+
+                <div class="col-sm-6 col-lg-2">
                     <div class="card card-body">
-                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Conversion Rate</h6>
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total User</h6>
                         <div class="d-flex d-lg-block d-xl-flex align-items-end">
-                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">0.81%</h3>
-                            <p class="tx-11 tx-color-03 mg-b-0"><span class="tx-medium tx-success">1.2% <i class="icon ion-md-arrow-up"></i></span></p>
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_user }}</h3>
                         </div>
-                        <div class="chart-three">
-                            <div id="flotChart3" class="flot-chart ht-30"></div>
-                        </div><!-- chart-three -->
                     </div>
-                </div><!-- col -->
-                <div class="col-sm-6 col-lg-3 mg-t-10 mg-sm-t-0">
+                </div>
+                <div class="col-sm-6 col-lg-2">
                     <div class="card card-body">
-                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Unique Purchases</h6>
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Partner</h6>
                         <div class="d-flex d-lg-block d-xl-flex align-items-end">
-                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">3,137</h3>
-                            <p class="tx-11 tx-color-03 mg-b-0"><span class="tx-medium tx-danger">0.7% <i class="icon ion-md-arrow-down"></i></span></p>
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_owner }}</h3>
                         </div>
-                        <div class="chart-three">
-                            <div id="flotChart4" class="flot-chart ht-30"></div>
-                        </div><!-- chart-three -->
                     </div>
-                </div><!-- col -->
-                <div class="col-sm-6 col-lg-3 mg-t-10 mg-lg-t-0">
+                </div>
+                <div class="col-sm-6 col-lg-2">
                     <div class="card card-body">
-                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Avg. Order Value</h6>
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Driver</h6>
                         <div class="d-flex d-lg-block d-xl-flex align-items-end">
-                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">$306.20</h3>
-                            <p class="tx-11 tx-color-03 mg-b-0"><span class="tx-medium tx-danger">0.3% <i class="icon ion-md-arrow-down"></i></span></p>
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_driver }}</h3>
                         </div>
-                        <div class="chart-three">
-                            <div id="flotChart5" class="flot-chart ht-30"></div>
-                        </div><!-- chart-three -->
                     </div>
-                </div><!-- col -->
-                <div class="col-sm-6 col-lg-3 mg-t-10 mg-lg-t-0">
+                </div>
+                <div class="col-sm-6 col-lg-2">
                     <div class="card card-body">
-                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Order Quantity</h6>
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Car</h6>
                         <div class="d-flex d-lg-block d-xl-flex align-items-end">
-                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">1,650</h3>
-                            <p class="tx-11 tx-color-03 mg-b-0"><span class="tx-medium tx-success">2.1% <i class="icon ion-md-arrow-up"></i></span></p>
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_car }}</h3>
                         </div>
-                        <div class="chart-three">
-                            <div id="flotChart6" class="flot-chart ht-30"></div>
-                        </div><!-- chart-three -->
                     </div>
-                </div><!-- col -->
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <div class="card card-body">
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Inactive Car</h6>
+                        <div class="d-flex d-lg-block d-xl-flex align-items-end">
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_inactive_car }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <div class="card card-body">
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Active Car</h6>
+                        <div class="d-flex d-lg-block d-xl-flex align-items-end">
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_active_car }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-2">
+                    <div class="card card-body">
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Complete Ride</h6>
+                        <div class="d-flex d-lg-block d-xl-flex align-items-end">
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_complete_ride }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-2">
+                    <div class="card card-body">
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Cancel Ride</h6>
+                        <div class="d-flex d-lg-block d-xl-flex align-items-end">
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_cancel_ride }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-2">
+                    <div class="card card-body">
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Pending Ride</h6>
+                        <div class="d-flex d-lg-block d-xl-flex align-items-end">
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_pending_ride }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-2">
+                    <div class="card card-body">
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Current Ride</h6>
+                        <div class="d-flex d-lg-block d-xl-flex align-items-end">
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_current_ride }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-2">
+                    <div class="card card-body">
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Schedule Ride</h6>
+                        <div class="d-flex d-lg-block d-xl-flex align-items-end">
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_schedule_ride }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-2">
+                    <div class="card card-body">
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Package Ride</h6>
+                        <div class="d-flex d-lg-block d-xl-flex align-items-end">
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_package_ride }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-2">
+                    <div class="card card-body">
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Package</h6>
+                        <div class="d-flex d-lg-block d-xl-flex align-items-end">
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_package }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-2">
+                    <div class="card card-body">
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Active Package</h6>
+                        <div class="d-flex d-lg-block d-xl-flex align-items-end">
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_active_package }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-2">
+                    <div class="card card-body">
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Pending Package</h6>
+                        <div class="d-flex d-lg-block d-xl-flex align-items-end">
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">{{ $total_pending_package }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-2">
+                    <div class="card card-body">
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Total Income</h6>
+                        <div class="d-flex d-lg-block d-xl-flex align-items-end">
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">BDT {{ $total_income }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-2">
+                    <div class="card card-body">
+                        <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">Quicar Commission</h6>
+                        <div class="d-flex d-lg-block d-xl-flex align-items-end">
+                            <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">BDT 00</h3>
+                        </div>
+                    </div>
+                </div>
             </div><!-- row -->
         </div><!-- container -->
     </div>
