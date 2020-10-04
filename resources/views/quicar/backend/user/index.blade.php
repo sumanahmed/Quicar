@@ -38,7 +38,7 @@
                                                     @else
                                                         <a href="{{ route('backend.user.status.update',['user_id'=> $user->id, 'status'=>1]) }}" class="btn btn-raised btn-success" title="Active"><i class="fas fa-angle-up"></i></a>
                                                     @endif                                                    
-                                                    <a href="#" class="btn btn-raised btn-info" title="Send Notification"><i class="fas fa-bell"></i></a>
+                                                    <a href="#" class="btn btn-raised btn-info" data-toggle="modal" id="userSendNotification" data-target="#userSendNotificationModal" title="Send Notification" data-id="{{ $user->id }}"><i class="fas fa-bell"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -56,19 +56,42 @@
         </div><!-- container -->
     </div>
      <!-- Delete Car Type Modal -->
-     <div id="deleteCarTypeModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content text-center">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete ?</h5>
+     <div id="userSendNotificationModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+            <div class="modal-content tx-14">
+                <div class="modal-header bg-success">
+                    <h5 class="modal-title text-white" id="exampleModalLabel">User Send Notification</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="del_id"/>
-                    <button type="button" class="btn btn-danger btn-raised mr-2" id="cartypeDelete"><i class="fas fa-trash-alt"></i> Proceed</button>
-                    <button type="button" class="btn btn-warning btn-raised" data-dismiss="modal" aria-label="Close"><i class="fas fa-backspace"></i> Cancel</button>
+                    <div class="mg-b-0" style="padding: 2px 15px !important;">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="col-form-label">Title <span class="text-danger" title="Required">*</span></label>
+                                <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" required>
+                                <input type="hidden" name="notification_id"/>
+                                <span class="errorTitle text-danger text-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="col-form-label">Message <span class="text-danger" title="Required">*</span></label>
+                                <textarea class="form-control" name="message"  id="message" placeholder="Enter your message"></textarea>
+                                <span class="errorMessage text-danger text-bold"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <button type="button" class="btn btn-success tx-13" id="userNotificationSend">Send</button>
+                            <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
