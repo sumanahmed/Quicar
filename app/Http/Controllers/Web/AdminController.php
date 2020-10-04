@@ -21,12 +21,19 @@ class AdminController extends Controller
     //dashboard
     public function dashboard(){
         $data['total_user'] = User::count();
-        $data['total_owner'] = Owner::count();
+        $data['active_user'] = User::where('account_status', 1)->count();
+        $data['inactive_user'] = User::where('account_status', 0)->count();
+        $data['total_partner'] = Owner::count();
+        $data['active_partner'] = Owner::where('account_status', 1)->count();
+        $data['inactive_partner'] = Owner::where('account_status', 0)->count();
         $data['total_driver'] = Driver::count();
-        $data['total_car'] = Car::count();
+        $data['pending_driver'] = Driver::where('account_status', 0)->count();
+        $data['active_driver'] = Driver::where('account_status', 1)->count();
         $data['total_car'] = Car::count();
         $data['total_inactive_car'] = Car::where('verified', 0)->count();
         $data['total_active_car'] = Car::where('verified', 1)->count();
+        $data['total_expired_car'] = 0;
+        $data['total_ride'] = Ride::count();
         $data['total_complete_ride'] = Ride::where('status', 4)->count();
         $data['total_pending_ride'] = Ride::where('status', 2)->count();
         $data['total_current_ride'] = Car::where('verified', 1)->where('c_status', 1)->where('current_ride_id', '!=', 0)->count();        
