@@ -14,6 +14,7 @@
     <link href="{{ asset('quicar/backend/css/skin.charcoal.css') }}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link href="{{ asset('quicar/backend/css/toastr.css') }}" rel="stylesheet">
+    <link href="{{ asset('quicar/backend/css/custom.css') }}" rel="stylesheet">
     @yield('styles')
     <style>
         .modal-footer{
