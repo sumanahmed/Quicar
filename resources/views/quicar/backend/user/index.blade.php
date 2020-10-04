@@ -38,7 +38,7 @@
                                                     @else
                                                         <a href="{{ route('backend.user.status.update',['user_id'=> $user->id, 'status'=>1]) }}" class="btn btn-raised btn-success" title="Active"><i class="fas fa-angle-up"></i></a>
                                                     @endif                                                    
-                                                    <a href="#" class="btn btn-raised btn-info" data-toggle="modal" id="userSendNotification" data-target="#userSendNotificationModal" title="Send Notification" data-id="{{ $user->id }}"><i class="fas fa-bell"></i></a>
+                                                    <a href="#" class="btn btn-raised btn-info" data-toggle="modal" id="userSendNotification" data-target="#userSendNotificationModal" title="Send Notification" data-id="{{ $user->id }}" data-phone="{{ $user->phone }}" data-n_key="{{ $user->n_key }}"><i class="fas fa-bell"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -71,7 +71,8 @@
                             <div class="form-group col-md-12">
                                 <label class="col-form-label">Title <span class="text-danger" title="Required">*</span></label>
                                 <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" required>
-                                <input type="hidden" name="notification_id"/>
+                                <input type="hidden" name="n_key" id="n_key" />
+                                <input type="hidden" name="phone" id="phone" />
                                 <span class="errorTitle text-danger text-bold"></span>
                             </div>
                         </div>
@@ -82,6 +83,17 @@
                                 <textarea class="form-control" name="message"  id="message" placeholder="Enter your message"></textarea>
                                 <span class="errorMessage text-danger text-bold"></span>
                             </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">                                
+                                <input type="radio" name="notification" id="notification" value="1" checked>
+                                <label class="col-form-label">Notification</label>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="radio" name="notification" id="sms_notification" value="2">
+                                <label class="col-form-label">SMS & Notification </label>                                
+                            </div>
+                            <span class="errorMessage text-danger text-bold"></span>
                         </div>
                     </div>
                 </div>
