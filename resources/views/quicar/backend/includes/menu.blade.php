@@ -26,6 +26,7 @@
                     <li id="pakcage_ride"><a href="{{ route('backend.ride.package_ride') }}">Package Ride</a></li>
                 </ul>
             </li>
+            <li id="sms_notification" class="nav-item"><a href="{{ route('backend.sms_notification.index') }}" class="nav-link"><i data-feather="bell"></i> <span>SMS & Notification</span></a></li>
             <li class="nav-item with-sub">
                 <a href="#" class="nav-link">
                 <i data-feather="square"></i>
