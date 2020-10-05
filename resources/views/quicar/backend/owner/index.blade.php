@@ -12,15 +12,15 @@
                         <div class="card-body">
                             <table class="table table-bordered" id="ownerTable">
                                 <thead class="thead-dark">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Joining Date & Time</th>
-                                    <th>Image</th>
-                                    <th>Status</th>
-                                    <th style="vertical-align: middle;text-align: center;">Action</th>
-                                </tr>
+                                    <tr>
+                                        <th style="width:15%">Name</th>
+                                        <th style="width:15%">Email</th>
+                                        <th style="width:10%">Phone</th>
+                                        <th style="width:10%">Joining Date & Time</th>
+                                        <th style="width:15%">Image</th>
+                                        <th style="width:15%">Status</th>
+                                        <th style="width:25%; vertical-align: middle;text-align: center;">Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody id="partnerData">
                                     @if(isset($owners) && count($owners) > 0)
@@ -34,11 +34,12 @@
                                                 <td><img src="http://quicarbd.com/{{ $owner->img }}" style="width:80px;height:60px"/>
                                                 <td>{{ $owner->account_status == 1 ? 'Active' : 'Inactive' }} </td>
                                                 <td style="vertical-align: middle;text-align: center;">
-                                                 @if($owner->account_status == "1")                                            
+                                                    @if($owner->account_status == "1")                                            
                                                         <a href="{{ route('backend.owner.status.update',['owner_id'=> $owner->id, 'status'=>0]) }}" class="btn btn-raised btn-danger" title="Deactive"><i class="fas fa-angle-down"></i></a>
                                                     @else
                                                         <a href="{{ route('backend.owner.status.update',['owner_id'=> $owner->id, 'status'=>1]) }}" class="btn btn-raised btn-success" title="Active"><i class="fas fa-angle-up"></i></a>
                                                     @endif  
+                                                    <a href="#" class="btn btn-raised btn-info" data-toggle="modal" id="ownerSendNotification" data-target="#ownerSendNotificationModal" title="Send Notification" data-id="{{ $owner->id }}" data-phone="{{ $owner->phone }}" data-n_key="{{ $owner->n_key }}"><i class="fas fa-bell"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -55,20 +56,55 @@
             </div><!-- row -->
         </div><!-- container -->
     </div>
-     <!-- Delete Car Type Modal -->
-     <div id="deleteCarTypeModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content text-center">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete ?</h5>
+    <!-- Delete Car Type Modal -->
+    <div id="ownerSendNotificationModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content tx-14">
+                <div class="modal-header bg-success">
+                    <h5 class="modal-title text-white" id="exampleModalLabel">Owner Send Notification</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="del_id"/>
-                    <button type="button" class="btn btn-danger btn-raised mr-2" id="cartypeDelete"><i class="fas fa-trash-alt"></i> Proceed</button>
-                    <button type="button" class="btn btn-warning btn-raised" data-dismiss="modal" aria-label="Close"><i class="fas fa-backspace"></i> Cancel</button>
+                    <div class="mg-b-0" style="padding: 2px 15px !important;">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="col-form-label">Title <span class="text-danger" title="Required">*</span></label>
+                                <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" required>
+                                <input type="hidden" name="n_key" id="n_key" />
+                                <input type="hidden" name="phone" id="phone" />
+                                <span class="errorTitle text-danger text-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="col-form-label">Message <span class="text-danger" title="Required">*</span></label>
+                                <textarea class="form-control" name="message"  id="message" placeholder="Enter your message"></textarea>
+                                <span class="errorMessage text-danger text-bold"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">                                
+                                <input type="radio" name="notification" id="notification" value="1" checked>
+                                <label class="col-form-label">Notification</label>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="radio" name="notification" id="sms_notification" value="2">
+                                <label class="col-form-label">SMS & Notification </label>                                
+                            </div>
+                            <span class="errorMessage text-danger text-bold"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <button type="button" class="btn btn-success tx-13" id="ownerNotificationSend">Send</button>
+                            <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
