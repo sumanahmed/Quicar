@@ -12,15 +12,15 @@
                         <div class="card-body">
                             <table class="table table-bordered" id="userTable">
                                 <thead class="thead-dark">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Joining Date & Time</th>
-                                    <th>Image</th>
-                                    <th>Status</th>
-                                    <th style="vertical-align: middle;text-align: center;">Action</th>
-                                </tr>
+                                    <tr>
+                                        <th style="width:15%">Name</th>
+                                        <th style="width:15%">Email</th>
+                                        <th style="width:10%">Phone</th>
+                                        <th style="width:10%">Joining Date & Time</th>
+                                        <th style="width:15%">Image</th>
+                                        <th style="width:15%">Status</th>
+                                        <th style="width:25%; vertical-align: middle;text-align: center;">Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody id="userData">
                                     @if(isset($users) && count($users) > 0)
