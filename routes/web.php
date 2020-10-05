@@ -116,6 +116,11 @@ Route::group(['prefix'=>'admin/incomes', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\IncomeController@index')->name('backend.income.index');
 });
 
+Route::group(['prefix'=>'admin/sms/notification', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\AdminController@smsNotification')->name('backend.sms_notification.index');
+    Route::post('/send', 'Web\AdminController@smsNotificationSend')->name('backend.sms_notification.send');
+});
+
 Route::group(['prefix'=>'admin/rides', 'middleware' => 'admin'], function(){
     Route::get('/current-ride', 'Web\RideController@currentRide')->name('backend.ride.current_ride');
     Route::get('/current-ride/{ride_id}', 'Web\RideController@currentRideDetails')->name('backend.ride.current_ride_details');
