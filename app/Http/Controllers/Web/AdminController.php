@@ -14,7 +14,9 @@ use App\Model\Ride;
 use App\Model\TopDestination;
 use App\User;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 use Validator;
+use Response;
 
 class AdminController extends Controller
 {
@@ -345,4 +347,68 @@ class AdminController extends Controller
         $top_destination->delete();
         return response()->json();
     }
+
+    //show sms notification send page
+    public function smsNotification(){
+        return view('quicar.backend.sms_notification.index');
+    }
+
+    //send sms notification
+    public function smsNotificationSend(Request $request){
+        $validators=Validator::make($request->all(),[
+            'for'   => 'required',
+            'status'   => 'required',
+            'title'   => 'required',
+            'message' => 'required',
+            'notification' => 'required',
+        ]);
+
+        if($request->for == 1){
+            $users = User::where('account_status', $request->status)->get();                             
+            foreach($users as $user){
+                if($request->notification == 1){
+                    $this->sendNotification($user->n_key, $request->title, $request->message);
+                }else{
+                    $this->sendSmsNotification($user->n_key, $request->title, $request->message, $user->phone);
+                }
+            }
+        }else{
+            $owners = Owner::where('account_status', $request->status)->get();
+            foreach($owners as $owner){
+                if($request->notification == 1){                 
+                    $this->sendNotification($owner->n_key, $request->title, $request->message);
+                }else{
+                    $this->sendSmsNotification($owner->n_key, $request->title, $request->message, $owner->phone);                    
+                }                
+            }
+        }   
+        return redirect()->back()->with('message','Notification send successfully');
+    }
+
+    //send notification
+    public function sendNotification($n_key, $title, $message){
+        $id      = $n_key;
+        $title   = $title;
+        $body    = $message;
+        $client  = new Client();
+        $client->request("GET", "http://quicarbd.com//mobileapi/general/notification/send.php?id=".$id."&title=".$title ."&body=".$body);
+    }
+
+    //send sms & push notification
+    public function sendSmsNotification($n_key, $title, $message, $phone){
+        //push notification send            
+            $id      = $n_key;
+            $title   = $title;
+            $body    = $message;
+            $client  = new Client();
+            $client->request("GET", "http://quicarbd.com//mobileapi/general/notification/send.php?id=".$id."&title=".$title ."&body=".$body);
+        //push notification send end
+
+        //message send
+            $msg    = $message;
+            $client = new Client();            
+            $sms    = $client->request("GET", "http://66.45.237.70/api.php?username=01670168919&password=TVZMBN3D&number=". $phone ."&message=".$msg);
+        //message send end
+    }
+
 }
