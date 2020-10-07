@@ -42,6 +42,7 @@ Route::group(['prefix'=>'admin/cars', 'middleware' => 'admin'], function(){
     Route::get('/edit/{id}', 'Web\CarController@edit')->name('backend.car.edit');
     Route::post('/update/{id}', 'Web\CarController@update')->name('backend.car.update');
     Route::get('/details/{id}', 'Web\CarController@details')->name('backend.car.details');
+    Route::get('/expired', 'Web\CarController@expired')->name('backend.car.expired');
 });
 
 Route::group(['prefix'=>'admin/drivers', 'middleware' => 'admin'], function(){
