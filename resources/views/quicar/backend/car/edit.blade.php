@@ -88,44 +88,17 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <!-- <label for="brand">Car Brand <span class="text-danger" title="Required">*</span></label>                                            
-                                            <select id="brand" name="brand" class="form-control" required>
-                                                @foreach($brands as $brand)
-                                                    <option value="{{ $brand->value }}" @if($brand->value == $car->brand) selected @endif>{{ $brand->value }}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="text-danger errorYear"></span> -->
-                                        </div>
-                                    </div>
-                                </div>                                
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="form-group">
                                             <label for="capacity">Capacity <span class="text-danger" title="Required">*</span></label>                                            
                                             <input type="text" id="capacity" name="capacity" class="form-control" value="{{ $car->capacity }}" required />
                                             <span class="text-danger errorCapacity"></span>
                                         </div>
                                     </div>
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="tax">Tax <span class="text-danger" title="Required">*</span></label>                                            
-                                            <input type="text" id="tax" name="tax" class="form-control" value="{{ $car->tax }}" required/>
-                                            <span class="text-danger errorTax"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="tax">Fitness <span class="text-danger" title="Required">*</span></label>                                            
-                                            <input type="text" id="fitness" name="fitness" class="form-control" value="{{ $car->fitness }}" required/>
-                                            <span class="text-danger errorFitness"></span>
-                                        </div>
-                                    </div>
-                                </div> 
+                                </div>     
 
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="card">
-                                            <div class="card-header">Product Images</div>
+                                            <div class="card-header">Car Images</div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
@@ -205,7 +178,109 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>                                
+                                </div>  
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-header">Expired date assigned by file</div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="img1">Tax Paper <span class="text-danger" title="Required">*</span></label>
+                                                            <div class="avatar-upload">
+                                                                <div class="avatar-edit">
+                                                                    <input type='file' name="img1" id="img1Upload" accept=".png, .jpg, .jpeg" required/>
+                                                                    <label for="img1Upload"><i class="fas fa-pencil-alt"></i></label>
+                                                                </div>
+                                                                <div class="avatar-preview" style="width:100%">
+                                                                    <div id="img1Preview" style="background-image: url(http://quicarbd.com{{ $car->tax }});"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="tax_expired_date">Tax Expired Date <span class="text-danger" title="Required">*</span></label>
+                                                            <input type="text" id="tax_expired_date" name="tax_expired_date" class="form-control datePicker" required/>
+                                                            <span class="text-danger errorTax"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="img1">Fitness Paper <span class="text-danger" title="Required">*</span></label>
+                                                            <div class="avatar-upload">
+                                                                <div class="avatar-edit">
+                                                                    <input type='file' name="img1" id="img1Upload" accept=".png, .jpg, .jpeg" required/>
+                                                                    <label for="img1Upload"><i class="fas fa-pencil-alt"></i></label>
+                                                                </div>
+                                                                <div class="avatar-preview" style="width:100%">
+                                                                    <div id="img1Preview" style="background-image: url(http://quicarbd.com{{ $car->fitness }});"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="fitness_expired_date">Fitness Expired Date <span class="text-danger" title="Required">*</span></label>
+                                                            <input type="text" id="fitness_expired_date" name="fitness_expired_date" class="form-control datePicker" required/>
+                                                            <span class="text-danger errorFitness"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="img1">Registration Paper <span class="text-danger" title="Required">*</span></label>
+                                                            <div class="avatar-upload">
+                                                                <div class="avatar-edit">
+                                                                    <input type='file' name="img1" id="img1Upload" accept=".png, .jpg, .jpeg" required/>
+                                                                    <label for="img1Upload"><i class="fas fa-pencil-alt"></i></label>
+                                                                </div>
+                                                                <div class="avatar-preview" style="width:100%">
+                                                                    <div id="img1Preview" style="background-image: url(http://quicarbd.com{{ $car->registration }});"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="registration_expired_date">Registration Expired Date <span class="text-danger" title="Required">*</span></label>
+                                                            <input type="text" id="registration_expired_date" name="registration_expired_date" class="form-control datePicker" required/>
+                                                            <span class="text-danger errorRegistration"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="img1">Insurance Paper <span class="text-danger" title="Required">*</span></label>
+                                                            <div class="avatar-upload">
+                                                                <div class="avatar-edit">
+                                                                    <input type='file' name="img1" id="img1Upload" accept=".png, .jpg, .jpeg" required/>
+                                                                    <label for="img1Upload"><i class="fas fa-pencil-alt"></i></label>
+                                                                </div>
+                                                                <div class="avatar-preview" style="width:100%">
+                                                                    <div id="img1Preview" style="background-image: url(http://quicarbd.com{{ $car->insurance }});"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="registration_expired_date">Insurance Expired Date <span class="text-danger" title="Required">*</span></label>
+                                                            <input type="text" id="insurance_expired_date" name="insurance_expired_date" class="form-control datePicker" required/>
+                                                            <span class="text-danger errorInsurance"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                                                  
                                 
                                 <div class="row mt-4">
                                     <div class="col-4">
