@@ -127,4 +127,16 @@ class CarController extends Controller
         return view('quicar.backend.car.details', compact('car'));
     }
 
+    //car show with expired
+    public function expired(){
+        $cars = Car::join('owners','owners.api_token','cars.owner_id')
+                        ->join('drivers','drivers.id','cars.driver_id')
+                        ->select('cars.id','cars.name','cars.img1','cars.c_status','owners.name as owner_name','owners.phone as owner_phone',
+                                'owners.n_key as owner_n_key','drivers.name as driver_name','drivers.phone as driver_phone',
+                                'drivers.c_status as driver_current_status','drivers.license','drivers.nid','drivers.account_status'
+                                )
+                        ->get();
+        return view('quicar.backend.car.expired', compact('cars'));
+    }
+
 }
