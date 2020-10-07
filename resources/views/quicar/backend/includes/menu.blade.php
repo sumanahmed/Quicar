@@ -12,6 +12,7 @@
             <li id="user" class="nav-item"><a href="{{ route('backend.user.index') }}" class="nav-link"><i data-feather="share-2"></i> <span>Users</span></a></li>
             <li id="owner" class="nav-item"><a href="{{ route('backend.owner.index') }}" class="nav-link"><i data-feather="share-2"></i> <span>Partners</span></a></li>
             <li id="car" class="nav-item"><a href="{{ route('backend.car.index') }}" class="nav-link"><i data-feather="truck"></i> <span>Cars</span></a></li>
+            <li id="expired" class="nav-item"><a href="{{ route('backend.car.expired') }}" class="nav-link"><i data-feather="bell"></i> <span>Expired Car</span></a></li>
             <li id="driver" class="nav-item"><a href="{{ route('backend.driver.index') }}" class="nav-link"><i data-feather="share-2"></i> <span>Drivers</span></a></li>
             <li id="feedback" class="nav-item"><a href="{{ route('backend.feedback.index') }}" class="nav-link"><i data-feather="share-2"></i> <span>Feedbacks</span></a></li>            
             <li class="nav-item with-sub menu-order-dropdown">
@@ -26,7 +27,7 @@
                     <li id="pakcage_ride"><a href="{{ route('backend.ride.package_ride') }}">Package Ride</a></li>
                 </ul>
             </li>
-            <li id="sms_notification" class="nav-item"><a href="{{ route('backend.sms_notification.index') }}" class="nav-link"><i data-feather="bell"></i> <span>SMS & Notification</span></a></li>
+            <li id="sms_notification" class="nav-item"><a href="{{ route('backend.sms_notification.index') }}" class="nav-link"><i data-feather="bell"></i> <span>SMS & Notification</span></a></li>            
             <li class="nav-item with-sub">
                 <a href="#" class="nav-link">
                 <i data-feather="square"></i>
