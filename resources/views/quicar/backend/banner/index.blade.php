@@ -31,9 +31,9 @@
                                             <td>{{ $banner->link }}</td>
                                             <td>{{ $banner->type == 1 ? 'User' : 'Owner' }}</td>
                                             <td>{{ $banner->status == 1 ? 'Show' : 'Hide' }}</td>
-                                            <td><img src="http://quicarbd.com{{ asset($banner->image) }}" style="width:100px;height:50px"/></td>                                           
+                                            <td><img src="http://quicarbd.com/{{$banner->img }}" style="width:100px;height:50px"/></td>                                           
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-warning btn-info" data-toggle="modal" id="editBanner" data-target="#editBannerModal" data-id="{{ $banner->id }}" data-title="{{ $banner->title }}" data-type="{{ $banner->type }}" data-link="{{ $banner->link }}" data-status="{{ $banner->status }}" data-des="{{ $banner->des }}" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-warning btn-info" data-toggle="modal" id="editBanner" data-target="#editBannerModal" data-id="{{ $banner->id }}" data-title="{{ $banner->title }}" data-type="{{ $banner->type }}" data-link="{{ $banner->link }}" data-status="{{ $banner->status }}" data-des="{{ $banner->des }}" data-img="{{ $banner->img }}" title="Edit"><i class="fas fa-edit"></i></a>
                                                 <button class="btn btn-raised btn-danger" data-toggle="modal" id="deleteBanner" data-target="#deleteBannerModal" data-id="{{ $banner->id }}" title="Delete"><i class="fas fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
@@ -131,7 +131,7 @@
     <!-- Car Class Edit Modal -->
     <div id="editBannerModal" class="modal fade bd-example-modal-xl mt-3" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-        <form id="editBanneryForm" method="POST" enctype="multipart/form-data">
+        <form id="editBannerForm" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }} {{ method_field('POST') }}
                 <div class="modal-content tx-14">
                     <div class="modal-header bg-success">
@@ -186,6 +186,12 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
+                                    <label for="link">Previous Image <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                    <img id="bannerPreviousImage" style="width:100px;height:80px;" />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
                                     <label for="link">Image <span class="text-danger text-bold" title="Required Field">*</span></label>
                                     <input type="file" name="img" id="edit_img"/>
                                     <span class="text-danger imageError"></span>
@@ -196,7 +202,7 @@
                     <div class="modal-footer">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <button type="button" class="btn btn-success tx-13" id="updateBanner">Save</button>
+                                <button type="button" class="btn btn-success tx-13" id="updateBanner">Update</button>
                                 <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
@@ -218,7 +224,7 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="del_id"/>
-                    <button type="button" class="btn btn-danger btn-raised mr-2" id="destroyColor"><i class="fas fa-trash-alt"></i> Proceed</button>
+                    <button type="button" class="btn btn-danger btn-raised mr-2" id="destroyBanner"><i class="fas fa-trash-alt"></i> Proceed</button>
                     <button type="button" class="btn btn-warning btn-raised" data-dismiss="modal" aria-label="Close"><i class="fas fa-backspace"></i> Cancel</button>
                 </div>
             </div>

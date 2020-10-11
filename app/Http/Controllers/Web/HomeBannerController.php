@@ -19,11 +19,11 @@ class HomeBannerController extends Controller
     //store
     public function store(Request $request){
         $validators=Validator::make($request->all(),[
-            'img' => 'required',
-            'title' => 'required',
-            'des' => 'required',
-            'type' => 'required',
-            'link' => 'required',
+            'img'    => 'required',
+            'title'  => 'required',
+            'des'    => 'required',
+            'type'   => 'required',
+            'link'   => 'required',
             'status' => 'required',
         ]);
         if($validators->fails()){
@@ -59,12 +59,11 @@ class HomeBannerController extends Controller
     //update
     public function update(Request $request){
         $validators=Validator::make($request->all(),[
-            'img' => 'required',
-            'title' => 'required',
-            'des' => 'required',
-            'type' => 'required',
-            'link' => 'required',
-            'status' => 'required',
+            'title'     => 'required',
+            'des'       => 'required',
+            'type'      => 'required',
+            'link'      => 'required',
+            'status'    => 'required',
         ]);
         if($validators->fails()){
             return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
@@ -85,7 +84,7 @@ class HomeBannerController extends Controller
             $image->move($directory, $imageName);
             $imageUrl   = $directory.$imageName;
             $home_banner->img = $imageUrl;
-        }
+        } 
         if($home_banner->update()){
             return Response::json([
                 'status'    => 201,
@@ -101,7 +100,11 @@ class HomeBannerController extends Controller
 
     //destroy
     public function destroy(Request $request){
-        HomeBanner::find($request->id)->delete();
+        $home_banner = HomeBanner::find($request->id);
+        if(($home_banner->img != null) && file_exists($home_banner->img)){
+            unlink($home_banner->img);
+        }
+        $home_banner->delete();
         return response()->json();
     }
 }
