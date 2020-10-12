@@ -34,7 +34,7 @@
                                             <td><img src="http://quicarbd.com/{{$banner->img }}" style="width:100px;height:50px"/></td>                                           
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <a href="#" class="btn btn-warning btn-info" data-toggle="modal" id="editBanner" data-target="#editBannerModal" data-id="{{ $banner->id }}" data-title="{{ $banner->title }}" data-type="{{ $banner->type }}" data-link="{{ $banner->link }}" data-status="{{ $banner->status }}" data-des="{{ $banner->des }}" data-img="{{ $banner->img }}" title="Edit"><i class="fas fa-edit"></i></a>
-                                                <button class="btn btn-raised btn-danger" data-toggle="modal" id="deleteBanner" data-target="#deleteBannerModal" data-id="{{ $banner->id }}" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                                                <a href="#" class="btn btn-danger" data-toggle="modal" id="deleteBanner" data-target="#deleteBannerModal" data-id="{{ $banner->id }}" title="Delete"><i class="fas fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -234,6 +234,6 @@
 @section('scripts')
 <script src="{{ asset('quicar/backend/js/banner.js')}}"></script>
     <script>
-        $("#banner").addClass('active');
+        $("#home_banner").addClass('active');
     </script>
 @endsection
