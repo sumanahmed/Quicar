@@ -22,7 +22,7 @@
                 </a>
                 <ul>
                     <li id="home_banner"><a href="{{ route('backend.home_banner.index') }}">Home Banner</a></li>
-                    <li id="home_ofer"><a href="#">Home Offer</a></li>
+                    <li id="home_ofer"><a href="{{ route('backend.home_offer.index') }}">Home Offer</a></li>
                 </ul>
             </li>
             <li class="nav-item with-sub menu-order-dropdown">
