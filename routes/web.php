@@ -85,6 +85,12 @@ Route::group(['prefix'=>'admin/home_offer', 'middleware' => 'admin'], function()
     Route::post('/destroy', 'Web\HomeOfferController@destroy')->name('backend.home_offer.destroy');
 });
 
+Route::group(['prefix'=>'admin/package', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\PackageController@index')->name('backend.package.index');
+    Route::post('/add-remove', 'Web\PackageController@addRemove')->name('backend.package.add_remove');
+    Route::post('/destroy', 'Web\PackageController@destroy')->name('backend.home_offer.destroy');
+});
+
 Route::group(['prefix'=>'admin/brands', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\CarBrandController@index')->name('backend.brand.index');
     Route::post('/store', 'Web\CarBrandController@store')->name('backend.brand.store');

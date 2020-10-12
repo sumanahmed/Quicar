@@ -15,6 +15,7 @@
             <li id="expired" class="nav-item"><a href="{{ route('backend.car.expired') }}" class="nav-link"><i data-feather="bell"></i> <span>Expired Car</span></a></li>
             <li id="driver" class="nav-item"><a href="{{ route('backend.driver.index') }}" class="nav-link"><i data-feather="share-2"></i> <span>Drivers</span></a></li>
             <li id="feedback" class="nav-item"><a href="{{ route('backend.feedback.index') }}" class="nav-link"><i data-feather="share-2"></i> <span>Feedbacks</span></a></li>            
+            <li id="package" class="nav-item"><a href="{{ route('backend.package.index') }}" class="nav-link"><i data-feather="share-2"></i> <span>Packages</span></a></li>            
             <li class="nav-item with-sub menu-order-dropdown">
                 <a href="#" class="nav-link">
                 <i data-feather="truck"></i>
