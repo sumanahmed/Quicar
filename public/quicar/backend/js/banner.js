@@ -101,6 +101,7 @@ $(document).on('click', '#editBanner', function () {
 $("#updateBanner").click(function (e) {
     e.preventDefault();
     var form_data = new FormData($("#editBannerForm")[0]);
+    form_data.append('id', $("#edit_id").val());
     form_data.append('title', $("#edit_title").val());
     form_data.append('des', $("#edit_des").val());
     form_data.append('link', $("#edit_link").val());
