@@ -47,7 +47,7 @@
                 <ul>
                     <li id="income"><a href="{{ route('backend.account.income') }}">Income</a></li>
                     <li id="user_account"><a href="{{ route('backend.account.user_account') }}">User Account</a></li>
-                    <li id="owner_account"><a href="{{ route('backend.account.owner_account') }}">Owner Account</a></li>
+                    <li id="owner_account"><a href="{{ route('backend.account.owner_account') }}">Partner Account</a></li>
                 </ul>
             </li>
             <li class="nav-item with-sub">
