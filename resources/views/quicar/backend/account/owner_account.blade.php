@@ -1,5 +1,5 @@
 @extends('quicar.backend.layout.admin')
-@section('title','Owner Account')
+@section('title','Partner Account')
 @section('content')
     <div class="content-body">
         <div class="container-fluid pd-x-0">
@@ -29,14 +29,14 @@
                             </div>
                             <div class="card mt-3">
                                 <div class="card-header">
-                                    <h5 class="card-title">Owner Account</h4>
+                                    <h5 class="card-title">Partner Account</h4>
                                 </div>
                                 <div class="card-body">
                                 <table class="table table-bordered" id="incomeTable">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>Owner Name</th>
-                                            <th>Owner Phone</th>
+                                            <th>Partner Name</th>
+                                            <th>Partner Phone</th>
                                             <th>Ride ID</th>
                                             <th>Type</th>
                                             <th>Amount</th>
