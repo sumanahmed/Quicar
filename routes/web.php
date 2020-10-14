@@ -133,8 +133,10 @@ Route::group(['prefix'=>'admin/districts', 'middleware' => 'admin'], function(){
     Route::post('/destroy', 'Web\CarDistrictController@destroy')->name('backend.district.destroy');
 });
 
-Route::group(['prefix'=>'admin/incomes', 'middleware' => 'admin'], function(){
-    Route::get('/', 'Web\IncomeController@index')->name('backend.income.index');
+Route::group(['prefix'=>'admin/accounts', 'middleware' => 'admin'], function(){
+    Route::get('/income', 'Web\IncomeController@index')->name('backend.account.income');
+    Route::get('/user/account', 'Web\IncomeController@userAccount')->name('backend.account.user_account');
+    Route::get('/owner/account', 'Web\IncomeController@ownerAccount')->name('backend.account.owner_account');
 });
 
 Route::group(['prefix'=>'admin/sms/notification', 'middleware' => 'admin'], function(){

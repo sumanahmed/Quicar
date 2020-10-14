@@ -58,6 +58,7 @@
 @section('scripts')
 <script src="{{ asset('quiincome/backend/js/income.js')}}"></script>
 <script>
+    $(".account-sub").addClass('show');
     $("#income").addClass('active');
 </script>    
 @endsection

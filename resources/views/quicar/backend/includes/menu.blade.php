@@ -39,13 +39,15 @@
                 </ul>
             </li>
             <li id="sms_notification" class="nav-item"><a href="{{ route('backend.sms_notification.index') }}" class="nav-link"><i data-feather="bell"></i> <span>SMS & Notification</span></a></li>            
-            <li class="nav-item with-sub">
+            <li class="nav-item with-sub account-sub">
                 <a href="#" class="nav-link">
                 <i data-feather="square"></i>
                     <span>Accounts</span>
                 </a>
                 <ul>
-                    <li id="income"><a href="{{ route('backend.income.index') }}">Income</a></li>
+                    <li id="income"><a href="{{ route('backend.account.income') }}">Income</a></li>
+                    <li id="user_account"><a href="{{ route('backend.account.user_account') }}">User Account</a></li>
+                    <li id="owner_account"><a href="{{ route('backend.account.owner_account') }}">Owner Account</a></li>
                 </ul>
             </li>
             <li class="nav-item with-sub">
