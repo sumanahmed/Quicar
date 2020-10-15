@@ -136,7 +136,9 @@ Route::group(['prefix'=>'admin/districts', 'middleware' => 'admin'], function(){
 Route::group(['prefix'=>'admin/accounts', 'middleware' => 'admin'], function(){
     Route::get('/income', 'Web\IncomeController@index')->name('backend.account.income');
     Route::get('/user/account', 'Web\IncomeController@userAccount')->name('backend.account.user_account');
+    Route::get('/user/account/details/{id}', 'Web\IncomeController@userAccountDetails')->name('backend.account.user_account.details');
     Route::get('/owner/account', 'Web\IncomeController@ownerAccount')->name('backend.account.owner_account');
+    Route::get('/owner/account/details/{id}', 'Web\IncomeController@ownerAccountDetails')->name('backend.account.owner_account.details');
 });
 
 Route::group(['prefix'=>'admin/sms/notification', 'middleware' => 'admin'], function(){
