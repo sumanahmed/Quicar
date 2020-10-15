@@ -37,25 +37,25 @@
                                         <tr>
                                             <th>Partner Name</th>
                                             <th>Partner Phone</th>
-                                            <th>Ride ID</th>
-                                            <th>Type</th>
+                                            <th>Total Ride</th>
                                             <th>Amount</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="IncomeData">
-                                        @if(isset($owner_accounts) && count($owner_accounts) > 0)
-                                            @php $i=1; $total = 0; @endphp
+                                        @if(isset($owner_accounts) && count($owner_accounts) > 0)                                            
                                             @foreach($owner_accounts as $owner_account)
+                                                @php 
+                                                    $owner = \App\Model\Owner::select('name','phone')->where('api_token', $owner_account->user_id)->first();
+                                                @endphp
                                                 <tr class="owner_account-{{ $owner_account->id }}">
-                                                    <td>{{ $owner_account->owner_name }}</td>
-                                                    <td>{{ $owner_account->owner_phone }}</td>
-                                                    <td>{{ $owner_account->ride_id }}</td>
-                                                    @if($owner_account->type == 0)
-                                                        <td><span class="badge badge-success">Debit</span></td>
-                                                    @else
-                                                        <td><span class="badge badge-danger">Credit</span></td>
-                                                    @endif                                            
-                                                    <td>{{ $owner_account->amount }}</td>                                            
+                                                    <td>{{ $owner->name }}</td>
+                                                    <td>{{ $owner->phone }}</td>
+                                                    <td>{{ $owner_account->total_ride }}</td>                                                                                               
+                                                    <td>{{ $owner_account->amount }}</td>    
+                                                    <td>
+                                                        <a href="{{ route('backend.account.owner_account.details', $owner_account->user_id) }}" class="btn btn-info">Details</a>
+                                                    </td>                                        
                                                 </tr>
                                             @endforeach
                                         @else
