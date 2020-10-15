@@ -32,7 +32,7 @@
                                     <h5 class="card-title">Partner Account</h4>
                                 </div>
                                 <div class="card-body">
-                                <table class="table table-bordered" id="incomeTable">
+                                <table class="table table-bordered" id="ownerAccountTable">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Partner Name</th>
@@ -75,9 +75,16 @@
     </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('quiincome/backend/js/income.js')}}"></script>
 <script>
     $(".account-sub").addClass('show');
     $("#owner_account").addClass('active');
+    $('#ownerAccountTable').DataTable({
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search...',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        }
+    });
 </script>    
 @endsection
