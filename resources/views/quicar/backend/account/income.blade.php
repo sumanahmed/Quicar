@@ -5,11 +5,11 @@
         <div class="container-fluid pd-x-0">
             <div class="row row-xs">
                 <div class="col-sm-12 col-lg-12">
-                    <div class="incomed">
-                        <div class="incomed-header">
-                            <h4 class="mt-2 tx-spacing--1 float-left">All Incomes</h4>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">All Incomes</h4>
                         </div>
-                        <div class="incomed-body">
+                        <div class="card-body">
                             <table class="table table-bordered" id="incomeTable">
                                 <thead class="thead-dark">
                                     <tr>
@@ -22,7 +22,7 @@
                                         <th>Amount</th>
                                     </tr>
                                 </thead>
-                                <tbody id="IncomeData">
+                                <tbody>
                                 @if(isset($incomes) && count($incomes) > 0)
                                     @php $i=1; $total = 0; @endphp
                                     @foreach($incomes as $income)
@@ -37,10 +37,6 @@
                                             <td>{{ $income->amount }}</td>                                            
                                         </tr>
                                     @endforeach
-                                    <tr>
-                                        <td colspan="6" class="text-center"><b>Total Amount</b></td>
-                                        <td><b>{{ $total }}</b></td>
-                                    </tr>
                                 @else
                                     <tr>
                                         <td colspan="7" class="text-center">No Data Found</td>
@@ -56,9 +52,16 @@
     </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('quiincome/backend/js/income.js')}}"></script>
 <script>
     $(".account-sub").addClass('show');
     $("#income").addClass('active');
+    $('#incomeTable').DataTable({
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search...',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        }
+    });
 </script>    
 @endsection
