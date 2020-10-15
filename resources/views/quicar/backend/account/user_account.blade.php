@@ -32,9 +32,7 @@
                                     <h5 class="card-title">User Account</h4>
                                 </div>
                                 <div class="card-body">
-                                    <table class="table table-bordered" id="incomeTable">
-                                        <thead>                                   
-                                        </thead>
+                                    <table class="table table-bordered" id="userAccountTable">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>User Name</th>
@@ -67,9 +65,16 @@
     </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('quiincome/backend/js/income.js')}}"></script>
 <script>
     $(".account-sub").addClass('show');
     $("#user_account").addClass('active');
+    $('#userAccountTable').DataTable({
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search...',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        }
+    });
 </script>    
 @endsection
