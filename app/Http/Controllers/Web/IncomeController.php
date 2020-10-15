@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\AdminDebit;
 use App\Model\UserAccount;
 use App\Model\OwnerAccount;
+use DB;
 
 class IncomeController extends Controller
 {
@@ -21,27 +22,35 @@ class IncomeController extends Controller
 
     //user Account
     public function userAccount(Request $request){
-        $start_date    = isset($request->start_date) ? $request->start_date : date('Y-m-d', strtotime('-7 days'));
-        $end_date    = isset($request->end_date) ? $request->end_date : date('Y-m-d');
-        $user_accounts = UserAccount::join('users','users.api_token','user_account.user_id')
-                                    ->select('users.name as user_name','users.phone as user_phone','user_account.id',
-                                            'user_account.amount','user_account.ride_id','user_account.type','user_account.reason'
-                                    )
-                                    ->whereBetween('user_account.date',[$start_date, $end_date])
+        $start_date     = isset($request->start_date) ? $request->start_date : date('Y-m-d', strtotime('-7 days'));
+        $end_date       = isset($request->end_date) ? $request->end_date : date('Y-m-d');
+        $user_accounts  = UserAccount::select('user_id',DB::raw('sum(amount) as amount'),DB::raw('count(ride_id) as total_ride'))                                    
+                                    ->groupBy('user_id')
+                                    ->whereBetween('date',[$start_date, $end_date])
                                     ->get();
         return view('quicar.backend.account.user_account', compact('user_accounts','start_date','end_date'));
+    }
+
+    //user account details
+    public function userAccountDetails($user_id){
+        $user_accounts = UserAccount::where('user_id', $user_id)->get();
+        return view('quicar.backend.account.user_account_details', compact('user_accounts'));
     }
 
     //owner Account
     public function ownerAccount(Request $request){
         $start_date     = isset($request->start_date) ? $request->start_date : date('Y-m-d', strtotime('-7 days'));
         $end_date       = isset($request->end_date) ? $request->end_date : date('Y-m-d');
-        $owner_accounts = OwnerAccount::join('owners','owners.api_token','owner_account.user_id')
-                                    ->select('owners.name as owner_name','owners.phone as owner_phone','owner_account.id',
-                                            'owner_account.amount','owner_account.ride_id','owner_account.type','owner_account.reason'
-                                    )
-                                    ->whereBetween('owner_account.date',[$start_date, $end_date])
+        $owner_accounts = OwnerAccount::select('user_id', DB::raw('sum(amount) as amount'), DB::raw('count(ride_id) as total_ride'))
+                                    ->groupBy('user_id')
+                                    ->whereBetween('date',[$start_date, $end_date])
                                     ->get();
         return view('quicar.backend.account.owner_account', compact('owner_accounts','start_date','end_date'));
+    }
+
+    //owner account details
+    public function ownerAccountDetails($user_id){
+        $owner_accounts = OwnerAccount::where('user_id', $user_id)->get();
+        return view('quicar.backend.account.owner_account_details', compact('owner_accounts'));
     }
 }
