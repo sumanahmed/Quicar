@@ -37,20 +37,24 @@
                                             <tr>
                                                 <th>User Name</th>
                                                 <th>User Phone</th>
-                                                <th>Ride ID</th>
-                                                <th>Type</th>
+                                                <th>Total Ride</th>
                                                 <th>Amount</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="IncomeData">                              
-                                            @php $i=1; $total = 0; @endphp
+                                        <tbody>               
                                             @foreach($user_accounts as $user_account)
+                                                @php 
+                                                    $user = \App\User::select('name','phone')->where('api_token', $user_account->user_id)->first();
+                                                @endphp
                                                 <tr class="user_account-{{ $user_account->id }}">
-                                                    <td>{{ $user_account->user_name }}</td>
-                                                    <td>{{ $user_account->user_phone }}</td>
-                                                    <td>{{ $user_account->ride_id }}</td>
-                                                    <td>{{ $user_account->type == 0 ? 'Debit' : 'Credit' }}</td>
-                                                    <td>{{ $user_account->amount }}</td>                                            
+                                                    <td>{{ $user->name }}</td>
+                                                    <td>{{ $user->phone }}</td>                                                    
+                                                    <td>{{ $user_account->total_ride }}</td>   
+                                                    <td>{{ $user_account->amount }}</td>   
+                                                    <td>
+                                                        <a href="{{ route('backend.account.user_account.details', $user_account->user_id) }}" class="btn btn-info">Details</a>
+                                                    </td>                                         
                                                 </tr>
                                             @endforeach                       
                                         </tbody>
