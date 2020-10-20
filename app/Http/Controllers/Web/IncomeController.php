@@ -53,4 +53,10 @@ class IncomeController extends Controller
         $owner_accounts = OwnerAccount::where('user_id', $user_id)->get();
         return view('quicar.backend.account.owner_account_details', compact('owner_accounts'));
     }
+
+    //get withdraw request
+    public function withdraw(){
+        $withdraws = [];
+        return view('quicar.backend.account.withdraw', compact('withdraws'));
+    }
 }
