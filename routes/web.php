@@ -139,6 +139,7 @@ Route::group(['prefix'=>'admin/accounts', 'middleware' => 'admin'], function(){
     Route::get('/user/account/details/{id}', 'Web\IncomeController@userAccountDetails')->name('backend.account.user_account.details');
     Route::get('/owner/account', 'Web\IncomeController@ownerAccount')->name('backend.account.owner_account');
     Route::get('/owner/account/details/{id}', 'Web\IncomeController@ownerAccountDetails')->name('backend.account.owner_account.details');
+    Route::get('/withdraw', 'Web\IncomeController@withdraw')->name('backend.account.withdraw');
 });
 
 Route::group(['prefix'=>'admin/sms/notification', 'middleware' => 'admin'], function(){
