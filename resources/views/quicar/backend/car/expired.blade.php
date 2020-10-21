@@ -13,7 +13,7 @@
                             <table class="table table-bordered" id="carTable">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th>Car Name</th>
+                                    <th>Car Reg No</th>
                                     <th>Owner Name</th>
                                     <th>Owner Phone</th>
                                     <th>Tax Expired</th>
@@ -28,7 +28,7 @@
                                     @php $i=1; @endphp
                                     @foreach($cars as $car)
                                         <tr class="car-{{ $car->id }}">
-                                            <td>{{ $car->name }}</td>
+                                            <td>{{ $car->registration_no }}</td>
                                             <td>{{ $car->owner_name }}</td>
                                             <td>{{ $car->owner_phone }}</td>
                                             <td></td>
@@ -42,7 +42,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="4" class="text-center">No Data Found</td>
+                                        <td colspan="8" class="text-center">No Data Found</td>
                                     </tr>
                                 @endif
                                 </tbody>
