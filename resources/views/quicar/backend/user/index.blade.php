@@ -26,7 +26,7 @@
                                     @if(isset($users) && count($users) > 0)
                                         @foreach($users as $user)
                                             @php 
-                                                $total_ride   = \App\Model\Ride::where('user_id', $user->api_token)->where('status',4)->count('id');
+                                                $total_ride   = \App\Model\Ride::where('user_id', $user->api_token)->count('id');
                                                 $total_cancel = \App\Model\Ride::where('user_id', $user->api_token)->where('status',5)->count('id');
                                                 $total_spend  = \App\Model\UserAccount::where('user_id', $user->api_token)->where('type',0)->sum('amount');
                                             @endphp
