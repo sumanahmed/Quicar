@@ -72,4 +72,14 @@ class OwnerController extends Controller
             }            
         }        
     }
+
+    //owner details
+    public function details($owner_id){
+        $owner        = Owner::where('api_token',$owner_id)->first();
+        $total_ride   = \App\Model\Ride::where('owner_id', $owner_id)->count('id');
+        $total_complete   = \App\Model\Ride::where('owner_id', $owner_id)->where('status',4)->count('id');
+        $total_cancel = \App\Model\Ride::where('owner_id', $owner_id)->where('status',5)->count('id');
+        $total_spend  = \App\Model\OwnerAccount::where('user_id', $owner_id)->where('type',0)->sum('amount');
+        return view('quicar.backend.owner.details', compact('owner','total_ride','total_complete','total_cancel','total_spend'));
+    }
 }

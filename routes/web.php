@@ -56,6 +56,7 @@ Route::group(['prefix'=>'admin/owners', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\OwnerController@index')->name('backend.owner.index');
     Route::get('/status/update', 'Web\OwnerController@statusUpdate')->name('backend.owner.status.update');
     Route::post('/notification/send', 'Web\OwnerController@notificationSend')->name('backend.owner.notification.send');
+    Route::get('/details/{owner_id}', 'Web\OwnerController@details')->name('backend.owner.details');
 });
 
 Route::group(['prefix'=>'admin/users', 'middleware' => 'admin'], function(){

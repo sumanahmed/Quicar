@@ -34,6 +34,7 @@
                                                 <td><img src="http://quicarbd.com/{{ $owner->img }}" style="width:80px;height:60px"/>
                                                 <td>{{ $owner->account_status == 1 ? 'Active' : 'Inactive' }} </td>
                                                 <td style="vertical-align: middle;text-align: center;">
+                                                    <a href="{{ route('backend.owner.details', $owner->api_token) }}" class="btn btn-raised btn-warning" title="Detail"><i class="fas fa-eye"></i></a>
                                                     @if($owner->account_status == "1")                                            
                                                         <a href="{{ route('backend.owner.status.update',['owner_id'=> $owner->id, 'status'=>0]) }}" class="btn btn-raised btn-danger" title="Deactive"><i class="fas fa-angle-down"></i></a>
                                                     @else
