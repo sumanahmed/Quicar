@@ -25,6 +25,11 @@
                                 <tbody id="userData">
                                     @if(isset($users) && count($users) > 0)
                                         @foreach($users as $user)
+                                            @php 
+                                                $total_ride   = \App\Model\Ride::where('user_id', $user->api_token)->where('status',4)->count('id');
+                                                $total_cancel = \App\Model\Ride::where('user_id', $user->api_token)->where('status',5)->count('id');
+                                                $total_spend  = \App\Model\UserAccount::where('user_id', $user->api_token)->where('type',0)->sum('amount');
+                                            @endphp
                                             <tr class="user-{{ $user->id }}">
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
@@ -33,6 +38,7 @@
                                                 <td><img src="http://quicarbd.com/{{ $user->img }}" style="width:80px;height:60px"/>
                                                 <td>{{ $user->account_status == 1 ? 'Active' : 'Inactive' }} </td>
                                                 <td style="vertical-align: middle;text-align: center;">
+                                                    <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="userDetail" data-target="#userDetailModal" title="Detail" data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-phone="{{ $user->phone }}" data-dob="{{ $user->dob }}" data-nid="{{ $user->nid }}" data-address="{{ $user->address }}" data-total_ride="{{ $total_ride }}" data-total_cancel="{{ $total_cancel }}" data-total_spend="{{ $total_spend }}"><i class="fas fa-eye"></i></a>
                                                     @if($user->account_status == "1")                                            
                                                         <a href="{{ route('backend.user.status.update',['user_id'=> $user->id, 'status'=>0]) }}" class="btn btn-raised btn-danger" title="Deactive"><i class="fas fa-angle-down"></i></a>
                                                     @else
@@ -56,8 +62,8 @@
         </div><!-- container -->
     </div>
      <!-- Delete Car Type Modal -->
-     <div id="userSendNotificationModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog">
+    <div id="userSendNotificationModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content tx-14">
                 <div class="modal-header bg-success">
                     <h5 class="modal-title text-white" id="exampleModalLabel">User Send Notification</h5>
@@ -106,6 +112,56 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="userDetailModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-default" role="document">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="modal-content">
+                    <div class="modal-header bg-success">
+                        <h5 class="modal-title text-center text-white w-100">User Details</h5>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Name</th>
+                                <td id="user_name"></td>
+                            </tr>
+                            <tr>
+                                <th>Phone</th>
+                                <td id="user_phone"></td>
+                            </tr>
+                            <tr>
+                                <th>Date of Birth</th>
+                                <td id="user_dob"></td>
+                            </tr>
+                            <tr>
+                                <th>Nid</th>
+                                <td id="user_nid"></td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td id="user_address"></td>
+                            </tr>
+                            <tr>
+                                <th>Total Ride</th>
+                                <td id="total_ride"></td>
+                            </tr>
+                            <tr>
+                                <th>Total Cancel</th>
+                                <td id="total_cancel"></td>
+                            </tr>
+                            <tr>
+                                <th>Total Spend</th>
+                                <td id="total_spend"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 @endsection

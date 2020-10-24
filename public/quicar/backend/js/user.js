@@ -15,6 +15,20 @@ $(document).on('click', '#userSendNotification', function () {
     $('#phone').val($(this).data('phone'));
  });
 
+//show user info in modal
+$(document).on('click', '#userDetail', function () {
+    $('#userDetailModal').modal('show');
+    $('#user_name').html($(this).data('name'));
+    $('#user_phone').html($(this).data('phone'));
+    $('#user_dob').html($(this).data('dob'));
+    $('#user_nid').html($(this).data('nid'));
+    $('#user_address').html($(this).data('address'));
+    $('#total_ride').html($(this).data('total_ride'));
+    $('#total_cancel').html($(this).data('total_cancel'));
+    $('#total_spend').html($(this).data('total_spend'));
+ });
+
+
  //destroy master category
 $("#userNotificationSend").click(function(){
     var n_key       = $('#n_key').val();
