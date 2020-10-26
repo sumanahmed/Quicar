@@ -18,6 +18,7 @@
                                         <th style="width:10%">Phone</th>
                                         <th style="width:10%">Joining Date & Time</th>
                                         <th style="width:15%">Image</th>
+                                        <th style="width:15%">Current Status</th>
                                         <th style="width:15%">Status</th>
                                         <th style="width:25%; vertical-align: middle;text-align: center;">Action</th>
                                     </tr>
@@ -32,6 +33,7 @@
                                                 <td>{{ $owner->phone }}</td>
                                                 <td>{{ date('d.m.Y', strtotime($owner->date))." ".date('h:i:s a', strtotime($owner->time)) }}</td>
                                                 <td><img src="http://quicarbd.com/{{ $owner->img }}" style="width:80px;height:60px"/>
+                                                <td>{{ $owner->current_status == 1 ? 'Online' : 'Offline' }} </td>
                                                 <td>{{ $owner->account_status == 1 ? 'Active' : 'Inactive' }} </td>
                                                 <td style="vertical-align: middle;text-align: center;">
                                                     <a href="{{ route('backend.owner.details', $owner->api_token) }}" class="btn btn-raised btn-warning" title="Detail"><i class="fas fa-eye"></i></a>
