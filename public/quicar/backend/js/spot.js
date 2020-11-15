@@ -8,7 +8,7 @@ $('#SpotTable').DataTable({
 });
 
 //create Spot
-$("#createSpot").click(function (e) {
+$("#createSpot").click(function (e) { console.log("yesss");
     e.preventDefault();
     var form_data = new FormData($("#createSpotForm")[0]);
     form_data.append('name', $("#name").val());
@@ -29,7 +29,7 @@ $("#createSpot").click(function (e) {
                     $('.nameError').text(response.errors.name);
                 }               
                 if(response.errors.Spot_id){
-                    $('.spotError').text(response.errors.Spot_id);
+                    $('.SpotError').text(response.errors.Spot_id);
                 }           
                 if(response.errors.address){
                     $('.addressError').text(response.errors.address);
@@ -44,7 +44,7 @@ $("#createSpot").click(function (e) {
                         '<td>'+ response.data.name +'</td>\n' +
                         '<td>'+ response.data.district_name +'</td>\n' +
                         '<td>'+ response.data.address +'</td>\n' +
-                        '<td><img src="http://quicarbd.com/'+ response.data.img +'" style="width:80px;height:80px;"/></td>\n' +                        
+                        '<td><img src="http://quicarbd.com/'+ response.data.image +'" style="width:80px;height:80px;"/></td>\n' +                        
                         '<td style="vertical-align: middle;text-align: center;">\n' +                        
                             '<button class="btn btn-warning" data-toggle="modal" id="editSpot" data-target="#editSpotModal" data-id="'+ response.data.id +'" data-name="'+ response.data.value +'" data-Spot_id="'+ response.data.Spot_id +'" data-address="'+ response.data.address +'" data-image="'+ response.data.image +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +
                             '<button class="btn btn-danger" data-toggle="modal" id="deleteSpot" data-target="#deleteSpotModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
@@ -62,13 +62,13 @@ $("#createSpot").click(function (e) {
 
 //open edit Spot modal
 $(document).on('click', '#editSpot', function () {
-    console.log('yess');
     $('#editSpotModal').modal('show');
+    var image = image_base_path + $(this).data('image');
     $('#edit_id').val($(this).data('id'));
     $('#edit_name').val($(this).data('name'));
     $('#edit_district_id').val($(this).data('district_id'));
     $('#edit_address').val($(this).data('address'));
-    $("#previous_image").attr("src", $(this).data('img'));
+    $("#previous_image").attr("src", image);
 });
 
 //update Spot
@@ -93,7 +93,7 @@ $("#updateSpot").click(function (e) {
                     $('.nameError').text(response.errors.name);
                 }               
                 if(response.errors.Spot_id){
-                    $('.spotError').text(response.errors.Spot_id);
+                    $('.SpotError').text(response.errors.Spot_id);
                 }           
                 if(response.errors.address){
                     $('.addressError').text(response.errors.address);
@@ -108,7 +108,7 @@ $("#updateSpot").click(function (e) {
                         '<td>'+ response.data.name +'</td>\n' +
                         '<td>'+ response.data.district_name +'</td>\n' +
                         '<td>'+ response.data.address +'</td>\n' +
-                        '<td><img src="http://quicarbd.com/'+ response.data.img +'" style="width:80px;height:80px;"/></td>\n' +                        
+                        '<td><img src="http://quicarbd.com/'+ response.data.image +'" style="width:80px;height:80px;"/></td>\n' +                        
                         '<td style="vertical-align: middle;text-align: center;">\n' +                        
                             '<button class="btn btn-warning" data-toggle="modal" id="editSpot" data-target="#editSpotModal" data-id="'+ response.data.id +'" data-name="'+ response.data.value +'" data-Spot_id="'+ response.data.Spot_id +'" data-address="'+ response.data.address +'" data-image="'+ response.data.image +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +
                             '<button class="btn btn-danger" data-toggle="modal" id="deleteSpot" data-target="#deleteSpotModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
@@ -139,7 +139,7 @@ $("#destroySpot").click(function(){
         success: function (response) {
             $('#deleteSpotModal').modal('hide');
             $('.spot-' + $('input[name=del_id]').val()).remove();
-            toastr.success(response.message)
+            toastr.success('Spot Deleted')
         }
     });
 });
