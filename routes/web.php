@@ -134,6 +134,13 @@ Route::group(['prefix'=>'admin/districts', 'middleware' => 'admin'], function(){
     Route::post('/destroy', 'Web\CarDistrictController@destroy')->name('backend.district.destroy');
 });
 
+Route::group(['prefix'=>'admin/tour-spot', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\SpotController@index')->name('backend.spot.index');
+    Route::post('/store', 'Web\SpotController@store')->name('backend.spot.store');
+    Route::post('/update', 'Web\SpotController@update')->name('backend.spot.update');
+    Route::post('/destroy', 'Web\SpotController@destroy')->name('backend.spot.destroy');
+});
+
 Route::group(['prefix'=>'admin/accounts', 'middleware' => 'admin'], function(){
     Route::get('/income', 'Web\IncomeController@index')->name('backend.account.income');
     Route::get('/user/account', 'Web\IncomeController@userAccount')->name('backend.account.user_account');
