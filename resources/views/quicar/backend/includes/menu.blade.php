@@ -51,7 +51,7 @@
                     <li id="owner_account"><a href="{{ route('backend.account.owner_account') }}">Partner Account</a></li>
                 </ul>
             </li>
-            <li class="nav-item with-sub">
+            <li class="nav-item settings with-sub">
                 <a href="#" class="nav-link">
                 <i data-feather="settings"></i>
                     <span>Settings</span>
@@ -64,6 +64,7 @@
                     <li id="class"><a href="{{ route('backend.class.index') }}">Classes</a></li>
                     <li id="color"><a href="{{ route('backend.color.index') }}">Colors</a></li>
                     <li id="district"><a href="{{ route('backend.district.index') }}">Disctrict</a></li>
+                    <li id="spot"><a href="{{ route('backend.spot.index') }}">Tour Spot</a></li>
                 </ul>
             </li>
         </ul>
