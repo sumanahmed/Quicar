@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class CarDistrict extends Model
 {
-    protected $table = "car_district";
+    protected $table = "district";
 }
