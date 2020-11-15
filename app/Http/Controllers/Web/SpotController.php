@@ -17,7 +17,7 @@ class SpotController extends Controller
                         ->select('tour_spot.*','district.value as district_name')
                         ->get();
         $districts  = CarDistrict::all();
-        return view('quicar.backend.spot.index', compact('districts'));
+        return view('quicar.backend.spot.index', compact('spots','districts'));
     }
 
     //store
@@ -67,7 +67,6 @@ class SpotController extends Controller
             'district_id'   => 'required',
             'name'          => 'required',
             'address'       => 'required',
-            'image'         => 'required',
         ]);
         if($validators->fails()){
             return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
