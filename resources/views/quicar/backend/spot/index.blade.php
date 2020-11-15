@@ -28,7 +28,7 @@
                                             <td>{{ $spot->name }}</td>
                                             <td>{{ $spot->district_name }}</td>
                                             <td>{{ $spot->address }}</td>
-                                            <td><img src="http://quicarbd.com/{{ $spot->img }}" style="width:80px;height:60px"/>                                            
+                                            <td><img src="http://quicarbd.com/{{ $spot->image }}" style="width:80px;height:60px"/>                                            
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <buttton class="btn btn-raised btn-warning" data-toggle="modal" id="editSpot" data-target="#editSpotModal" data-id="{{ $spot->id }}" data-district_id="{{ $spot->district_id }}" data-name="{{ $spot->name }}" data-address="{{ $spot->address }}" data-image="{{ $spot->image }}" title="Edit"><i class="fas fa-edit"></i></buttton>
                                                 <buttton class="btn btn-raised btn-danger" data-toggle="modal" id="deleteSpot" data-target="#deleteSpotModal" data-id="{{ $spot->id }}" title="Delete"><i class="fas fa-trash-alt"></i></buttton>
