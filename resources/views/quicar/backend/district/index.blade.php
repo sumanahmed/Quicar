@@ -132,6 +132,7 @@
 @section('scripts')
 <script src="{{ asset('quicar/backend/js/district.js')}}"></script>
     <script>
+        $(".settings").addClass('show');
         $("#district").addClass('active');
     </script>    
 @endsection
