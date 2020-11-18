@@ -59,12 +59,12 @@ class Handler extends ExceptionHandler
             ], 404);
         }
 
-        if($exception instanceof NotFoundHttpException){
-            return response([
-                'status' => 'error',
-                'data' => 'Url or api token not found'
-            ], 404);
-        }
+        // if($exception instanceof NotFoundHttpException){
+        //     return response([
+        //         'status' => 'error',
+        //         'data' => 'Url or api token not found'
+        //     ], 404);
+        // }
         return parent::render($request, $exception);
     }
 }
