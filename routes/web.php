@@ -92,6 +92,18 @@ Route::group(['prefix'=>'admin/package', 'middleware' => 'admin'], function(){
     Route::post('/destroy', 'Web\PackageController@destroy')->name('backend.home_offer.destroy');
 });
 
+Route::group(['prefix'=>'admin/car/package', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\CarPackageController@index')->name('backend.car.package.index');
+    Route::get('/create', 'Web\CarPackageController@create')->name('backend.car.package.create');
+    Route::post('/store', 'Web\CarPackageController@store')->name('backend.car.package.store');
+    Route::get('/edit/{id}', 'Web\CarPackageController@edit')->name('backend.car.package.edit');
+    Route::post('/update/{id}', 'Web\CarPackageController@update')->name('backend.car.package.update');
+    Route::get('/destroy/{id}', 'Web\CarPackageController@destroy')->name('backend.car.package.destroy');
+    Route::get('/district/spot/{id}', 'Web\CarPackageController@districtSpot')->name('backend.car.package.district_spot');    
+});
+
+Route::get('/get-car/{id}', 'Web\CarPackageController@getCar')->name('backend.owner.car');
+
 Route::group(['prefix'=>'admin/brands', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\CarBrandController@index')->name('backend.brand.index');
     Route::post('/store', 'Web\CarBrandController@store')->name('backend.brand.store');
