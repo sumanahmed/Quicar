@@ -32,13 +32,13 @@ class AdminController extends Controller
         $data['pending_driver'] = Driver::where('account_status', 0)->count();
         $data['active_driver'] = Driver::where('account_status', 1)->count();
         $data['total_car'] = Car::count();
-        $data['total_inactive_car'] = Car::where('verified', 0)->count();
-        $data['total_active_car'] = Car::where('verified', 1)->count();
+        $data['total_inactive_car'] = Car::where('verify', 0)->count();
+        $data['total_active_car'] = Car::where('verify', 1)->count();
         $data['total_expired_car'] = 0;
         $data['total_ride'] = Ride::count();
         $data['total_complete_ride'] = Ride::where('status', 4)->count();
         $data['total_pending_ride'] = Ride::where('status', 2)->count();
-        $data['total_current_ride'] = Car::where('verified', 1)->where('c_status', 1)->where('current_ride_id', '!=', 0)->count();        
+        $data['total_current_ride'] = Car::where('verify', 1)->count();        
         $data['total_schedule_ride'] = Ride::where('ride_type', 2)->count();
         $data['total_package_ride'] = Ride::where('ride_type', 4)->count();
         $data['total_package'] = Package::count();
