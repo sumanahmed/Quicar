@@ -15,6 +15,7 @@
                                 <thead class="thead-dark">
                                 <tr>                                  
                                     <th>Name</th>                                   
+                                    <th>Car Type</th>                                   
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
                                 </thead>
@@ -23,8 +24,9 @@
                                     @foreach($brands as $brand)
                                         <tr class="brand-{{ $brand->id }}">
                                             <td>{{ $brand->value }}</td>
+                                            <td>{{ $brand->car_type_name }}</td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="editBrand" data-target="#editBrandModal" data-id="{{ $brand->id }}" data-name="{{ $brand->value }}" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="editBrand" data-target="#editBrandModal" data-id="{{ $brand->id }}" data-name="{{ $brand->value }}" data-car_type_id="{{ $brand->car_type_id }}" title="Edit"><i class="fas fa-edit"></i></a>
                                                 <a href="#" class="btn btn-raised btn-danger" data-toggle="modal" id="deleteBrand" data-target="#deleteBrandModal" data-id="{{ $brand->id }}" title="Delete"><i class="fas fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
@@ -62,6 +64,17 @@
                                 <span class="text-danger nameError"></span>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="car_type_name">Car Type <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                <select id="car_type_id" name="car_type_id" class="form-control">
+                                    @foreach($car_types as $car_type)
+                                        <option value="{{ $car_type->id }}">{{ $car_type->name }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger nameError"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -93,6 +106,17 @@
                                 <label for="name">Name <span class="text-danger text-bold" title="Required Field">*</span></label>
                                 <input type="text" name="name" id="edit_name" class="form-control"placeholder="Enter Brand Name" required>
                                 <input type="hidden" id="edit_id" />
+                                <span class="text-danger nameError"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="car_type_name">Car Type <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                <select id="edit_car_type_id" name="car_type_id" class="form-control">
+                                    @foreach($car_types as $car_type)
+                                        <option value="{{ $car_type->id }}">{{ $car_type->name }}</option>
+                                    @endforeach
+                                </select>
                                 <span class="text-danger nameError"></span>
                             </div>
                         </div>

@@ -3,12 +3,13 @@
 $("#createBrand").click(function (e) {
     e.preventDefault();
     var name = $("#name").val();
+    var car_type_id = $("#car_type_id :selected").val();
     $.ajax({
         type:'POST',
         url: '/admin/brands/store',
         headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
         data: {
-            name : name,
+            name : name, car_type_id: car_type_id
         },
         success:function(response){
             if((response.errors)){
@@ -21,9 +22,10 @@ $("#createBrand").click(function (e) {
                 $('#createBrandModal').modal('hide');
                 $("#allBrand").append('' +
                     '<tr class="brand-'+ response.data.id +'">\n' +
-                        '<td>'+ name +'</td>\n' +
+                        '<td>'+  response.data.value +'</td>\n' +
+                        '<td>'+ response.data.car_type_name +'</td>\n' +
                         '<td style="vertical-align: middle;text-align: center;">\n' +                        
-                            '<button class="btn btn-warning" data-toggle="modal" id="editBrand" data-target="#editBrandModal" data-id="'+ response.data.id +'" data-name="'+ response.data.value +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +
+                            '<button class="btn btn-warning" data-toggle="modal" id="editBrand" data-target="#editBrandModal" data-id="'+ response.data.id +'" data-name="'+ response.data.value +'" data-car_type_id="'+ response.data.car_type_id +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +
                             '<button class="btn btn-danger" data-toggle="modal" id="deleteBrand" data-target="#deleteBrandModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
                     '</tr>'+
@@ -41,6 +43,7 @@ $(document).on('click', '#editBrand', function () {
     $('#editBrandModal').modal('show');
     $('#edit_id').val($(this).data('id'));
     $('#edit_name').val($(this).data('name'));
+    $('#edit_car_type_id').val($(this).data('car_type_id'));
  });
 
 // update Brand
@@ -48,6 +51,7 @@ $("#updateBrand").click(function (e) {
     e.preventDefault();
     var id      = $("#edit_id").val();
     var name    = $("#edit_name").val();
+    var car_type_id    = $("#edit_car_type_id :selected").val();
     $.ajax({
         type:'POST',
         url: '/admin/brands/update',
@@ -55,6 +59,7 @@ $("#updateBrand").click(function (e) {
         data: {
             id    : id,
             name  : name,
+            car_type_id  : car_type_id,
         },
         success:function(response){
             if((response.errors)){
@@ -68,8 +73,9 @@ $("#updateBrand").click(function (e) {
                 $("tr.brand-"+ response.data.id).replaceWith('' +
                     '<tr class="brand-'+ response.data.id +'">\n' +
                         '<td>'+ response.data.value +'</td>\n' +
+                        '<td>'+ response.data.car_type_name +'</td>\n' +
                         '<td style="vertical-align: middle;text-align: center;">\n' +
-                            '<button class="btn btn-warning" data-toggle="modal" id="editBrand" data-target="#editBrandModal" data-id="'+ response.data.id +'" data-name="'+ response.data.value +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +
+                            '<button class="btn btn-warning" data-toggle="modal" id="editBrand" data-target="#editBrandModal" data-id="'+ response.data.id +'" data-name="'+ response.data.value +'" data-car_type_id="'+ response.data.car_type_id +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +
                             '<button class="btn btn-danger" data-toggle="modal" id="deleteBrand" data-target="#deleteBrandModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
                     '</tr>'+
