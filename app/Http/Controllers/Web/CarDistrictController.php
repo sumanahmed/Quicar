@@ -20,12 +20,14 @@ class CarDistrictController extends Controller
     public function store(Request $request){
         $validators=Validator::make($request->all(),[
             'name'    => 'required',
+            'bn_name' => 'required',
         ]);
         if($validators->fails()){
             return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
         }else{
             $district          = new CarDistrict();
             $district->value   = $request->name;
+            $district->bn_name = $request->bn_name;
             if($district->save()){
                 return Response::json([
                     'status'    => 201,
@@ -44,12 +46,14 @@ class CarDistrictController extends Controller
     public function update(Request $request){
         $validators=Validator::make($request->all(),[
             'name'    => 'required',
+            'bn_name' => 'required',
         ]);
         if($validators->fails()){
             return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
         }else{
             $district          = CarDistrict::find($request->id);
             $district->value   = $request->name;
+            $district->bn_name = $request->bn_name;
             if($district->update()){
                 return Response::json([
                     'status'    => 201,

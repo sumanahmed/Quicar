@@ -15,6 +15,7 @@
                                 <thead class="thead-dark">
                                 <tr>                                  
                                     <th>Name</th>                                   
+                                    <th>Name(Bn)</th>                                   
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
                                 </thead>
@@ -23,8 +24,9 @@
                                     @foreach($districts as $district)
                                         <tr class="district-{{ $district->id }}">
                                             <td>{{ $district->value }}</td>
+                                            <td>{{ $district->bn_name }}</td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="editDistrict" data-target="#editDistrictModal" data-id="{{ $district->id }}" data-name="{{ $district->value }}" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="editDistrict" data-target="#editDistrictModal" data-id="{{ $district->id }}" data-name="{{ $district->value }}" data-bn_name="{{ $district->bn_name }}" title="Edit"><i class="fas fa-edit"></i></a>
                                                 <a href="#" class="btn btn-raised btn-danger" data-toggle="modal" id="deleteDistrict" data-target="#deleteDistrictModal" data-id="{{ $district->id }}" title="Delete"><i class="fas fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
@@ -58,8 +60,15 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="name">Name <span class="text-danger text-bold" title="Required Field">*</span></label>
-                                <input type="text" name="name" id="name" class="form-control"placeholder="Enter Class Name" required>
+                                <input type="text" name="name" id="name" class="form-control"placeholder="Enter Name in English" required>
                                 <span class="text-danger nameError"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="name">Name(Bn) <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                <input type="text" name="bn_name" id="bn_name" class="form-control"placeholder="Enter Name in Bangla" required>
+                                <span class="text-danger nameBnError"></span>
                             </div>
                         </div>
                     </div>
@@ -91,9 +100,16 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="name">Name <span class="text-danger text-bold" title="Required Field">*</span></label>
-                                <input type="text" name="name" id="edit_name" class="form-control"placeholder="Enter District Name" required>
+                                <input type="text" name="name" id="edit_name" class="form-control"placeholder="Enter Name in English" required>
                                 <input type="hidden" id="edit_id" />
                                 <span class="text-danger nameError"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="name">Name(Bn) <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                <input type="text" name="edit_bn_name" id="edit_bn_name" class="form-control"placeholder="Enter Name in Bangla" required>
+                                <span class="text-danger nameBnError"></span>
                             </div>
                         </div>
                     </div>
