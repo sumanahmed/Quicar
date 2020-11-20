@@ -17,12 +17,9 @@ class CarController extends Controller
 {
     //show all cars
     public function index(){
-        $cars = Car::leftjoin('owners','owners.api_token','cars.owner_id')
-                    ->leftjoin('drivers','drivers.id','cars.driver_id')
-                    ->select('cars.id','cars.name','cars.img1','cars.c_status','owners.name as owner_name',
-                            'owners.phone as owner_phone','drivers.name as driver_name','drivers.phone as driver_phone',
-                            'drivers.c_status as driver_current_status','drivers.license','drivers.nid','drivers.account_status'
-                            )
+        $cars = Car::leftjoin('owners','owners.id','cars.owner_id')
+                    ->select('cars.id','cars.carRegisterNumber','cars.carImage','cars.status','owners.name as owner_name',
+                            'owners.phone as owner_phone')
                     ->get();
         return view('quicar.backend.car.index', compact('cars'));
     }
