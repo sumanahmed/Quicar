@@ -16,6 +16,7 @@
                                 <tr>                                  
                                     <th>Name</th>                                   
                                     <th>Car Type</th>                                   
+                                    <th>Car Model</th>                                   
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
                                 </thead>
@@ -25,6 +26,7 @@
                                         <tr class="Year-{{ $year->id }}">
                                             <td>{{ $year->value }}</td>
                                             <td>{{ $year->car_type_name }}</td>
+                                            <td>{{ $year->car_model_name }}</td>
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="editYear" data-target="#editYearModal" data-id="{{ $year->id }}" data-name="{{ $year->value }}" data-car_type_id="{{ $year->car_type_id }}" title="Edit"><i class="fas fa-edit"></i></a>
                                                 <a href="#" class="btn btn-raised btn-danger" data-toggle="modal" id="deleteYear" data-target="#deleteYearModal" data-id="{{ $year->id }}" title="Delete"><i class="fas fa-trash-alt"></i></a>
@@ -72,7 +74,18 @@
                                         <option value="{{ $car_type->id }}">{{ $car_type->name }}</option>
                                     @endforeach
                                 </select>
-                                <span class="text-danger nameError"></span>
+                                <span class="text-danger carTypeError"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="car_model_id">Car Model <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                <select id="car_model_id" name="car_model_id" class="form-control">
+                                    @foreach($models as $model)
+                                        <option value="{{ $model->id }}">{{ $model->value }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger carModelError"></span>
                             </div>
                         </div>
                     </div>
@@ -117,7 +130,18 @@
                                         <option value="{{ $car_type->id }}">{{ $car_type->name }}</option>
                                     @endforeach
                                 </select>
-                                <span class="text-danger nameError"></span>
+                                <span class="text-danger carTypeError"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="edit_car_model_id">Car Model <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                <select id="edit_car_model_id" name="edit_car_model_id" class="form-control">
+                                    @foreach($models as $model)
+                                        <option value="{{ $model->id }}">{{ $model->value }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger carModelError"></span>
                             </div>
                         </div>
                     </div>
