@@ -13,10 +13,9 @@
                             <table class="table table-bordered" id="carTable">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th>Car Name</th>
+                                    <th>Registration No</th>
                                     <th>Owner Name</th>
                                     <th>Owner Phone</th>
-                                    <th>Driver Name</th>
                                     <th>Current Status</th>
                                     <th>Image</th>
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
@@ -27,16 +26,11 @@
                                     @php $i=1; @endphp
                                     @foreach($cars as $car)
                                         <tr class="car-{{ $car->id }}">
-                                            <td>{{ $car->name }}</td>
+                                            <td>{{ $car->carRegisterNumber }}</td>
                                             <td>{{ $car->owner_name }}</td>
                                             <td>{{ $car->owner_phone }}</td>
-                                            <td>
-                                                <a href="#" data-toggle="modal" id="driverDetail" data-target="#driverDetailModal" data-driver_name="{{ $car->driver_name }}" data-driver_phone="{{ $car->driver_phone }}" data-driver_current_status="{{ $car->driver_current_status }}" data-license="{{ $car->license }}" data-nid="{{ $car->nid }}" data-account_status="{{ $car->account_status }}">
-                                                    {{ $car->driver_name }}
-                                                </a>
-                                            </td>
-                                            <td>{{ $car->c_status == 0 ? 'Off Ride' : 'On Ride' }}</td>
-                                            <th><img src="http://quicarbd.com/{{ $car->img1 }}" style="width:80px;height:60px;"/></th>
+                                            <td>{{ $car->status == 0 ? 'Off Ride' : 'On Ride' }}</td>
+                                            <th><img src="http://quicarbd.com/{{ $car->carImage }}" style="width:80px;height:60px;"/></th>
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <a href="#" class="btn btn-raised btn-success" title="Verify"><i class="fas fa-unlock-alt"></i></a>
                                                 <a href="{{ route('backend.car.edit', $car->id) }}" class="btn btn-raised btn-info" title="Edit"><i class="fas fa-edit"></i></a>
@@ -46,7 +40,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="4" class="text-center">No Data Found</td>
+                                        <td colspan="6" class="text-center">No Data Found</td>
                                     </tr>
                                 @endif
                                 </tbody>
