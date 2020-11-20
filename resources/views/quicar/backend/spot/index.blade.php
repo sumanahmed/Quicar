@@ -15,6 +15,7 @@
                                 <thead class="thead-dark">
                                 <tr>
                                     <th>Name</th>
+                                    <th>Name(Bn)</th>
                                     <th>District</th>
                                     <th>Address</th>
                                     <th>Image</th>
@@ -26,18 +27,19 @@
                                     @foreach($spots as $spot)
                                         <tr class="spot-{{ $spot->id }}">
                                             <td>{{ $spot->name }}</td>
+                                            <td>{{ $spot->bn_name }}</td>
                                             <td>{{ $spot->district_name }}</td>
                                             <td>{{ $spot->address }}</td>
                                             <td><img src="http://quicarbd.com/{{ $spot->image }}" style="width:80px;height:60px"/>                                            
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <buttton class="btn btn-raised btn-warning" data-toggle="modal" id="editSpot" data-target="#editSpotModal" data-id="{{ $spot->id }}" data-district_id="{{ $spot->district_id }}" data-name="{{ $spot->name }}" data-address="{{ $spot->address }}" data-image="{{ $spot->image }}" title="Edit"><i class="fas fa-edit"></i></buttton>
+                                                <buttton class="btn btn-raised btn-warning" data-toggle="modal" id="editSpot" data-target="#editSpotModal" data-id="{{ $spot->id }}" data-district_id="{{ $spot->district_id }}" data-name="{{ $spot->name }}" data-bn_name="{{ $spot->bn_name }}" data-address="{{ $spot->address }}" data-image="{{ $spot->image }}" title="Edit"><i class="fas fa-edit"></i></buttton>
                                                 <buttton class="btn btn-raised btn-danger" data-toggle="modal" id="deleteSpot" data-target="#deleteSpotModal" data-id="{{ $spot->id }}" title="Delete"><i class="fas fa-trash-alt"></i></buttton>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="5" class="text-center">No Data Found</td>
+                                        <td colspan="6" class="text-center">No Data Found</td>
                                     </tr>
                                 @endif
                                 </tbody>
@@ -64,8 +66,13 @@
                         <div class="mg-b-0" style="padding: 2px 15px !important;">  
                             <div class="form-group">
                                 <label for="name">Name <span class="text-danger text-bold" title="Required Field">*</span></label>
-                                <input type="text" name="name" id="name" class="form-control"placeholder="Enter Name" required>
+                                <input type="text" name="name" id="name" class="form-control"placeholder="Enter Name in English" required>
                                 <span class="text-danger nameError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Name(Bn) <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                <input type="text" name="name" id="bn_name" class="form-control"placeholder="Enter Name in Bangla" required>
+                                <span class="text-danger nameBnError"></span>
                             </div>
                             <div class="form-group">
                                 <label for="district_id">District <span class="text-danger text-bold" title="Required Field">*</span></label>                                
@@ -115,9 +122,14 @@
                         <div class="mg-b-0" style="padding: 2px 15px !important;">
                             <div class="form-group">
                                 <label for="name">Name <span class="text-danger text-bold" title="Required Field">*</span></label>
-                                <input type="text" name="name" id="edit_name" class="form-control"placeholder="Enter Name" required>
+                                <input type="text" name="name" id="edit_name" class="form-control"placeholder="Enter Name in English" required>
                                 <input type="hidden" id="edit_id" />
                                 <span class="text-danger nameError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Name(Bn) <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                <input type="text" name="edit_bn_name" id="edit_bn_name" class="form-control"placeholder="Enter Name in Bangla" required>
+                                <span class="text-danger nameBnError"></span>
                             </div>
                             <div class="form-group">
                                 <label for="edit_district_id">District <span class="text-danger text-bold" title="Required Field">*</span></label>                                

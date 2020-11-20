@@ -15,7 +15,7 @@ class SpotController extends Controller
     public function index(){
         $spots      = TourSpot::join('district','district.id','tour_spot.district_id')
                         ->select('tour_spot.*','district.value as district_name')
-                        ->get();
+                        ->get(); 
         $districts  = CarDistrict::all();
         return view('quicar.backend.spot.index', compact('spots','districts'));
     }
@@ -25,6 +25,7 @@ class SpotController extends Controller
         $validators=Validator::make($request->all(),[
             'district_id'   => 'required',
             'name'          => 'required',
+            'bn_name'       => 'required',
             'address'       => 'required',
             'image'         => 'required',
         ]);
@@ -34,6 +35,7 @@ class SpotController extends Controller
             $spot               = new TourSpot();
             $spot->district_id  = $request->district_id;
             $spot->name         = $request->name;
+            $spot->bn_name      = $request->bn_name;
             $spot->address      = $request->address;
             if($request->image){
                 $image          = $request->file('image');
@@ -66,6 +68,7 @@ class SpotController extends Controller
         $validators=Validator::make($request->all(),[
             'district_id'   => 'required',
             'name'          => 'required',
+            'bn_name'       => 'required',
             'address'       => 'required',
         ]);
         if($validators->fails()){
@@ -74,6 +77,7 @@ class SpotController extends Controller
             $spot               = TourSpot::find($request->id);
             $spot->district_id  = $request->district_id;
             $spot->name         = $request->name;
+            $spot->bn_name      = $request->bn_name;
             $spot->address      = $request->address;
             if($request->image){
                 if($spot->image != null && file_exists($spot->image)){
