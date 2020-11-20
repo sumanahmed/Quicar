@@ -16,6 +16,7 @@
                                 <tr>                                  
                                     <th>Name</th>                                   
                                     <th>Car Type</th>                                   
+                                    <th>Car Brand</th>                                   
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
                                 </thead>
@@ -25,15 +26,16 @@
                                         <tr class="Model-{{ $model->id }}">
                                             <td>{{ $model->value }}</td>
                                             <td>{{ $model->car_type_name }}</td>
+                                            <td>{{ $model->car_brand_name }}</td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="editModel" data-target="#editModelModal" data-id="{{ $model->id }}" data-name="{{ $model->value }}" data-car_type_id="{{ $model->car_type_id }}" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="editModel" data-target="#editModelModal" data-id="{{ $model->id }}" data-name="{{ $model->value }}" data-car_type_id="{{ $model->car_type_id }}" data-car_brand_id="{{ $model->car_brand_id }}" title="Edit"><i class="fas fa-edit"></i></a>
                                                 <a href="#" class="btn btn-raised btn-danger" data-toggle="modal" id="deleteModel" data-target="#deleteModelModal" data-id="{{ $model->id }}" title="Delete"><i class="fas fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="3" class="text-center">No Data Found</td>
+                                        <td colspan="4" class="text-center">No Data Found</td>
                                     </tr>
                                 @endif
                                 </tbody>
@@ -72,7 +74,18 @@
                                         <option value="{{ $car_type->id }}">{{ $car_type->name }}</option>
                                     @endforeach
                                 </select>
-                                <span class="text-danger nameError"></span>
+                                <span class="text-danger carTypeError"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="car_type_name">Car Brand <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                <select id="car_brand_id" name="car_brand_id" class="form-control">
+                                    @foreach($brands as $brand)
+                                        <option value="{{ $brand->id }}">{{ $brand->value }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger carBrandError"></span>
                             </div>
                         </div>
                     </div>
@@ -117,7 +130,18 @@
                                         <option value="{{ $car_type->id }}">{{ $car_type->name }}</option>
                                     @endforeach
                                 </select>
-                                <span class="text-danger nameError"></span>
+                                <span class="text-danger carTypeError"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="edit_car_brand_id">Car Brand <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                <select id="edit_car_brand_id" name="edit_car_brand_id" class="form-control">
+                                    @foreach($brands as $brand)
+                                        <option value="{{ $brand->id }}">{{ $brand->value }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger carBrandError"></span>
                             </div>
                         </div>
                     </div>
