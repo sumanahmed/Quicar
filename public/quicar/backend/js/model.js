@@ -1,4 +1,13 @@
 
+$('#modelTable').DataTable({
+    responsive: true,
+    language: {
+        searchPlaceholder: 'Search...',
+        sSearch: '',
+        lengthMenu: '_MENU_ items/page',
+    }
+});
+
 //create offer
 $("#createModel").click(function (e) {
     e.preventDefault();
