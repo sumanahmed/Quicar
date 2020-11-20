@@ -11,7 +11,7 @@
                             <a class="btn btn-success float-right cursor-pointer" data-toggle="modal" data-target="#createModelModal"><i data-feather="plus"></i>&nbsp; Add New</a>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered" id="packageTable">
+                            <table class="table table-bordered" id="modelTable">
                                 <thead class="thead-dark">
                                 <tr>                                  
                                     <th>Name</th>                                   
