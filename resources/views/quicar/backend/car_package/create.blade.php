@@ -91,7 +91,7 @@
                                     <div class="col-3">                                        
                                         <div class="form-group">
                                             <label for="total_person"> Total Person <span class="text-danger" title="Required">*</span></label>
-                                            <input type="text" id="total_person" name="total_person" class="form-control" placeholder="Total Person" required>
+                                            <input type="text" id="total_person" name="total_person" class="form-control" placeholder="Total Person" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
                                         </div>
                                     </div>
                                     <div class="col-3">                                        
