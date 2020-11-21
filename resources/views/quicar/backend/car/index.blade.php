@@ -8,6 +8,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="mt-2 tx-spacing--1 float-left">All Cars</h4>
+                            <a class="btn btn-success float-right cursor-pointer" href="{{ route('backend.car.create') }}"><i data-feather="plus"></i>&nbsp; Add New</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered" id="carTable">
