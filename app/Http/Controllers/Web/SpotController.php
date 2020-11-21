@@ -26,7 +26,6 @@ class SpotController extends Controller
             'district_id'   => 'required',
             'name'          => 'required',
             'bn_name'       => 'required',
-            'address'       => 'required',
             'image'         => 'required',
         ]);
         if($validators->fails()){
@@ -36,7 +35,7 @@ class SpotController extends Controller
             $spot->district_id  = $request->district_id;
             $spot->name         = $request->name;
             $spot->bn_name      = $request->bn_name;
-            $spot->address      = $request->address;
+            $spot->address      = isset($request->address) ? $request->address : Null;
             if($request->image){
                 $image          = $request->file('image');
                 $image_name     = time().".".$image->getClientOriginalExtension();
@@ -69,7 +68,6 @@ class SpotController extends Controller
             'district_id'   => 'required',
             'name'          => 'required',
             'bn_name'       => 'required',
-            'address'       => 'required',
         ]);
         if($validators->fails()){
             return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
@@ -78,7 +76,7 @@ class SpotController extends Controller
             $spot->district_id  = $request->district_id;
             $spot->name         = $request->name;
             $spot->bn_name      = $request->bn_name;
-            $spot->address      = $request->address;
+            $spot->address      = isset($request->address) ? $request->address : Null;
             if($request->image){
                 if($spot->image != null && file_exists($spot->image)){
                     unlink($spot->image);

@@ -29,7 +29,7 @@
                                             <td>{{ $spot->name }}</td>
                                             <td>{{ $spot->bn_name }}</td>
                                             <td>{{ $spot->district_name }}</td>
-                                            <td>{{ $spot->address }}</td>
+                                            <td>{{ $spot->address != null ? $spot->address : '' }}</td>
                                             <td><img src="http://quicarbd.com/{{ $spot->image }}" style="width:80px;height:60px"/>                                            
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <buttton class="btn btn-raised btn-warning" data-toggle="modal" id="editSpot" data-target="#editSpotModal" data-id="{{ $spot->id }}" data-district_id="{{ $spot->district_id }}" data-name="{{ $spot->name }}" data-bn_name="{{ $spot->bn_name }}" data-address="{{ $spot->address }}" data-image="{{ $spot->image }}" title="Edit"><i class="fas fa-edit"></i></buttton>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="form-group ">
                                 <label for="address">Address <span class="text-danger text-bold" title="Required Field">*</span></label>                                
-                                <input type="text" name="address" id="address" class="form-control" placeholder="Enter Address" required>
+                                <input type="text" name="address" id="address" class="form-control" placeholder="Enter Address">
                                 <span class="text-danger addressError"></span>
                             </div>
                             <div class="form-group">
@@ -142,7 +142,7 @@
                             </div>                           
                             <div class="form-group ">
                                 <label for="address">Address <span class="text-danger text-bold" title="Required Field">*</span></label>                                
-                                <input type="text" name="address" id="edit_address" class="form-control" placeholder="Enter Address" required>
+                                <input type="text" name="address" id="edit_address" class="form-control" placeholder="Enter Address">
                                 <span class="text-danger addressError"></span>
                             </div>                           
                             <div class="form-group">
