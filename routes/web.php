@@ -39,6 +39,8 @@ Route::group(['prefix'=>'admin', 'middleware' => 'admin'], function(){
 
 Route::group(['prefix'=>'admin/cars', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\CarController@index')->name('backend.car.index');
+    Route::get('/create', 'Web\CarController@create')->name('backend.car.create');
+    Route::post('/store', 'Web\CarController@store')->name('backend.car.store');
     Route::get('/edit/{id}', 'Web\CarController@edit')->name('backend.car.edit');
     Route::post('/update/{id}', 'Web\CarController@update')->name('backend.car.update');
     Route::get('/details/{id}', 'Web\CarController@details')->name('backend.car.details');
