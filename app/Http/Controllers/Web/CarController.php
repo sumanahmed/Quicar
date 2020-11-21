@@ -219,7 +219,8 @@ class CarController extends Controller
     //car details
     public function details($id){
         $car = Car::find($id);
-        return view('quicar.backend.car.details', compact('car'));
+        $owners     = Owner::all();
+        return view('quicar.backend.car.details', compact('car','owners'));
     }
 
     //car show with expired
