@@ -93,4 +93,20 @@ class CarModelController extends Controller
         $model = CarModel::find($request->id)->delete();
         return response()->json();
     }
+
+    //get car brand
+    public function getBrand($car_type_id){
+        $car_brand = CarBrand::select('id','value as name')->where('car_type_id', $car_type_id)->get();
+        if($car_brand->count() > 0){
+            return Response::json([
+                'status'    => 200,
+                'data'      => $car_brand
+            ]);
+        }else{
+            return Response::json([
+                'status'    => 403,
+                'data'      => []
+            ]);
+        }
+    }
 }
