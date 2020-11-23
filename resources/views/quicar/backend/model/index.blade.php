@@ -70,6 +70,7 @@
                             <div class="form-group col-md-12">
                                 <label for="car_type_name">Car Type <span class="text-danger text-bold" title="Required Field">*</span></label>
                                 <select id="car_type_id" name="car_type_id" class="form-control">
+                                    <option selected disabled>Select</option>
                                     @foreach($car_types as $car_type)
                                         <option value="{{ $car_type->id }}">{{ $car_type->name }}</option>
                                     @endforeach
@@ -81,9 +82,9 @@
                             <div class="form-group col-md-12">
                                 <label for="car_type_name">Car Brand <span class="text-danger text-bold" title="Required Field">*</span></label>
                                 <select id="car_brand_id" name="car_brand_id" class="form-control">
-                                    @foreach($brands as $brand)
+                                    <!-- @foreach($brands as $brand)
                                         <option value="{{ $brand->id }}">{{ $brand->value }}</option>
-                                    @endforeach
+                                    @endforeach -->
                                 </select>
                                 <span class="text-danger carBrandError"></span>
                             </div>
