@@ -133,3 +133,14 @@ $("#destroyModel").click(function(){
         }
     });
 });
+
+//get brand by car_type_id
+$("#car_type_id").change(function(){
+    var car_type_id = $(this).val();
+    $.get('/admin/models/get-brand/'+ car_type_id, function(response){
+        $('#car_brand_id').empty();
+        for(var i = 0; i <= response.data.length; i++){
+            $('#car_brand_id').append('<option value="'+ response.data[i].id +'">'+ response.data[i].name +'</option');
+        }
+    });
+});
