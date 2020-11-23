@@ -69,10 +69,10 @@
                     <li id="car_type"><a href="{{ route('backend.car_type.index') }}">Car Types</a></li>
                     <li id="brand"><a href="{{ route('backend.brand.index') }}">Brands</a></li>
                     <li id="model"><a href="{{ route('backend.model.index') }}">Model</a></li>
-                    <li id="car_year"><a href="{{ route('backend.car.year.index') }}">Car Year</a></li>
+                    <!-- <li id="car_year"><a href="{{ route('backend.car.year.index') }}">Car Year</a></li> -->
                     <li id="year"><a href="{{ route('backend.year.index') }}">Year</a></li>
                     <li id="class"><a href="{{ route('backend.class.index') }}">Classes</a></li>
-                    <li id="color"><a href="{{ route('backend.color.index') }}">Colors</a></li>
+                    <!-- <li id="color"><a href="{{ route('backend.color.index') }}">Colors</a></li> -->
                     <li id="district"><a href="{{ route('backend.district.index') }}">Disctrict</a></li>
                     <li id="spot"><a href="{{ route('backend.spot.index') }}">Tour Spot</a></li>
                 </ul>
