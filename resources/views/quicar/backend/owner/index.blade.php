@@ -8,6 +8,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="mt-2 tx-spacing--1 float-left">All Partners</h4>
+                            <a class="btn btn-success float-right cursor-pointer" href="{{ route('backend.owner.create') }}"><i data-feather="plus"></i>&nbsp; Add New</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered" id="ownerTable">
@@ -36,13 +37,14 @@
                                                 <td>{{ $owner->current_status == 1 ? 'Online' : 'Offline' }} </td>
                                                 <td>{{ $owner->account_status == 1 ? 'Active' : 'Inactive' }} </td>
                                                 <td style="vertical-align: middle;text-align: center;">
-                                                    <a href="{{ route('backend.owner.details', $owner->api_token) }}" class="btn btn-raised btn-warning" title="Detail"><i class="fas fa-eye"></i></a>
+                                                    <a href="{{ route('backend.owner.details', $owner->id) }}" class="btn btn-raised btn-warning btn-sm" title="Detail"><i class="fas fa-eye"></i></a>
                                                     @if($owner->account_status == "1")                                            
-                                                        <a href="{{ route('backend.owner.status.update',['owner_id'=> $owner->id, 'status'=>0]) }}" class="btn btn-raised btn-danger" title="Deactive"><i class="fas fa-angle-down"></i></a>
+                                                        <a href="{{ route('backend.owner.status.update',['owner_id'=> $owner->id, 'status'=>0]) }}" class="btn btn-raised btn-danger btn-sm" title="Deactive"><i class="fas fa-angle-down"></i></a>
                                                     @else
-                                                        <a href="{{ route('backend.owner.status.update',['owner_id'=> $owner->id, 'status'=>1]) }}" class="btn btn-raised btn-success" title="Active"><i class="fas fa-angle-up"></i></a>
+                                                        <a href="{{ route('backend.owner.status.update',['owner_id'=> $owner->id, 'status'=>1]) }}" class="btn btn-raised btn-success btn-sm" title="Active"><i class="fas fa-angle-up"></i></a>
                                                     @endif  
-                                                    <a href="#" class="btn btn-raised btn-info" data-toggle="modal" id="ownerSendNotification" data-target="#ownerSendNotificationModal" title="Send Notification" data-id="{{ $owner->id }}" data-phone="{{ $owner->phone }}" data-n_key="{{ $owner->n_key }}"><i class="fas fa-bell"></i></a>
+                                                    <a href="#" class="btn btn-raised btn-info btn-sm" data-toggle="modal" id="ownerSendNotification" data-target="#ownerSendNotificationModal" title="Send Notification" data-id="{{ $owner->id }}" data-phone="{{ $owner->phone }}" data-n_key="{{ $owner->n_key }}"><i class="fas fa-bell"></i></a>
+                                                    <a href="{{ route('backend.owner.edit', $owner->id) }}" class="btn btn-raised btn-success btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

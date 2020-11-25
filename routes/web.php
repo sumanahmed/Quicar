@@ -56,6 +56,10 @@ Route::group(['prefix'=>'admin/drivers', 'middleware' => 'admin'], function(){
 
 Route::group(['prefix'=>'admin/owners', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\OwnerController@index')->name('backend.owner.index');
+    Route::get('/create', 'Web\OwnerController@create')->name('backend.owner.create');
+    Route::post('/store', 'Web\OwnerController@store')->name('backend.owner.store');
+    Route::get('/edit/{id}', 'Web\OwnerController@edit')->name('backend.owner.edit');
+    Route::post('/update/{id}', 'Web\OwnerController@update')->name('backend.owner.update');
     Route::get('/status/update', 'Web\OwnerController@statusUpdate')->name('backend.owner.status.update');
     Route::post('/notification/send', 'Web\OwnerController@notificationSend')->name('backend.owner.notification.send');
     Route::get('/details/{owner_id}', 'Web\OwnerController@details')->name('backend.owner.details');

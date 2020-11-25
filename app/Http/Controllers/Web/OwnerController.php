@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Model\CarDistrict;
 use App\Model\Owner;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -15,6 +16,103 @@ class OwnerController extends Controller
     public function index(){
         $owners = Owner::all();
         return view('quicar.backend.owner.index', compact('owners'));
+    }
+
+    //show owner create page
+    public function create(){
+        $districts = CarDistrict::select()->orderBy('id','DESC')->get();
+        return view('quicar.backend.owner.create',compact('districts'));
+    }
+
+    //store owner
+    public function store(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'dob' => 'required',
+            'nid' => 'required',
+            'district' => 'required',
+            'city' => 'required',
+            'area' => 'required',
+        ]);
+
+        $owner = new Owner();
+        $owner->name = $request->name;
+        $owner->email = $request->email;
+        $owner->phone = $request->phone;
+        $owner->dob = $request->dob;
+        $owner->nid = $request->nid;
+        $owner->district = $request->district;
+        $owner->city = $request->city;
+        $owner->area = $request->area;
+        if($request->hasFile('img')){
+            $image      = $request->file('img');
+            $imageName  = time().".".$image->getClientOriginalExtension();
+            $directory  = '../mobileapi/asset/owner/';
+            $image->move($directory, $imageName);
+            $imageUrl   = $directory.$imageName;
+            $owner->img = $imageUrl;
+        }
+
+        if($owner->save()) {
+            return redirect()->route('backend.owner.index')->with('message', 'Partner created successfully');
+        }else{
+            return redirect()->back()->with('error_message', 'Sorry something went wrong');
+        }
+    }
+
+    //edit owner page
+    public function edit($id){
+        $owner = Owner::find($id);
+        $districts = CarDistrict::select()->orderBy('id','DESC')->get();
+        return view('quicar.backend.owner.edit',compact('owner','districts'));
+    }
+
+    //store owner
+    public function update(Request $request, $id){
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'nid' => 'required',
+            'district' => 'required',
+            'city' => 'required',
+            'area' => 'required',
+        ]);
+
+        $owner = Owner::find($id);
+        $owner->name = $request->name;
+        $owner->email = $request->email;
+        $owner->phone = $request->phone;
+        $owner->dob = $request->dob;
+        $owner->nid = $request->nid;
+        $owner->district = $request->district;
+        $owner->account_status = $request->account_status;
+        $owner->city = $request->city;
+        $owner->area = $request->area;
+        $owner->bidding_percent = $request->bidding_percent;
+        $owner->car_package_charge = $request->car_package_charge;
+        $owner->hotel_package_charge = $request->hotel_package_charge;
+        $owner->travel_package_charge = $request->travel_package_charge;
+        if($request->hasFile('img')){
+            if(($owner->img != null) && file_exists($owner->img)){
+                unlink($owner->img);
+            }
+
+            $image      = $request->file('img');
+            $imageName  = time().".".$image->getClientOriginalExtension();
+            $directory  = '../mobileapi/asset/owner/';
+            $image->move($directory, $imageName);
+            $imageUrl   = $directory.$imageName;
+            $owner->img = $imageUrl;
+        }
+
+        if($owner->update()) {
+            return redirect()->route('backend.owner.index')->with('message', 'Partner updated successfully');
+        }else{
+            return redirect()->back()->with('error_message', 'Sorry something went wrong');
+        }
     }
 
     //status update
@@ -75,7 +173,7 @@ class OwnerController extends Controller
 
     //owner details
     public function details($owner_id){
-        $owner        = Owner::where('api_token',$owner_id)->first();
+        $owner        = Owner::where('id',$owner_id)->first();
         $total_ride   = \App\Model\Ride::where('owner_id', $owner_id)->count('id');
         $total_complete   = \App\Model\Ride::where('owner_id', $owner_id)->where('status',4)->count('id');
         $total_cancel = \App\Model\Ride::where('owner_id', $owner_id)->where('status',5)->count('id');
