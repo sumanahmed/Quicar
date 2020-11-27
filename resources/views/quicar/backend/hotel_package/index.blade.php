@@ -24,30 +24,30 @@
                                 </tr>
                                 </thead>
                                 <tbody id="allCarPackage">
-                                @if(isset($hotel_packages) && count($hotel_packages) > 0)                                  
-                                    @foreach($hotel_packages as $hotel_package)
-                                        <tr class="hotel_package-{{ $hotel_package->id }}">
-                                            <td>{{ $hotel_package->hotel_name }}</td>
-                                            <td>{{ $hotel_package->district->value }}</td>
-                                            <td>{{ $hotel_package->city->name }}</td>
-                                            <td>{{ $hotel_package->min_price }}</td>
-                                            <td>{{ $hotel_package->max_price }}</td>
-                                            @if($hotel_package->status == 0)
+                                @if(isset($hotel_packges) && count($hotel_packges) > 0)                                  
+                                    @foreach($hotel_packges as $hotel_packge)
+                                        <tr class="hotel_packge-{{ $hotel_packge->id }}">
+                                            <td>{{ $hotel_packge->hotel_name }}</td>
+                                            <td>{{ $hotel_packge->district->value }}</td>
+                                            <td>{{ $hotel_packge->city->value }}</td>
+                                            <td>{{ $hotel_packge->min_price }}</td>
+                                            <td>{{ $hotel_packge->max_price }}</td>
+                                            @if($hotel_packge->status == 0)
                                                 <td>Pending</td>
-                                            @elseif($hotel_package->status == 1)
+                                            @elseif($hotel_packge->status == 1)
                                                 <td>Success</td>
                                             @else
                                                 <td>Cancel</td>
                                             @endif                                          
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="{{ route('backend.hotel.package.edit', $hotel_package->id) }}" class="btn btn-raised btn-warning" title="Edit"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ route('backend.hotel.package.destroy', $hotel_package->id) }}" class="btn btn-raised btn-danger" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                                                <a href="{{ route('backend.hotel.package.edit', $hotel_packge->id) }}" class="btn btn-raised btn-warning" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="{{ route('backend.hotel.package.destroy', $hotel_packge->id) }}" class="btn btn-raised btn-danger" title="Delete"><i class="fas fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="7" class="text-center">No Data Found</td>
+                                        <td colspan="6" class="text-center">No Data Found</td>
                                     </tr>
                                 @endif
                                 </tbody>
@@ -62,6 +62,6 @@
 @section('scripts')
     <script>
         $(".packages").addClass('show');
-        $("#hotel_package").addClass('active');
+        $("#hotel_packge").addClass('active');
     </script>
 @endsection

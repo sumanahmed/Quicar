@@ -110,6 +110,16 @@ Route::group(['prefix'=>'admin/car/package', 'middleware' => 'admin'], function(
 
 Route::get('/get-car/{id}', 'Web\CarPackageController@getCar')->name('backend.owner.car');
 
+Route::group(['prefix'=>'admin/hotel/package', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\HotelPackageController@index')->name('backend.hotel.package.index');
+    Route::get('/create', 'Web\HotelPackageController@create')->name('backend.hotel.package.create');
+    Route::post('/store', 'Web\HotelPackageController@store')->name('backend.hotel.package.store');
+    Route::get('/edit/{id}', 'Web\HotelPackageController@edit')->name('backend.hotel.package.edit');
+    Route::post('/update/{id}', 'Web\HotelPackageController@update')->name('backend.hotel.package.update');
+    Route::get('/destroy/{id}', 'Web\HotelPackageController@destroy')->name('backend.hotel.package.destroy');   
+    Route::get('/get-city/{district_id}', 'Web\HotelPackageController@getCity')->name('backend.hotel.package.get_city'); 
+});
+
 Route::group(['prefix'=>'admin/brands', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\CarBrandController@index')->name('backend.brand.index');
     Route::post('/store', 'Web\CarBrandController@store')->name('backend.brand.store');
