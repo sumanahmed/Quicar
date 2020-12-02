@@ -185,6 +185,13 @@ Route::group(['prefix'=>'admin/tour-spot', 'middleware' => 'admin'], function(){
     Route::post('/destroy', 'Web\SpotController@destroy')->name('backend.spot.destroy');
 });
 
+Route::group(['prefix'=>'admin/property-type', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\PropertyTypeController@index')->name('backend.property_type.index');
+    Route::post('/store', 'Web\PropertyTypeController@store')->name('backend.property_type.store');
+    Route::post('/update', 'Web\PropertyTypeController@update')->name('backend.property_type.update');
+    Route::post('/destroy', 'Web\PropertyTypeController@destroy')->name('backend.property_type.destroy');
+});
+
 Route::group(['prefix'=>'admin/accounts', 'middleware' => 'admin'], function(){
     Route::get('/income', 'Web\IncomeController@index')->name('backend.account.income');
     Route::get('/user/account', 'Web\IncomeController@userAccount')->name('backend.account.user_account');
