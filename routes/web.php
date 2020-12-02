@@ -171,6 +171,13 @@ Route::group(['prefix'=>'admin/districts', 'middleware' => 'admin'], function(){
     Route::post('/destroy', 'Web\CarDistrictController@destroy')->name('backend.district.destroy');
 });
 
+Route::group(['prefix'=>'admin/city', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\CityController@index')->name('backend.city.index');
+    Route::post('/store', 'Web\CityController@store')->name('backend.city.store');
+    Route::post('/update', 'Web\CityController@update')->name('backend.city.update');
+    Route::post('/destroy', 'Web\CityController@destroy')->name('backend.city.destroy');
+});
+
 Route::group(['prefix'=>'admin/tour-spot', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\SpotController@index')->name('backend.spot.index');
     Route::post('/store', 'Web\SpotController@store')->name('backend.spot.store');

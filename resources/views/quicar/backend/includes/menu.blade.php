@@ -66,6 +66,7 @@
                     <span>Settings</span>
                 </a>
                 <ul>
+                    <li id="city"><a href="{{ route('backend.city.index') }}">City</a></li>
                     <li id="car_type"><a href="{{ route('backend.car_type.index') }}">Car Types</a></li>
                     <li id="brand"><a href="{{ route('backend.brand.index') }}">Brands</a></li>
                     <li id="model"><a href="{{ route('backend.model.index') }}">Model</a></li>
