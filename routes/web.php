@@ -192,6 +192,13 @@ Route::group(['prefix'=>'admin/property-type', 'middleware' => 'admin'], functio
     Route::post('/destroy', 'Web\PropertyTypeController@destroy')->name('backend.property_type.destroy');
 });
 
+Route::group(['prefix'=>'admin/hotel-amenity', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\HotelAmenityController@index')->name('backend.hotel_amenity.index');
+    Route::post('/store', 'Web\HotelAmenityController@store')->name('backend.hotel_amenity.store');
+    Route::post('/update', 'Web\HotelAmenityController@update')->name('backend.hotel_amenity.update');
+    Route::post('/destroy', 'Web\HotelAmenityController@destroy')->name('backend.hotel_amenity.destroy');
+});
+
 Route::group(['prefix'=>'admin/accounts', 'middleware' => 'admin'], function(){
     Route::get('/income', 'Web\IncomeController@index')->name('backend.account.income');
     Route::get('/user/account', 'Web\IncomeController@userAccount')->name('backend.account.user_account');

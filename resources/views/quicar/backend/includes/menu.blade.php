@@ -77,6 +77,7 @@
                     <li id="district"><a href="{{ route('backend.district.index') }}">Disctrict</a></li>
                     <li id="spot"><a href="{{ route('backend.spot.index') }}">Tour Spot</a></li>
                     <li id="propertyType"><a href="{{ route('backend.property_type.index') }}">Property Type</a></li>
+                    <li id="hotelAmenity"><a href="{{ route('backend.hotel_amenity.index') }}">Hotel Amenity</a></li>
                 </ul>
             </li>
         </ul>
