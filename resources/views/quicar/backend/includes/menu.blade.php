@@ -25,14 +25,15 @@
                     <li id="hotel_package"><a href="{{ route('backend.hotel.package.index') }}">Hotel Package</a></li>
                 </ul>
             </li>
-            <li class="nav-item with-sub menu-order-dropdown">
+            <li class="nav-item with-sub banners menu-order-dropdown">
                 <a href="#" class="nav-link">
                 <i data-feather="truck"></i>
-                    <span>Home</span>
+                    <span>Banner</span>
                 </a>
                 <ul>
                     <li id="home_banner"><a href="{{ route('backend.home_banner.index') }}">Home Banner</a></li>
-                    <li id="home_ofer"><a href="{{ route('backend.home_offer.index') }}">Home Offer</a></li>
+                    <li id="home_ofer"><a href="{{ route('backend.home_offer.index') }}">Offer Banner</a></li>
+                    <li id="partner_banner"><a href="{{ route('backend.home_owner.index') }}">Partner Banner</a></li>
                 </ul>
             </li>
             <li class="nav-item with-sub menu-order-dropdown">

@@ -92,6 +92,13 @@ Route::group(['prefix'=>'admin/home_offer', 'middleware' => 'admin'], function()
     Route::post('/destroy', 'Web\HomeOfferController@destroy')->name('backend.home_offer.destroy');
 });
 
+Route::group(['prefix'=>'admin/home_owner_banner', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\HomerOwnerBannerController@index')->name('backend.home_owner.index');
+    Route::post('/store', 'Web\HomerOwnerBannerController@store')->name('backend.home_owner.store');
+    Route::post('/update', 'Web\HomerOwnerBannerController@update')->name('backend.home_owner.update');
+    Route::post('/destroy', 'Web\HomerOwnerBannerController@destroy')->name('backend.home_owner.destroy');
+});
+
 Route::group(['prefix'=>'admin/package', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\PackageController@index')->name('backend.package.index');
     Route::post('/add-remove', 'Web\PackageController@addRemove')->name('backend.package.add_remove');
