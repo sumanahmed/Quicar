@@ -14,7 +14,7 @@ $("#createHotelAmenity").click(function (e) {
     var status = $("#status").val();
     $.ajax({
         type:'POST',
-        url: '/admin/property-type/store',
+        url: '/admin/hotel-amenity/store',
         headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
         data: {
             name : name,
@@ -67,7 +67,7 @@ $("#updateHotelAmenity").click(function (e) {
     var status  = $("#edit_status :selected").val();
     $.ajax({
         type:'POST',
-        url: '/admin/property-type/update',
+        url: '/admin/hotel-amenity/update',
         headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
         data: {
             id    : id,
@@ -111,7 +111,7 @@ $(document).on('click', '#deleteHotelAmenity', function () {
 $("#destroyHotelAmenity").click(function(){
     $.ajax({
         type: 'POST',
-        url: '/admin/property-type/destroy',
+        url: '/admin/hotel-amenity/destroy',
         headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
         data: {
             id: $('input[name=del_id]').val()
