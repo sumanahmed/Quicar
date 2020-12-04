@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Model\CarDistrict;
 use App\Model\Owner;
+use App\Model\City;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Response;
@@ -20,8 +21,9 @@ class OwnerController extends Controller
 
     //show owner create page
     public function create(){
-        $districts = CarDistrict::select()->orderBy('id','DESC')->get();
-        return view('quicar.backend.owner.create',compact('districts'));
+        $districts = CarDistrict::select()->orderBy('id','DESC')->get();        
+        $citys  = City::all();
+        return view('quicar.backend.owner.create',compact('districts','citys'));
     }
 
     //store owner
@@ -64,9 +66,10 @@ class OwnerController extends Controller
 
     //edit owner page
     public function edit($id){
-        $owner = Owner::find($id);
+        $owner  = Owner::find($id);        
+        $citys  = City::all();
         $districts = CarDistrict::select()->orderBy('id','DESC')->get();
-        return view('quicar.backend.owner.edit',compact('owner','districts'));
+        return view('quicar.backend.owner.edit',compact('owner','citys','districts'));
     }
 
     //store owner
