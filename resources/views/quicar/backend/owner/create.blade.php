@@ -75,8 +75,12 @@
                                     </div>                                    
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="city">City <span class="text-danger" title="Required">*</span></label>                                            
-                                            <input type="city" id="city" name="city" placeholder="Enter city" class="form-control" required>
+                                            <label for="city">City <span class="text-danger" title="Required">*</span></label>               
+                                            <select type="city" id="city" name="city" class="form-control" required>
+                                                @foreach($citys as $city)
+                                                    <option value="{{ $city->name }}">{{ $city->name }}</option>
+                                                @endforeach
+                                            </select>
                                             @if($errors->has('city'))
                                                 <span class="text-danger"> {{ $errors->first('city') }}</span>
                                             @endif
