@@ -8,7 +8,9 @@ use App\Model\CarYear;
 use App\Model\CarModel;
 use App\Model\CarBrand;
 use App\Model\CarClass;
+use App\Model\CarDistrict;
 use App\Model\CarType;
+use App\Model\City;
 use App\Model\Owner;
 use Illuminate\Http\Request;
 use Validator;
@@ -32,7 +34,8 @@ class CarController extends Controller
         $years      = CarYear::all();
         $classes    = CarClass::all();
         $owners     = Owner::all();
-        return view('quicar.backend.car.create', compact('types','brands','models','years','classes','owners'));
+        $districts  = CarDistrict::all();
+        return view('quicar.backend.car.create', compact('types','brands','models','years','classes','owners','districts'));
     }
 
     //car store
@@ -44,10 +47,11 @@ class CarController extends Controller
             'carYear'  => 'required',
             'carColor'  => 'required',
             'carClass'  => 'required',
-            'carRegisterNumber'  => 'required',
-            'carServieLocation'  => 'required',
-            'owner_id'  => 'required',
-            'status_message'  => 'required',
+            'carRegisterNumber'     => 'required',
+            'district_id'           => 'required',
+            'city_id'               => 'required',
+            'owner_id'              => 'required',
+            'status_message'        => 'required',
         ]);
         
         $car                    = new Car();
@@ -58,7 +62,9 @@ class CarController extends Controller
         $car->carColor          = $request->carColor;
         $car->carClass          = $request->carClass;
         $car->carRegisterNumber = $request->carRegisterNumber;
-        $car->carServieLocation = $request->carServieLocation;
+        $car->district_id       = $request->district_id;
+        $car->city_id           = $request->city_id;
+        $car->carServieLocation = CarDistrict::find($request->district_id)->value;
         $car->owner_id          = $request->owner_id;
         $car->status_message    = $request->status_message;
         $car->tax_expired_date          = $request->tax_expired_date;
@@ -121,7 +127,9 @@ class CarController extends Controller
         $years      = CarYear::all();
         $classes    = CarClass::all();
         $owners     = Owner::all();
-        return view('quicar.backend.car.edit', compact('car','types','brands','models','years','classes','owners'));
+        $districts  = CarDistrict::all();
+        $citys      = City::where('district_id', $car->district_id)->get();
+        return view('quicar.backend.car.edit', compact('car','types','brands','models','years','classes','owners','districts','citys'));
     }
 
     //car update
@@ -134,7 +142,8 @@ class CarController extends Controller
             'carColor'  => 'required',
             'carClass'  => 'required',
             'carRegisterNumber'  => 'required',
-            'carServieLocation'  => 'required',
+            'district_id'        => 'required',
+            'city_id'            => 'required',
             'owner_id'  => 'required',
             'status_message'  => 'required',
         ]);
@@ -147,7 +156,9 @@ class CarController extends Controller
         $car->carColor          = $request->carColor;
         $car->carClass          = $request->carClass;
         $car->carRegisterNumber = $request->carRegisterNumber;
-        $car->carServieLocation = $request->carServieLocation;
+        $car->district_id       = $request->district_id;
+        $car->city_id           = $request->city_id;
+        $car->carServieLocation = CarDistrict::find($request->district_id)->value;
         $car->owner_id          = $request->owner_id;
         $car->status_message    = $request->status_message;        
         $car->tax_expired_date          = $request->tax_expired_date;
