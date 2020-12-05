@@ -71,7 +71,11 @@ class CarPackageController extends Controller
      */
     public function getCar($owner_id){ 
         $cars  = Car::select('id','carRegisterNumber')->where('owner_id',$owner_id)->where('status', 1)->get();
-        return response()->json($cars);
+        $car_package_charge = Owner::find($owner_id)->car_package_charge;
+        return response()->json([
+            'data' => $cars,
+            'car_package_charge' => $car_package_charge
+        ]);
     }
 
     

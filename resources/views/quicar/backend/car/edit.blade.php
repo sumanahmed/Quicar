@@ -13,7 +13,7 @@
                             </div>
                             <div class="card-body">                                
                                 <div class="row">
-                                    <div class="col-4">                                        
+                                    <div class="col-3">                                        
                                         <div class="form-group">
                                             <label for="carRegisterNumber"> Registration No <span class="text-danger" title="Required">*</span></label>
                                             <input type="text" id="carRegisterNumber" name="carRegisterNumber" value="{{ $car->carRegisterNumber }}" class="form-control" required>
@@ -22,16 +22,33 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-4">                                        
+                                    <div class="col-3">                                        
                                         <div class="form-group">
-                                            <label for="carRegisterNumber">Car Service Location <span class="text-danger" title="Required">*</span></label>
-                                            <input type="text" id="carServieLocation" name="carServieLocation" value="{{ $car->carServieLocation }}" class="form-control" required>
-                                            @if($errors->has('carServieLocation'))
-                                                <span class="text-danger"> {{ $errors->first('carServieLocation') }}</span>
+                                            <label for="district_id">Car Service Location <span class="text-danger" title="Required">*</span></label>
+                                            <select name="district_id" id="district_id" class="form-control selectable">
+                                                @foreach($districts as $district)
+                                                    <option value="{{ $district->id }}" @if($district->id == $car->district_id) selected @endif>{{ $district->value }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('district_id'))
+                                                <span class="text-danger"> {{ $errors->first('district_id') }}</span>
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">                                        
+                                        <div class="form-group">
+                                            <label for="city_id">City <span class="text-danger" title="Required">*</span></label>
+                                            <select name="city_id" id="city_id" class="form-control selectable">
+                                                @foreach($citys as $city)
+                                                    <option value="{{ $city->id }}" @if($city->id == $car->city_id) selected @endif>{{ $city->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('city_id'))
+                                                <span class="text-danger"> {{ $errors->first('city_id') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
                                         <div class="form-group">
                                             <label for="owner_id">Owner <span class="text-danger" title="Required">*</span></label>                                            
                                             <select id="owner_id" name="owner_id" class="form-control selectable" required>
@@ -285,5 +302,15 @@
 <script src="{{ asset('quicar/backend/js/car.js')}}"></script>
 <script>
     $("#car").addClass('active');
+    $("#district_id").change(function(){
+        var district_id = $(this).val();
+        console.log(district_id);
+        $("#city_id").empty();
+        $.get("/admin/hotel/package/get-city/"+ district_id, function( data ) {
+            for( var i = 0; i < data.length; i++){
+                $("#city_id").append('<option value="'+ data[i].id +'">'+ data[i].name +'</option>');
+            }            
+        });
+    });
 </script>    
 @endsection
