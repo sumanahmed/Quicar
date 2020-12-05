@@ -49,23 +49,15 @@
                                     <div class="col-6">                                        
                                         <div class="form-group">
                                             <label for="details"> Details <span class="text-danger" title="Required">*</span></label>                                            
-                                            <textarea class="form-control ckeditor" id="details" name="details" placeholder="Details" rows="3" required>{{ $car_package->details }}</textarea>
+                                            <textarea class="form-control" id="details" name="details" placeholder="Details" rows="3" required>{{ $car_package->details }}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-6">                                        
                                         <div class="form-group">
                                             <label for="facilities"> Factilites <span class="text-danger" title="Required">*</span></label>                                            
-                                            <textarea class="form-control ckeditor" id="facilities" name="facilities" placeholder="Facilites" rows="3" required>{{ $car_package->facilities }}</textarea>
+                                            <textarea class="form-control" id="facilities" name="facilities" placeholder="Facilites" rows="3" required>{{ $car_package->facilities }}</textarea>
                                         </div>
-                                    </div>
-                                    
-                                    <div class="col-3">
-                                        <div class="form-group">
-                                            <label for="owner_get">Owner Get <span class="text-danger" title="Required">*</span></label>
-                                            <input type="text" id="owner_get" name="owner_get" class="form-control" value="{{ $car_package->owner_get }}" required>
-                                        </div>
-                                    </div>
-                                    
+                                    </div>                                    
                                     <div class="col-3">
                                         <div class="form-group">
                                             <label for="district_id">District <span class="text-danger" title="Required">*</span></label>
@@ -99,17 +91,23 @@
                                             <label for="total_person"> Total Person <span class="text-danger" title="Required">*</span></label>
                                             <input type="text" id="total_person" name="total_person" class="form-control" value="{{ $car_package->total_person }}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
                                         </div>
-                                    </div>
+                                    </div>                                    
                                     <div class="col-3">                                        
                                         <div class="form-group">
-                                            <label for="price"> Price <span class="text-danger" title="Required">*</span></label>
-                                            <input type="text" id="price" name="price" class="form-control" value="{{ $car_package->price }}" required>
+                                            <label for="quicar_charge"> Quicar Charge(%) <span class="text-danger" title="Required">*</span></label>
+                                            <input type="text" id="quicar_charge" name="quicar_charge" class="form-control" value="{{ $car_package->quicar_charge }}" readonly required>
                                         </div>
                                     </div>
                                     <div class="col-3">                                        
                                         <div class="form-group">
-                                            <label for="quicar_charge"> Quicar Charge <span class="text-danger" title="Required">*</span></label>
-                                            <input type="text" id="quicar_charge" name="quicar_charge" class="form-control" value="{{ $car_package->quicar_charge }}" required>
+                                            <label for="price"> Price <span class="text-danger" title="Required">*</span></label>
+                                            <input type="text" id="price" name="price" class="form-control" oninput="calculateCharge()" value="{{ $car_package->price }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label for="owner_get">Owner Get <span class="text-danger" title="Required">*</span></label>
+                                            <input type="text" id="owner_get" name="owner_get" class="form-control" value="{{ $car_package->owner_get }}" readonly required>
                                         </div>
                                     </div>
                                     <div class="col-3">                                        
@@ -131,7 +129,7 @@
                                     <div class="col-12">                                        
                                         <div class="form-group">
                                             <label for="terms_condition"> Terms Condition <span class="text-danger" title="Required">*</span></label>                                            
-                                            <textarea class="form-control ckeditor" id="terms_condition" name="terms_condition" placeholder="Terms Condition" rows="3">{{ $car_package->terms_condition }}</textarea>
+                                            <textarea class="form-control" id="terms_condition" name="terms_condition" placeholder="Terms Condition" rows="3">{{ $car_package->terms_condition }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -173,5 +171,11 @@
             }            
         });
     });
+    function calculateCharge(){
+        var quicar_charge = $("#quicar_charge").val();
+        var price         = $("#price").val();
+        var owner_get     = parseFloat(price - (price * quicar_charge/100));
+        $("#owner_get").val(owner_get);
+    }
 </script>    
 @endsection
