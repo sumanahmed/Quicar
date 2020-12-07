@@ -11,6 +11,41 @@
                             <a class="btn btn-success float-right cursor-pointer" data-toggle="modal" data-target="#createModelModal"><i data-feather="plus"></i>&nbsp; Add New</a>
                         </div>
                         <div class="card-body">
+                            <form action="" method="get">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="car_type_id">Car Type</label>
+                                            <select id="filter_car_type_id" name="filter_car_type_id" class="form-control selectable">
+                                                <option selected disabled>Select</option>
+                                                @foreach($car_types as $car_type)
+                                                    <option value="{{ $car_type->id }}" @if(isset($filter_car_type_id) && ($filter_car_type_id == $car_type->id)) selected @endif>{{ $car_type->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="brand_id">Brand</label>
+                                            <select id="filter_car_brand_id" name="filter_car_brand_id" class="form-control selectable">
+                                               @if(isset($filter_car_brands))
+                                                @foreach($filter_car_brands as $car_brand)
+                                                    <option value="{{ $car_brand->id }}" @if(isset($filter_car_brand_id) && ($filter_car_brand_id == $car_brand->id)) selected @endif>{{ $car_brand->value }}</option>
+                                                @endforeach
+                                               @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for=""</label>
+                                            <input type="submit" value="Search" style="margin-top:30px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-body">
                             <table class="table table-bordered" id="modelTable">
                                 <thead class="thead-dark">
                                 <tr>                                  
@@ -23,7 +58,7 @@
                                 <tbody id="allModel">
                                 @if(isset($models) && count($models) > 0)
                                     @foreach($models as $model)
-                                        <tr class="Model-{{ $model->id }}">
+                                        <tr class="model-{{ $model->id }}">
                                             <td>{{ $model->value }}</td>
                                             <td>{{ $model->car_type_name }}</td>
                                             <td>{{ $model->car_brand_name }}</td>
