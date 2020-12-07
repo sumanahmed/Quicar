@@ -37,7 +37,7 @@ $("#createModel").click(function (e) {
             }else{
                 $('#createModelModal').modal('hide');
                 $("#allModel").append('' +
-                    '<tr class="Model-'+ response.data.id +'">\n' +
+                    '<tr class="model-'+ response.data.id +'">\n' +
                         '<td>'+ response.data.value +'</td>\n' +
                         '<td>'+ response.data.car_type_name +'</td>\n' +
                         '<td>'+ response.data.car_brand_name +'</td>\n' +
@@ -70,7 +70,8 @@ $("#updateModel").click(function (e) {
     var id          = $("#edit_id").val();
     var name        = $("#edit_name").val();
     var car_type_id = $("#edit_car_type_id :selected").val();
-    var car_brand_id= $("#car_brand_id :selected").val();
+    var car_brand_id= $("#edit_car_brand_id :selected").val();
+    
     $.ajax({
         type:'POST',
         url: '/admin/models/update',
@@ -94,8 +95,8 @@ $("#updateModel").click(function (e) {
                 }
             }else{
                 $('#editModelModal').modal('hide');
-                $("tr.Model-"+ response.data.id).replaceWith('' +
-                    '<tr class="Model-'+ response.data.id +'">\n' +
+                $("tr.model-"+ response.data.id).replaceWith('' +
+                    '<tr class="model-'+ response.data.id +'">\n' +
                         '<td>'+ response.data.value +'</td>\n' +
                         '<td>'+ response.data.car_type_name +'</td>\n' +
                         '<td>'+ response.data.car_brand_name +'</td>\n' +
@@ -128,7 +129,7 @@ $("#destroyModel").click(function(){
         },
         success: function (data) {
             $('#deleteModelModal').modal('hide');
-            $('.Model-' + $('input[name=del_id]').val()).remove();
+            $('.model-' + $('input[name=del_id]').val()).remove();
             toastr.success('Model Deleted')
         }
     });
@@ -141,6 +142,18 @@ $("#car_type_id").change(function(){
         $('#car_brand_id').empty();
         for(var i = 0; i <= response.data.length; i++){
             $('#car_brand_id').append('<option value="'+ response.data[i].id +'">'+ response.data[i].name +'</option');
+        }
+    });
+});
+
+//get brand by car_type_id
+$("#filter_car_type_id").change(function(){
+    var car_type_id = $(this).val();
+    $.get('/admin/models/get-brand/'+ car_type_id, function(response){
+        $('#filter_car_brand_id').empty();
+        $('#filter_car_brand_id').append('<option selected disabled>Select</option>');
+        for(var i = 0; i <= response.data.length; i++){
+            $('#filter_car_brand_id').append('<option value="'+ response.data[i].id +'">'+ response.data[i].name +'</option');
         }
     });
 });
