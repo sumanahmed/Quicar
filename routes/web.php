@@ -125,6 +125,7 @@ Route::group(['prefix'=>'admin/hotel/package', 'middleware' => 'admin'], functio
     Route::post('/update/{id}', 'Web\HotelPackageController@update')->name('backend.hotel.package.update');
     Route::get('/destroy/{id}', 'Web\HotelPackageController@destroy')->name('backend.hotel.package.destroy');   
     Route::get('/get-city/{district_id}', 'Web\HotelPackageController@getCity')->name('backend.hotel.package.get_city'); 
+    Route::get('/get-charge/{owner_id}', 'Web\HotelPackageController@getCharge')->name('backend.hotel.package.get_charge'); 
 });
 
 Route::group(['prefix'=>'admin/brands', 'middleware' => 'admin'], function(){

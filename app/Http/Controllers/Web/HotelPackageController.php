@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Model\CarDistrict;
 use App\Model\HotelPackage;
 use App\Model\City;
+use App\Model\HotelAmenity;
 use App\Model\Owner;
+use App\Model\PropertyType;
 
 class HotelPackageController extends Controller
 {
@@ -15,7 +17,12 @@ class HotelPackageController extends Controller
      * show hotel packages
      */
     public function index(){
-        $hotel_packages = HotelPackage::all();
+        $hotel_packages = HotelPackage::join('district','district.id','hotel_packages.district_id')
+                                        ->join('city','city.id','hotel_packages.city_id')
+                                        ->select('district.value as district_name','city.name as city_name',
+                                        'hotel_packages.id','hotel_packages.price','hotel_packages.min_price','hotel_packages.hotel_name',
+                                        'hotel_packages.max_price','hotel_packages.status')
+                                        ->get();
         return view('quicar.backend.hotel_package.index', compact('hotel_packages'));
     }
 
@@ -25,7 +32,9 @@ class HotelPackageController extends Controller
     public function create(){
         $districts = CarDistrict::all();
         $owners    = Owner::all();
-        return view('quicar.backend.hotel_package.create', compact('districts','owners'));
+        $property_types = PropertyType::where('status', 1)->get();
+        $amenities = HotelAmenity::where('status', 1)->get();
+        return view('quicar.backend.hotel_package.create', compact('districts','owners','property_types','amenities'));
     }
 
     /**
@@ -43,6 +52,8 @@ class HotelPackageController extends Controller
             'propertyType' => 'required',
             'facilities' => 'required',
             'price' => 'required',
+            'quicar_charge' => 'required',
+            'you_will_get' => 'required',
             'owner_id' => 'required',
             'min_price' => 'required',
             'max_price' => 'required',
@@ -65,9 +76,11 @@ class HotelPackageController extends Controller
         $hotel_package->room_type          = $request->room_type;
         $hotel_package->room_size          = $request->room_size;
         $hotel_package->propertyType       = $request->propertyType;
-        $hotel_package->facilities         = $request->facilities;
-        $hotel_package->price              = $request->price;
+        $hotel_package->facilities         = json_encode($request->facilities); 
         $hotel_package->owner_id           = $request->owner_id;
+        $hotel_package->price              = $request->price;
+        $hotel_package->quicar_charge      = $request->quicar_charge;
+        $hotel_package->you_will_get       = $request->you_will_get;
         $hotel_package->min_price          = $request->min_price;
         $hotel_package->max_price          = $request->max_price;        
         $hotel_package->booking_policy     = $request->booking_policy;
@@ -107,6 +120,14 @@ class HotelPackageController extends Controller
         return response()->json($cities);
     }
 
+    /**
+     *  get hotel charge by owner id
+     */
+    public function getCharge($owner_id){ 
+        $hotel_package_charge= Owner::find($owner_id)->hotel_package_charge;         
+        return response()->json($hotel_package_charge);
+    }
+
     
     /**
      * show hotel packages edit page
@@ -116,7 +137,9 @@ class HotelPackageController extends Controller
         $districts  = CarDistrict::all();
         $cities     = City::where('district_id', $hotel_package->district_id)->get();
         $owners     = Owner::all();
-        return view('quicar.backend.hotel_package.edit', compact('hotel_package','districts','cities','owners'));
+        $property_types = PropertyType::where('status', 1)->get();
+        $amenities = HotelAmenity::where('status', 1)->get();
+        return view('quicar.backend.hotel_package.edit', compact('hotel_package','districts','cities','owners','property_types','amenities'));
     }
     
     /**
@@ -134,6 +157,8 @@ class HotelPackageController extends Controller
             'propertyType' => 'required',
             'facilities' => 'required',
             'price' => 'required',
+            'quicar_charge' => 'required',
+            'you_will_get' => 'required',
             'owner_id' => 'required',
             'min_price' => 'required',
             'max_price' => 'required',
@@ -154,9 +179,11 @@ class HotelPackageController extends Controller
         $hotel_package->room_type          = $request->room_type;
         $hotel_package->room_size          = $request->room_size;
         $hotel_package->propertyType       = $request->propertyType;
-        $hotel_package->facilities         = $request->facilities;
-        $hotel_package->price              = $request->price;
+        $hotel_package->facilities         = json_encode($request->facilities); 
         $hotel_package->owner_id           = $request->owner_id;
+        $hotel_package->price              = $request->price;
+        $hotel_package->quicar_charge      = $request->quicar_charge;
+        $hotel_package->you_will_get       = $request->you_will_get;
         $hotel_package->min_price          = $request->min_price;
         $hotel_package->max_price          = $request->max_price;        
         $hotel_package->booking_policy     = $request->booking_policy;

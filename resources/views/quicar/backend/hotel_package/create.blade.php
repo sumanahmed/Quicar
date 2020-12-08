@@ -57,6 +57,19 @@
                                     </div>
                                     <div class="col-4">                                        
                                         <div class="form-group">
+                                            <label for="propertyType"> Property Type <span class="text-danger" title="Required">*</span></label>                                            
+                                            <select id="propertyType" name="propertyType" class="form-control" requireed>
+                                                @foreach($property_types as $property_type)
+                                                    <option value="{{ $property_type->id }}">{{ $property_type->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('propertyType'))
+                                                <span class="text-danger"> {{ $errors->first('propertyType') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-4">                                        
+                                        <div class="form-group">
                                             <label for="room_type"> Room Type <span class="text-danger" title="Required">*</span></label>
                                             <input type="text" id="room_type" name="room_type" class="form-control" placeholder="Room Type" required>
                                             @if($errors->has('room_type'))
@@ -72,26 +85,67 @@
                                                 <span class="text-danger"> {{ $errors->first('room_size') }}</span>
                                             @endif
                                         </div>
-                                    </div>
+                                    </div> 
                                     <div class="col-4">                                        
                                         <div class="form-group">
-                                            <label for="propertyType"> Property Type <span class="text-danger" title="Required">*</span></label>
-                                            <input type="text" id="propertyType" name="propertyType" class="form-control" placeholder="Property Type" required>
-                                            @if($errors->has('propertyType'))
-                                                <span class="text-danger"> {{ $errors->first('propertyType') }}</span>
+                                            <label for="hotel_website"> Hotel Website <span class="text-danger" title="Required">*</span></label>
+                                            <input type="text" id="hotel_website" name="hotel_website" class="form-control" placeholder="Hotel Website" required>
+                                            @if($errors->has('hotel_website'))
+                                                <span class="text-danger"> {{ $errors->first('hotel_website') }}</span>
+                                            @endif
+                                        </div>
+                                    </div> 
+                                    <div class="col-4">                                        
+                                        <div class="form-group">
+                                            <label for="referrel_code"> Referrel Code <span class="text-danger" title="Required">*</span></label>
+                                            <input type="text" id="referrel_code" name="referrel_code" class="form-control" placeholder="Referrel Code" required>
+                                            @if($errors->has('referrel_code'))
+                                                <span class="text-danger"> {{ $errors->first('referrel_code') }}</span>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="col-4">                                        
                                         <div class="form-group">
+                                            <label for="owner_id"> Partner <span class="text-danger" title="Required">*</span></label>
+                                            <select id="owner_id" name="owner_id" class="form-control" required>
+                                                <option selected disabled> Select</option>
+                                                @foreach($owners as $owner)
+                                                    <option value="{{ $owner->id }}">{{ $owner->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('owner_id'))
+                                                <span class="text-danger"> {{ $errors->first('owner_id') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>                                  
+                                    <div class="col-2">                                        
+                                        <div class="form-group">
+                                            <label for="quicar_charge"> Qucar Charge(%) <span class="text-danger" title="Required">*</span></label>
+                                            <input type="text" id="quicar_charge" name="quicar_charge" class="form-control" placeholder="Quicar Charge(%)" readonly required>
+                                            @if($errors->has('quicar_charge'))
+                                                <span class="text-danger"> {{ $errors->first('quicar_charge') }}</span>
+                                            @endif
+                                        </div>
+                                    </div> 
+                                    <div class="col-2">                                        
+                                        <div class="form-group">
                                             <label for="price"> Price <span class="text-danger" title="Required">*</span></label>
-                                            <input type="text" id="price" name="price" class="form-control" placeholder="Price" required>
+                                            <input type="text" id="price" name="price" oninput="calculateCharge()" class="form-control" placeholder="Price" required>
                                             @if($errors->has('price'))
                                                 <span class="text-danger"> {{ $errors->first('price') }}</span>
                                             @endif
                                         </div>
                                     </div> 
-                                    <div class="col-4">                                        
+                                    <div class="col-2">                                        
+                                        <div class="form-group">
+                                            <label for="price"> Owner Get <span class="text-danger" title="Required">*</span></label>
+                                            <input type="text" id="you_will_get" name="you_will_get" class="form-control" placeholder="Owner get" readonly required>
+                                            @if($errors->has('you_will_get'))
+                                                <span class="text-danger"> {{ $errors->first('you_will_get') }}</span>
+                                            @endif
+                                        </div>
+                                    </div> 
+                                    <div class="col-3">                                        
                                         <div class="form-group">
                                             <label for="min_price"> Minimum Price <span class="text-danger" title="Required">*</span></label>
                                             <input type="text" id="min_price" name="min_price" class="form-control" placeholder="Minimum Price" required>
@@ -100,7 +154,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-4">                                        
+                                    <div class="col-3">                                        
                                         <div class="form-group">
                                             <label for="max_price"> Max Price <span class="text-danger" title="Required">*</span></label>
                                             <input type="text" id="max_price" name="max_price" class="form-control" placeholder="Max Price" required>
@@ -137,24 +191,8 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-4">                                        
-                                        <div class="form-group">
-                                            <label for="hotel_website"> Hotel Website <span class="text-danger" title="Required">*</span></label>
-                                            <input type="text" id="hotel_website" name="hotel_website" class="form-control" placeholder="Hotel Website" required>
-                                            @if($errors->has('hotel_website'))
-                                                <span class="text-danger"> {{ $errors->first('hotel_website') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-4">                                        
-                                        <div class="form-group">
-                                            <label for="referrel_code"> Referrel Code <span class="text-danger" title="Required">*</span></label>
-                                            <input type="text" id="referrel_code" name="referrel_code" class="form-control" placeholder="Referrel Code" required>
-                                            @if($errors->has('referrel_code'))
-                                                <span class="text-danger"> {{ $errors->first('referrel_code') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-4">                                        
                                         <div class="form-group">
                                             <label for="facebook_page"> Facebook Page <span class="text-danger" title="Required">*</span></label>
@@ -164,43 +202,34 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-4">                                        
+                                    <div class="col-8">                                        
                                         <div class="form-group">
-                                            <label for="owner_id"> Partner <span class="text-danger" title="Required">*</span></label>
-                                            <select id="owner_id" name="owner_id" class="form-control" required>
-                                                @foreach($owners as $owner)
-                                                    <option value="{{ $owner->id }}">{{ $owner->name }}</option>
+                                            <label for="facilities"> Factilites <span class="text-danger" title="Required">*</span></label>                                                                                       
+                                            <select id="facilities" name="facilities[]" class="form-control selectable" multiple required>  
+                                                @foreach($amenities as $amenity)                                              
+                                                    <option value="{{ $amenity->id }}">{{ $amenity->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @if($errors->has('owner_id'))
-                                                <span class="text-danger"> {{ $errors->first('owner_id') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">                                        
-                                        <div class="form-group">
-                                            <label for="facilities"> Factilites <span class="text-danger" title="Required">*</span></label>                                            
-                                            <textarea class="form-control ckeditor" id="facilities" name="facilities" placeholder="Facilites" rows="3"></textarea>
                                             @if($errors->has('facilities'))
                                                 <span class="text-danger"> {{ $errors->first('facilities') }}</span>
                                             @endif
                                         </div>
-                                    </div>  
+                                    </div> 
+                                </div>
+                                <div class="row">                                     
                                     <div class="col-6">                                        
                                         <div class="form-group">
                                             <label for="booking_policy"> Booking Policy <span class="text-danger" title="Required">*</span></label>                                            
-                                            <textarea class="form-control ckeditor" id="booking_policy" name="booking_policy" placeholder="Booking Policy" rows="3"></textarea>
+                                            <textarea class="form-control" id="booking_policy" name="booking_policy" placeholder="Booking Policy" rows="3"></textarea>
                                             @if($errors->has('booking_policy'))
                                                 <span class="text-danger"> {{ $errors->first('booking_policy') }}</span>
                                             @endif
                                         </div>
                                     </div>  
-                                    <div class="col-12">                                        
+                                    <div class="col-6">                                        
                                         <div class="form-group">
                                             <label for="cancellation_policy"> Cancellation Policy <span class="text-danger" title="Required">*</span></label>                                            
-                                            <textarea class="form-control ckeditor" id="cancellation_policy" name="cancellation_policy" placeholder="Cancellation Policy" rows="3"></textarea>
+                                            <textarea class="form-control" id="cancellation_policy" name="cancellation_policy" placeholder="Cancellation Policy" rows="3"></textarea>
                                             @if($errors->has('cancellation_policy'))
                                                 <span class="text-danger"> {{ $errors->first('cancellation_policy') }}</span>
                                             @endif
@@ -255,5 +284,18 @@
             }            
         });
     });
+    $("#owner_id").change(function(){
+        var owner_id = $(this).val();
+        $.get("/admin/hotel/package/get-charge/"+ owner_id, function( hotel_package_charge ) {         
+            $("#quicar_charge").val(hotel_package_charge);
+        });
+    });
+
+    function calculateCharge(){
+        var quicar_charge = $("#quicar_charge").val();
+        var price         = $("#price").val();
+        var owner_get     = parseFloat(price - (price * quicar_charge/100));
+        $("#you_will_get").val(owner_get);
+    }
 </script>    
 @endsection
