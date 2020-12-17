@@ -13,30 +13,32 @@
                             <table class="table table-bordered">
                                 <thead class="thead-dark">
                                     <tr>                                       
-                                        <th style="width:15px">Starting Address</th>
-                                        <th style="width:15px">Ending Address</th>
-                                        <th style="width:10px">Date</th>
-                                        <th style="width:10px">Time</th>
-                                        <th style="width:10px">Bid Accept Date</th>
-                                        <th style="width:10px">Bid Accept Time</th>
-                                        <th style="width:10px">Fare</th>
-                                        <th style="width:20px" style="vertical-align: middle;text-align: center;">Action</th>
+                                        <th style="width:20%">Starting Address</th>
+                                        <th style="width:20%">Destination Address</th>
+                                        <th style="width:10%">Starting Date & Time</th>
+                                        <th style="width:10%">User Location</th>
+                                        <th style="width:10%">Status</th>                                        
+                                        <th style="width:20%" style="vertical-align: middle;text-align: center;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="allCurrentRide">
                                 @if(isset($rides) && count($rides) > 0)
                                     @foreach($rides as $ride)                                       
                                         <tr class="current-ride-{{ $ride->id }}">                                            
-                                            <td>{{ $ride->starting_address }}</td>
-                                            <td>{{ $ride->ending_address }}</td>
-                                            <td>{{ $ride->date }}</td>
-                                            <td>{{ date('H:i:s a', strtotime($ride->time)) }}</td>
-                                            <td>{{ $ride->bid_accept_date }}</td>
-                                            <td>{{ date('H:i:s a', strtotime($ride->bid_accept_time)) }}</td>
-                                            <td>{{ $ride->amount }}</td>
+                                            <td>{{ $ride->district->value }}, {{ $ride->city->name }}, {{ $ride->startig_area }}</td>
+                                            <td>{{ $ride->destinationDistrict->value }}, {{ $ride->destinationCity->name }}, {{ $ride->destination_area }}</td>                                                                                        
+                                            <td>{{ date('d.m.Y', strtotime($ride->staring_date)) }} at {{ date('H:i:s a', strtotime($ride->staring_time)) }}</td>
+                                            <td>{{ $ride->user_location }}</td>    
+                                            @if($ride->status == 1)                                        
+                                                <td>Waiting for bit</td>
+                                            @elseif($ride->status == 3)
+                                                <td>Start Request</td>
+                                            @else   
+                                                <td>Bit Accepted</td>
+                                            @endif
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <a href="#" class="btn btn-raised btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ route('backend.ride.current_ride_details', $ride->id) }}" class="btn btn-raised btn-warning" title="Details"><i class="fas fa-eye"></i></a>
+                                                <a href="{{ route('backend.ride.current_ride_details', $ride->id) }}" class="btn btn-raised btn-warning btn-sm" title="Details"><i class="fas fa-eye"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -57,7 +59,7 @@
 @section('scripts')
 <script src="{{ asset('quicar/backend/js/ride.js')}}"></script>
     <script>
-        $(".menu-order-dropdown").addClass('show');
+        $(".menu-ride-dropdown").addClass('show');
         $("#current_ride").addClass('active');
     </script>
 @endsection
