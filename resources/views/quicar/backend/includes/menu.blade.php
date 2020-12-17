@@ -36,16 +36,16 @@
                     <li id="partner_banner"><a href="{{ route('backend.home_owner.index') }}">Partner Banner</a></li>
                 </ul>
             </li>
-            <li class="nav-item with-sub menu-order-dropdown">
+            <li class="nav-item with-sub menu-ride-dropdown">
                 <a href="#" class="nav-link">
                 <i data-feather="truck"></i>
                     <span>Rides</span>
                 </a>
                 <ul>
                     <li id="current_ride"><a href="{{ route('backend.ride.current_ride') }}">Current Ride</a></li>
-                    <li id="schedule_ride"><a href="{{ route('backend.ride.schedule_ride') }}">Schedule Ride</a></li>
-                    <li id="ambulance_ride"><a href="{{ route('backend.ride.ambulance_ride') }}">Ambulance Ride</a></li>
-                    <li id="pakcage_ride"><a href="{{ route('backend.ride.package_ride') }}">Package Ride</a></li>
+                    <li id="schedule_ride"><a href="{{ route('backend.ride.schedule_ride') }}">Complete Ride</a></li>
+                    <li id="ambulance_ride"><a href="{{ route('backend.ride.ambulance_ride') }}">Cancel Ride</a></li>
+                    <!-- <li id="pakcage_ride"><a href="{{ route('backend.ride.package_ride') }}">Package Ride</a></li> -->
                 </ul>
             </li>
             <li id="sms_notification" class="nav-item"><a href="{{ route('backend.sms_notification.index') }}" class="nav-link"><i data-feather="bell"></i> <span>SMS & Notification</span></a></li>            
