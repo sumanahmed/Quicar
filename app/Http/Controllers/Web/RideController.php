@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Ride;
+use App\Model\RideList;
 
 class RideController extends Controller
 {
     //show current rides
     public function currentRide(){
-        $rides = Ride::where('ride_type', 1)->get();
+        $rides = RideList::where('status','!=', 2)->where('status','!=',5)->get();
         return view('quicar.backend.ride.current_ride', compact('rides'));
     }
 
