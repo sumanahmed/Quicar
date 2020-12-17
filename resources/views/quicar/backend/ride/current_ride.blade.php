@@ -37,6 +37,7 @@
                                                 <td>Bit Accepted</td>
                                             @endif
                                             <td style="vertical-align: middle;text-align: center;">
+                                                <a href="{{ route('backend.ride.bitting', $ride->id) }}" class="btn btn-raised btn-success btn-sm" title="Bidding"><i class="fas fa-list"></i></a>
                                                 <a href="#" class="btn btn-raised btn-info btn-sm"><i class="fas fa-edit"></i></a>
                                                 <a href="{{ route('backend.ride.current_ride_details', $ride->id) }}" class="btn btn-raised btn-warning btn-sm" title="Details"><i class="fas fa-eye"></i></a>
                                             </td>
