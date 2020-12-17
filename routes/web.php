@@ -227,6 +227,8 @@ Route::group(['prefix'=>'admin/rides', 'middleware' => 'admin'], function(){
     Route::get('/schedule-ride', 'Web\RideController@scheduleRide')->name('backend.ride.schedule_ride');
     Route::get('/ambulance-ride', 'Web\RideController@ambulanceRide')->name('backend.ride.ambulance_ride');
     Route::get('/package-ride', 'Web\RideController@packageRide')->name('backend.ride.package_ride');
+    Route::get('/bitting/{ride_id}', 'Web\RideController@rideBitting')->name('backend.ride.bitting');
+    Route::get('/bitting/destroy/{bitting_id}', 'Web\RideController@bittingDestroy')->name('backend.ride.bitting.destroy');
 });
 
 Route::group(['prefix'=>'admin/feedbacks', 'middleware' => 'admin'], function(){
