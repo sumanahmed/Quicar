@@ -7,6 +7,7 @@ use App\Model\Upazila;
 use App\Model\CarType;
 use App\Model\Banner;
 use App\Model\Car;
+use App\Model\Complain;
 use App\Model\Driver;
 use App\Model\Owner;
 use App\Model\Package;
@@ -346,6 +347,15 @@ class AdminController extends Controller
         }
         $top_destination->delete();
         return response()->json();
+    }
+
+    //show complain page
+    public function complainList(){
+        $complains = Complain::join('owners','owners.id','report_list.owner_id')
+                            ->select('report_list.*','owners.name as owner_name','owners.phone as owner_phone')
+                            ->orderBy('id','desc')
+                            ->get();
+        return view('quicar.backend.complain.index',compact('complains'));
     }
 
     //show sms notification send page

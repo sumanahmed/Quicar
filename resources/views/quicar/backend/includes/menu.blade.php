@@ -48,6 +48,7 @@
                     <!-- <li id="pakcage_ride"><a href="{{ route('backend.ride.package_ride') }}">Package Ride</a></li> -->
                 </ul>
             </li>
+            <li id="complain" class="nav-item"><a href="{{ route('backend.complain.index') }}" class="nav-link"><i data-feather="bell"></i> <span>Complain</span></a></li>            
             <li id="sms_notification" class="nav-item"><a href="{{ route('backend.sms_notification.index') }}" class="nav-link"><i data-feather="bell"></i> <span>SMS & Notification</span></a></li>            
             <li class="nav-item with-sub account-sub">
                 <a href="#" class="nav-link">

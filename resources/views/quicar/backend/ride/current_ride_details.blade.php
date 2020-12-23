@@ -413,5 +413,6 @@
 <script>
     $(".menu-order-dropdown").addClass('show');
     $("#current_ride").addClass('active');
+    
 </script>    
 @endsection

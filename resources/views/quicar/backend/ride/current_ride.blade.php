@@ -10,7 +10,7 @@
                             <h4 class="mt-2 tx-spacing--1 float-left">All Current Rides</h4>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="currentRideTable">
                                 <thead class="thead-dark">
                                     <tr>                                       
                                         <th style="width:20%">Starting Address</th>
@@ -62,5 +62,13 @@
     <script>
         $(".menu-ride-dropdown").addClass('show');
         $("#current_ride").addClass('active');
+        $('#currentRideTable').DataTable({
+            responsive: true,
+            language: {
+                searchPlaceholder: 'Search...',
+                sSearch: '',
+                lengthMenu: '_MENU_ items/page',
+            }
+        });
     </script>
 @endsection

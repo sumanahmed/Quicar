@@ -216,6 +216,11 @@ Route::group(['prefix'=>'admin/accounts', 'middleware' => 'admin'], function(){
     Route::get('/withdraw', 'Web\IncomeController@withdraw')->name('backend.account.withdraw');
 });
 
+Route::group(['prefix'=>'admin/complain', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\AdminController@complainList')->name('backend.complain.index');
+    Route::post('/send', 'Web\AdminController@smsNotificationSend')->name('backend.sms_notification.send');
+});
+
 Route::group(['prefix'=>'admin/sms/notification', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\AdminController@smsNotification')->name('backend.sms_notification.index');
     Route::post('/send', 'Web\AdminController@smsNotificationSend')->name('backend.sms_notification.send');
