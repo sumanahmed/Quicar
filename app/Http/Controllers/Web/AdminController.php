@@ -349,8 +349,8 @@ class AdminController extends Controller
         return response()->json();
     }
 
-    //show complain page
-    public function complainList(){
+    //show owner complain page
+    public function ownerComplainList(){
         $complains = Complain::join('owners','owners.id','report_list.owner_id')
                             ->select('report_list.*','owners.name as owner_name','owners.phone as owner_phone')
                             ->orderBy('id','desc')

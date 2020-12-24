@@ -132,7 +132,7 @@
 @section('scripts')
 <script src="{{ asset('quicar/backend/js/feedback.js')}}"></script>
     <script>
-        $("#complain").addClass('active');
+        $("#owner_complain").addClass('active');
         $('#complainTable').DataTable({
             responsive: true,
             language: {
