@@ -10,7 +10,7 @@
                             <h4 class="mt-2 tx-spacing--1 float-left">All Bitting</h4>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="bittingTable">
                                 <thead class="thead-dark">
                                     <tr>                                       
                                         <th style="width:20%">Partner</th>
@@ -22,7 +22,6 @@
                                         <th style="width:10%">Ride End</th>                                        
                                         <th style="width:10%">Status</th>                                        
                                         <th style="width:10%">Start Status</th>                                        
-                                        <th style="width:20%" style="vertical-align: middle;text-align: center;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="allCurrentRide">
@@ -39,7 +38,7 @@
                                             @if($ride_bitting->status == 0)                                        
                                                 <td>Request Send</td>
                                             @elseif($ride_bitting->status == 1)
-                                                <td>Request Accept</td>
+                                                <td style="background: green; color:#fff">Request Accept</td>
                                             @elseif($ride_bitting->status == 2)
                                                 <td>Cancel Request</td>
                                             @else   
@@ -52,9 +51,6 @@
                                             @else   
                                                 <td>Finished</td>
                                             @endif
-                                            <td style="vertical-align: middle;text-align: center;">
-                                                <a href="{{ route('backend.ride.bitting.destroy', $ride_bitting->id) }}" class="btn btn-raised btn-danger btn-sm" title="Delete"><i class="fas fa-trash"></i></a>
-                                            </td>
                                         </tr>
                                     @endforeach
                                 @else
@@ -75,5 +71,17 @@
     <script>
         $(".menu-ride-dropdown").addClass('show');
         $("#current_ride").addClass('active');
+    </script>
+    <script>
+        $(".menu-ride-dropdown").addClass('show');
+        $("#current_ride").addClass('active');
+        $('#bittingTable').DataTable({
+            responsive: true,
+            language: {
+                searchPlaceholder: 'Search...',
+                sSearch: '',
+                lengthMenu: '_MENU_ items/page',
+            }
+        });
     </script>
 @endsection
