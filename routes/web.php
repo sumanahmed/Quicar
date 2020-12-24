@@ -193,6 +193,11 @@ Route::group(['prefix'=>'admin/complain', 'middleware' => 'admin'], function(){
     Route::get('/owner', 'Web\AdminController@ownerComplainList')->name('backend.owner.complain.index');
 });
 
+Route::group(['prefix'=>'admin/message', 'middleware' => 'admin'], function(){
+    Route::get('/partner', 'Web\AdminController@partnerMessage')->name('backend.message.partner_message');
+    Route::get('/status/update/{id}', 'Web\AdminController@partnerMessageStatusUpdate')->name('backend.message.partner_message.update');
+});
+
 Route::group(['prefix'=>'admin/sms/notification', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\AdminController@smsNotification')->name('backend.sms_notification.index');
     Route::post('/send', 'Web\AdminController@smsNotificationSend')->name('backend.sms_notification.send');

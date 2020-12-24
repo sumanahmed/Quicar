@@ -9,6 +9,7 @@ use App\Model\Banner;
 use App\Model\Car;
 use App\Model\Complain;
 use App\Model\Driver;
+use App\Model\Message;
 use App\Model\Owner;
 use App\Model\Package;
 use App\Model\Ride;
@@ -356,6 +357,23 @@ class AdminController extends Controller
                             ->orderBy('id','desc')
                             ->get();
         return view('quicar.backend.complain.index',compact('complains'));
+    }
+
+    //show partner message 
+    public function partnerMessage() {
+        $messages = Message::join('owners','owners.id','owner_message_list.owner_id')
+                            ->select('owner_message_list.*','owners.name as owner_name','owners.phone as owner_phone')
+                            ->orderBy('id','desc')
+                            ->get();
+        return view('quicar.backend.message.partner_message',compact('messages'));
+    }
+
+    //partner message status update
+    public function partnerMessageStatusUpdate($id){
+        $message         = Message::find($id);
+        $message->status = 1;
+        $message->update();
+        return redirect()->route('backend.message.partner_message')->with('message','Message read successfully');
     }
 
     //show sms notification send page

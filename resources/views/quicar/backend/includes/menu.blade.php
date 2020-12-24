@@ -54,8 +54,18 @@
                     <span>Complains</span>
                 </a>
                 <ul>
-                    <li id="owner_complain"><a href="{{ route('backend.owner.complain.index') }}">Owner Complain</a></li>
+                    <li id="owner_complain"><a href="{{ route('backend.owner.complain.index') }}">Partner Complain</a></li>
                     <li id="user_complain"><a href="#">User Complain</a></li>
+                </ul>
+            </li>            
+            <li class="nav-item with-sub message-sub">
+                <a href="#" class="nav-link">
+                <i data-feather="square"></i>
+                    <span>Messages</span>
+                </a>
+                <ul>
+                    <li id="partner_message"><a href="{{ route('backend.message.partner_message') }}">Partner Message</a></li>
+                    <li id="user_message"><a href="#">User Message</a></li>
                 </ul>
             </li>            
             <li id="sms_notification" class="nav-item"><a href="{{ route('backend.sms_notification.index') }}" class="nav-link"><i data-feather="bell"></i> <span>SMS & Notification</span></a></li>            
