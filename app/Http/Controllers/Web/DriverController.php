@@ -14,7 +14,7 @@ class DriverController extends Controller
     //show all drivers
     public function index(){
         $drivers = Driver::all();
-        $owners  = Owner::select('id','name','api_token')->where('account_status', 1)->get();   
+        $owners  = Owner::select('id','name')->where('account_status', 1)->get();   
         return view('quicar.backend.driver.index', compact('drivers','owners'));
     }
 

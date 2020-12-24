@@ -98,7 +98,7 @@
                                     <label for="phone">Owner <span class="text-danger text-bold" title="Required Field">*</span></label>                                
                                     <select id="owner_id" class="form-control" name="owner_id">
                                         @foreach($owners as $owner)
-                                            <option value="{{ $owner->api_token }}">{{ $owner->name }}</option>
+                                            <option value="{{ $owner->id }}">{{ $owner->name }}</option>
                                         @endforeach
                                     </select>
                                     <span class="text-danger ownerError"></span>
@@ -199,7 +199,7 @@
                                     <label for="phone">Owner <span class="text-danger text-bold" title="Required Field">*</span></label>                                
                                     <select id="edit_owner_id" class="form-control" name="owner_id">
                                         @foreach($owners as $owner)
-                                            <option value="{{ $owner->api_token }}">{{ $owner->name }}</option>
+                                            <option value="{{ $owner->id }}">{{ $owner->name }}</option>
                                         @endforeach
                                     </select>
                                     <span class="text-danger ownerError"></span>
