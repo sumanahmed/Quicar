@@ -24,7 +24,7 @@
                                 @if(isset($feedbacks) && count($feedbacks) > 0)
                                     @foreach($feedbacks as $feedback)
                                         <tr class="feedback-{{ $feedback->id }}">
-                                            <td>{{ $feedback->feedback }}</td>
+                                            <td>{{ $feedback->review }}</td>
                                             <td>{{ $feedback->replay }}</td>
                                             <td>{{ $feedback->date }}</td>
                                             <td>{{ $feedback->time }}</td>

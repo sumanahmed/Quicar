@@ -38,19 +38,19 @@ class RideController extends Controller
         return view('quicar.backend.ride.current_ride_details', compact('ride'));
     }
 
-    //show current rides
-    public function scheduleRide(){ 
-        $rides = Ride::where('ride_type', 2)->get();
-        return view('quicar.backend.ride.schedule_ride', compact('rides'));
+    //show complete rides
+    public function completeRide(){ 
+        $rides = Ride::where('status', 5)->get();
+        return view('quicar.backend.ride.complete_ride', compact('rides'));
     }
 
-    //show current rides
-    public function ambulanceRide(){
-        $rides = Ride::where('ride_type', 3)->get();
-        return view('quicar.backend.ride.ambulance_ride', compact('rides'));
+    //show cancel rides
+    public function cancelRide(){
+        $rides = Ride::where('status', 2)->get();
+        return view('quicar.backend.ride.cancel_ride', compact('rides'));
     }
 
-    //show current rides
+    //show package rides
     public function packageRide(){
         $rides = Ride::where('ride_type', 4)->get();
         return view('quicar.backend.ride.package_ride', compact('rides'));

@@ -43,9 +43,8 @@
                 </a>
                 <ul>
                     <li id="current_ride"><a href="{{ route('backend.ride.current_ride') }}">Current Ride</a></li>
-                    <li id="schedule_ride"><a href="{{ route('backend.ride.schedule_ride') }}">Complete Ride</a></li>
-                    <li id="ambulance_ride"><a href="{{ route('backend.ride.ambulance_ride') }}">Cancel Ride</a></li>
-                    <!-- <li id="pakcage_ride"><a href="{{ route('backend.ride.package_ride') }}">Package Ride</a></li> -->
+                    <li id="complete_ride"><a href="{{ route('backend.ride.complete_ride') }}">Complete Ride</a></li>
+                    <li id="cancel_ride"><a href="{{ route('backend.ride.cancel_ride') }}">Cancel Ride</a></li>
                 </ul>
             </li>
             <li class="nav-item with-sub complain-sub">
