@@ -18,8 +18,9 @@ $("#createDriver").click(function (e) {
     form_data.append('dob', $("#dob").val());
     form_data.append('owner_id', $("#owner_id :selected").val());
     form_data.append('nid', $("#nid").val());
-    form_data.append('division', $("#division").val());
-    form_data.append('district', $("#district").val());
+    form_data.append('district_id', $("#district_id :selected").val());
+    form_data.append('city_id', $("#city_id :selected").val());
+    form_data.append('license', $("#license").val());
     form_data.append('address', $("#address").val());
 
     $.ajax({
@@ -56,16 +57,16 @@ $("#createDriver").click(function (e) {
                     $('.nidError').text(response.errors.nid);
                 }else{
                     $('.nidError').text('');
-                }               
-                if(response.errors.division){
-                    $('.divisionError').text(response.errors.division);
-                }else{
-                    $('.divisionError').text('');
-                }               
-                if(response.errors.district){
-                    $('.districtError').text(response.errors.district);
+                }                       
+                if(response.errors.district_id){
+                    $('.districtError').text(response.errors.district_id);
                 }else{
                     $('.districtError').text('');
+                }               
+                if(response.errors.city_id){
+                    $('.cityError').text(response.errors.city_id);
+                }else{
+                    $('.cityError').text('');
                 }               
                 if(response.errors.address){
                     $('.addressError').text(response.errors.address);
@@ -84,12 +85,12 @@ $("#createDriver").click(function (e) {
                         '<td>'+ response.data.name +'</td>\n' +
                         '<td>'+ response.data.email +'</td>\n' +
                         '<td>'+ response.data.phone +'</td>\n' +
-                        '<td><img src="http://quicarbd.com/'+ response.data.img +'" style="width:80px;height:80px;"/></td>\n' +
+                        '<td><img src="http://quicarbd.com/'+ response.data.driver_photo +'" style="width:80px;height:80px;"/></td>\n' +
                         '<td>'+ status +'</td>\n' +
                         '<td style="vertical-align: middle;text-align: center;">\n' +                        
                             '<button class="btn btn-info" data-toggle="modal" id="editDriver" data-target="#editDriverModal" data-id="'+ response.data.id +'" data-name="'+ response.data.name +'"\n' + 
                                 'data-email="'+ response.data.email +'" data-phone="'+ response.data.phone +'" data-dob="'+ response.data.dob +'" data-owner_id="'+ response.data.owner_id +'" data-nid="'+ response.data.nid +'"\n' + 
-                                'data-division="'+ response.data.division +'" data-district="'+ response.data.district +'" data-address="'+ response.data.address +'" data-img="http://quicarbd.com/'+ response.data.img +'"\n' + 
+                                'data-division="'+ response.data.division +'" data-district="'+ response.data.district +'" data-address="'+ response.data.address +'" data-img="http://quicarbd.com/'+ response.data.driver_photo +'"\n' + 
                                 'data-license="http://quicarbd.com/'+ response.data.license +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +                            
                             '<button class="btn btn-danger" data-toggle="modal" id="deleteDriver" data-target="#deleteDriverModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
@@ -206,7 +207,7 @@ $("#updateDriver").click(function (e) {
                         '<td>'+ response.data.name +'</td>\n' +
                         '<td>'+ response.data.email +'</td>\n' +
                         '<td>'+ response.data.phone +'</td>\n' +
-                        '<td><img src="http://quicarbd.com/'+ response.data.img +'" style="width:80px;height:80px;"/></td>\n' +
+                        '<td><img src="http://quicarbd.com/'+ response.data.driver_photo +'" style="width:80px;height:80px;"/></td>\n' +
                         '<td>'+ status +'</td>\n' +
                         '<td style="vertical-align: middle;text-align: center;">\n' +                        
                             '<button class="btn btn-info" data-toggle="modal" id="editDriver" data-target="#editDriverModal" data-id="'+ response.data.id +'" data-name="'+ response.data.name +'"\n' + 

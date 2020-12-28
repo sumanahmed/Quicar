@@ -22,6 +22,7 @@ Route::group(['prefix'=>'admin/cars', 'middleware' => 'admin'], function(){
 
 Route::group(['prefix'=>'admin/drivers', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\DriverController@index')->name('backend.driver.index');
+    Route::get('/get-city/{district_id}', 'Web\DriverController@getCity')->name('backend.driver.get_city');
     Route::post('/store', 'Web\DriverController@store')->name('backend.driver.store');
     Route::post('/update', 'Web\DriverController@update')->name('backend.driver.update');
     Route::post('/destroy', 'Web\DriverController@destroy')->name('backend.driver.destroy');
