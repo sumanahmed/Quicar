@@ -14,8 +14,7 @@
                                 <thead class="thead-dark">
                                 <tr>
                                     <th>Car Reg No</th>
-                                    <th>Owner Name</th>
-                                    <th>Owner Phone</th>
+                                    <th>Partner </th>
                                     <th>Tax Expired</th>
                                     <th>Fitness Expired</th>
                                     <th>Registration Expired</th>
@@ -28,13 +27,12 @@
                                     @php $i=1; @endphp
                                     @foreach($cars as $car)
                                         <tr class="car-{{ $car->id }}">
-                                            <td>{{ $car->registration_no }}</td>
-                                            <td>{{ $car->owner_name }}</td>
-                                            <td>{{ $car->owner_phone }}</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>                                            
+                                            <td>{{ $car->carRegisterNumber }}</td>
+                                            <td>{{ $car->owner_name }} <br/> {{ $car->owner_phone }}</td>
+                                            <td>{{ $car->tax_expired_date }}</td>                                     
+                                            <td>{{ $car->fitness_expired_date }}</td>                                     
+                                            <td>{{ $car->registration_expired_date }}</td>                                     
+                                            <td>{{ $car->insurance_expired_date }}</td>                                     
                                             <td style="vertical-align: middle;text-align: center;">                                              
                                                 <a href="#" class="btn btn-raised btn-info" data-toggle="modal" id="ownerSendNotification" data-target="#ownerSendNotificationModal" title="Send Notification" data-id="{{ $car->id }}" data-phone="{{ $car->owner_phone }}" data-n_key="{{ $car->owner_n_key }}"><i class="fas fa-bell"></i></a>
                                             </td>

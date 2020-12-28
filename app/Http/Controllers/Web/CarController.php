@@ -236,13 +236,19 @@ class CarController extends Controller
 
     //car show with expired
     public function expired(){
-        $cars = Car::join('owners','owners.api_token','cars.owner_id')
-                        ->join('drivers','drivers.id','cars.driver_id')
-                        ->select('cars.id','cars.name','cars.carImage','cars.c_status','owners.name as owner_name','owners.phone as owner_phone',
-                                'owners.n_key as owner_n_key','drivers.name as driver_name','drivers.phone as driver_phone',
-                                'drivers.c_status as driver_current_status','drivers.license','drivers.nid','drivers.account_status'
-                                )
-                        ->get();
+        $today  = date('Y-m-d');
+        $cars   = Car::join('owners','owners.id','cars.owner_id')
+                    ->select('cars.id','cars.carRegisterNumber',
+                            'cars.tax_expired_date','cars.fitness_expired_date','cars.registration_expired_date',
+                            'cars.insurance_expired_date','owners.name as owner_name','owners.phone as owner_phone'
+                            )
+                    ->where(function($query) use ($today) {
+                        return $query   ->where('tax_expired_date', '>', $today)
+                                        ->orWhere('fitness_expired_date', '>', $today)
+                                        ->orWhere('registration_expired_date', '>', $today)
+                                        ->orWhere('insurance_expired_date', '>', $today);
+                    })                   
+                    ->get();
         return view('quicar.backend.car.expired', compact('cars'));
     }
 
