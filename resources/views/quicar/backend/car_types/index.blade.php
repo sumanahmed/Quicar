@@ -11,10 +11,11 @@
                             <a class="btn btn-success float-right cursor-pointer" data-toggle="modal" data-target="#createCarTypeModal"><i data-feather="plus"></i>&nbsp; Add New</a>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered" id="packageTable">
+                            <table class="table table-bordered" id="carTypeTable">
                                 <thead class="thead-dark">
                                 <tr>                                  
                                     <th>Name</th>                                   
+                                    <th>Seat</th>                                   
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
                                 </thead>
@@ -23,15 +24,16 @@
                                     @foreach($car_types as $car_type)
                                         <tr class="car_type-{{ $car_type->id }}">
                                             <td>{{ $car_type->name }}</td>
+                                            <td>{{ $car_type->seat }}</td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="editCarType" data-target="#editCarTypeModal" data-id="{{ $car_type->id }}" data-name="{{ $car_type->name }}" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="editCarType" data-target="#editCarTypeModal" data-id="{{ $car_type->id }}" data-name="{{ $car_type->name }}" data-seat="{{ $car_type->seat }}" title="Edit"><i class="fas fa-edit"></i></a>
                                                 <a href="#" class="btn btn-raised btn-danger" data-toggle="modal" id="deleteCarType" data-target="#deleteCarTypeModal" data-id="{{ $car_type->id }}" title="Delete"><i class="fas fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="2" class="text-center">No Data Found</td>
+                                        <td colspan="3" class="text-center">No Data Found</td>
                                     </tr>
                                 @endif
                                 </tbody>
@@ -60,6 +62,13 @@
                                 <label for="name">Name <span class="text-danger text-bold" title="Required Field">*</span></label>
                                 <input type="text" name="name" id="name" class="form-control"placeholder="Enter Class Name" required>
                                 <span class="text-danger nameError"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="seat">Seat <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                <input type="text" name="seat" id="seat" class="form-control"placeholder="Enter Seat" required>
+                                <span class="text-danger seatError"></span>
                             </div>
                         </div>
                     </div>
@@ -94,6 +103,13 @@
                                 <input type="text" name="name" id="edit_name" class="form-control"placeholder="Enter Color Name" required>
                                 <input type="hidden" id="edit_id" />
                                 <span class="text-danger nameError"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="edit_seat">Seat <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                <input type="text" name="edit_seat" id="edit_seat" class="form-control"placeholder="Enter Seat" required>
+                                <span class="text-danger seatError"></span>
                             </div>
                         </div>
                     </div>

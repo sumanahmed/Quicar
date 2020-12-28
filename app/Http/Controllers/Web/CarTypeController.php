@@ -20,12 +20,14 @@ class CarTypeController extends Controller
     public function store(Request $request){
         $validators=Validator::make($request->all(),[
             'name' => 'required',
+            'seat' => 'required',
         ]);
         if($validators->fails()){
             return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
         }else{
             $car_type         = new CarType();
             $car_type->name   = $request->name;
+            $car_type->seat   = $request->seat;
             if($car_type->save()){
                 return Response::json([
                     'status'    => 201,
@@ -44,12 +46,14 @@ class CarTypeController extends Controller
     public function update(Request $request){
         $validators=Validator::make($request->all(),[
             'name' => 'required',
+            'seat' => 'required',
         ]);
         if($validators->fails()){
             return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
         }else{
             $car_type         = CarType::find($request->id);
             $car_type->name   = $request->name;
+            $car_type->seat   = $request->seat;
             if($car_type->update()){
                 return Response::json([
                     'status'    => 201,

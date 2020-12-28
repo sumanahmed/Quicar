@@ -1,14 +1,24 @@
+$('#carTypeTable').DataTable({
+    responsive: true,
+    language: {
+        searchPlaceholder: 'Search...',
+        sSearch: '',
+        lengthMenu: '_MENU_ items/page',
+    }
+});
 
 //create offer
 $("#createCarType").click(function (e) {
     e.preventDefault();
     var name = $("#name").val();
+    var seat = $("#seat").val();
     $.ajax({
         type:'POST',
         url: '/admin/car_type/store',
         headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
         data: {
             name : name,
+            seat : seat,
         },
         success:function(response){
             if((response.errors)){
@@ -17,18 +27,25 @@ $("#createCarType").click(function (e) {
                 }else{
                     $('.nameError').text('');
                 }               
+                if(response.errors.seat){
+                    $('.seatError').text(response.errors.seat);
+                }else{
+                    $('.seatError').text('');
+                }               
             }else{
                 $('#createCarTypeModal').modal('hide');
                 $("#allCarType").append('' +
                     '<tr class="car_type-'+ response.data.id +'">\n' +
-                        '<td>'+ name +'</td>\n' +
+                        '<td>'+ response.data.name +'</td>\n' +
+                        '<td>'+ response.data.seat +'</td>\n' +
                         '<td style="vertical-align: middle;text-align: center;">\n' +                        
-                            '<button class="btn btn-warning" data-toggle="modal" id="editCarType" data-target="#editCarTypeModal" data-id="'+ response.data.id +'" data-name="'+ response.data.name +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +
+                            '<button class="btn btn-warning" data-toggle="modal" id="editCarType" data-target="#editCarTypeModal" data-id="'+ response.data.id +'" data-name="'+ response.data.name +'" data-seat="'+ response.data.seat +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +
                             '<button class="btn btn-danger" data-toggle="modal" id="deleteCarType" data-target="#deleteCarTypeModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
                     '</tr>'+
                 '');
                 $("#name").val('');
+                $("#seat").val('');
                 toastr.success('Car Type Created.')
             }
         }
@@ -41,6 +58,7 @@ $(document).on('click', '#editCarType', function () {
     $('#editCarTypeModal').modal('show');
     $('#edit_id').val($(this).data('id'));
     $('#edit_name').val($(this).data('name'));
+    $('#edit_seat').val($(this).data('seat'));
  });
 
 // update CarType
@@ -48,6 +66,7 @@ $("#updateCarType").click(function (e) {
     e.preventDefault();
     var id      = $("#edit_id").val();
     var name    = $("#edit_name").val();
+    var seat    = $("#edit_seat").val();
     $.ajax({
         type:'POST',
         url: '/admin/car_type/update',
@@ -55,6 +74,7 @@ $("#updateCarType").click(function (e) {
         data: {
             id    : id,
             name  : name,
+            seat  : seat,
         },
         success:function(response){
             if((response.errors)){
@@ -63,13 +83,19 @@ $("#updateCarType").click(function (e) {
                 }else{
                     $('.nameError').text('');
                 }  
+                if(response.errors.seat){
+                    $('.seatError').text(response.errors.seat);
+                }else{
+                    $('.seatError').text('');
+                }  
             }else{
                 $('#editCarTypeModal').modal('hide');
                 $("tr.car_type-"+ response.data.id).replaceWith('' +
                     '<tr class="car_type-'+ response.data.id +'">\n' +
                         '<td>'+ response.data.name +'</td>\n' +
+                        '<td>'+ response.data.seat +'</td>\n' +
                         '<td style="vertical-align: middle;text-align: center;">\n' +
-                            '<button class="btn btn-warning" data-toggle="modal" id="editCarType" data-target="#editCarTypeModal" data-id="'+ response.data.id +'" data-name="'+ response.data.name +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +
+                            '<button class="btn btn-warning" data-toggle="modal" id="editCarType" data-target="#editCarTypeModal" data-id="'+ response.data.id +'" data-name="'+ response.data.name +'" data-seat="'+ response.data.seat +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +
                             '<button class="btn btn-danger" data-toggle="modal" id="deleteCarType" data-target="#deleteCarTypeModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
                     '</tr>'+
