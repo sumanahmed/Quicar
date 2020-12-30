@@ -192,6 +192,7 @@ Route::group(['prefix'=>'admin/accounts', 'middleware' => 'admin'], function(){
 
 Route::group(['prefix'=>'admin/complain', 'middleware' => 'admin'], function(){
     Route::get('/owner', 'Web\AdminController@ownerComplainList')->name('backend.owner.complain.index');
+    Route::post('/reply-to-owner', 'Web\AdminController@ownerComplainSend')->name('backend.owner.complain.send');
 });
 
 Route::group(['prefix'=>'admin/message', 'middleware' => 'admin'], function(){

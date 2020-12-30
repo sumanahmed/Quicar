@@ -51,7 +51,7 @@
                                             @endif
                                             <td>{{ $complain->answer_time }}</td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-warning btn-sm" data-toggle="modal" id="replyFeedback" data-target="#replyFeedbackModal" data-id="{{ $complain->id }}" title="Reply"><i class="fas fa-reply"></i></a>
+                                                <a href="#" class="btn btn-raised btn-warning btn-sm" data-toggle="modal" id="replyComplain" data-target="#replyComplainModal" data-id="{{ $complain->id }}" data-message="{{ $complain->message }}" title="Reply"><i class="fas fa-reply"></i></a>
                                                 <button href="#" class="btn btn-raised btn-danger btn-sm" data-toggle="modal" id="deleteFeedback" data-target="#deleteFeedbackModal" data-id="{{ $complain->id }}" title="Delete"><i class="fas fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
@@ -71,11 +71,11 @@
     </div>
 
     <!-- Car Class Edit Modal -->
-    <div id="replyFeedbackModal" class="modal fade bd-example-modal-xl mt-3" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div id="replyComplainModal" class="modal fade bd-example-modal-xl mt-3" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content tx-14">
                 <div class="modal-header bg-success">
-                    <h5 class="modal-title text-white" id="exampleModalLabel">Feedback Reply</h5>
+                    <h5 class="modal-title text-white" id="exampleModalLabel">Complain Reply</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -85,15 +85,15 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="name">Feedback</label>                                
-                                <textarea id="feedback_feedback" class="form-control" rows="4" readonly></textarea>
-                                <input type="hidden" id="feedback_id" />
+                                <textarea id="complain_message" class="form-control" rows="4" readonly></textarea>
+                                <input type="hidden" id="complain_id" />
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="name">Reply <span class="text-danger text-bold" title="Required Field">*</span></label>                                
-                                <textarea id="feedback_reply" class="form-control" rows="4"></textarea>
-                                <span class="text-danger replyError"></span>
+                                <textarea id="complain_reply" class="form-control" rows="4"></textarea>
+                                <span class="text-danger complainReplyError"></span>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                 <div class="modal-footer">
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <button type="button" class="btn btn-success tx-13" id="feedbackReply">Reply</button>
+                            <button type="button" class="btn btn-success tx-13" id="complainReply">Reply</button>
                             <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
     </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('quicar/backend/js/feedback.js')}}"></script>
+<script src="{{ asset('quicar/backend/js/complain.js')}}"></script>
     <script>
         $("#owner_complain").addClass('active');
         $('#complainTable').DataTable({

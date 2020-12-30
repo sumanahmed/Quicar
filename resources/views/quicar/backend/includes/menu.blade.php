@@ -43,6 +43,8 @@
                 </a>
                 <ul>
                     <li id="current_ride"><a href="{{ route('backend.ride.current_ride') }}">Current Ride</a></li>
+                    <li id="upcomming_ride"><a href="#">Upcomming Ride</a></li>
+                    <li id="package_ride"><a href="#">Package Ride</a></li>
                     <li id="complete_ride"><a href="{{ route('backend.ride.complete_ride') }}">Complete Ride</a></li>
                     <li id="cancel_ride"><a href="{{ route('backend.ride.cancel_ride') }}">Cancel Ride</a></li>
                 </ul>
