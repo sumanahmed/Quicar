@@ -33,9 +33,11 @@
                                             <td><img src="http://quicarbd.com/{{ $driver->driver_photo }}" style="width:80px;height:60px"/>
                                             <td>{{ $driver->account_status == 1 ? 'Active' : 'Inactive' }} </td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-info" data-toggle="modal" id="editDriver" data-target="#editDriverModal" data-id="{{ $driver->id }}" data-name="{{ $driver->name }}"
+                                                <a href="#" class="btn btn-raised btn-info" data-toggle="modal" id="editDriver" data-id="{{ $driver->id }}" data-name="{{ $driver->name }}"
                                                     data-email="{{ $driver->email }}" data-phone="{{ $driver->phone }}" data-dob="{{ $driver->dob }}" data-owner_id="{{ $driver->owner_id }}" data-nid="{{ $driver->nid }}"
-                                                    data-division="{{ $driver->division }}" data-district="{{ $driver->district }}" data-address="{{ $driver->address }}" data-img="http://quicarbd.com/{{ $driver->img }}"
+                                                    data-district_id="{{ $driver->district_id }}" data-city_id="{{ $driver->city_id }}" data-address="{{ $driver->address }}" data-driver_photo="http://quicarbd.com/{{ $driver->driver_photo }}"
+                                                    data-nid_font_pic="http://quicarbd.com/{{ $driver->nid_font_pic }}" data-nid_back_pic="http://quicarbd.com/{{ $driver->nid_back_pic }}" 
+                                                    data-license_font_pic="http://quicarbd.com/{{ $driver->license_font_pic }}" data-license_back_pic="http://quicarbd.com/{{ $driver->license_back_pic }}"
                                                     data-license="http://quicarbd.com/{{ $driver->license }}"><i class="fas fa-edit"></i>
                                                 </a>
                                                 <button class="btn btn-danger" data-toggle="modal" id="deleteDriver" data-target="#deleteDriverModal" data-id="{{ $driver->id }}" title="Delete"><i class="fas fa-trash"></i></button>
@@ -113,6 +115,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="district_id">District <span class="text-danger text-bold" title="Required Field">*</span></label>                                
                                     <select name="district_id" id="district_id" class="form-control" required>
+                                        <select selected disabled>select</select>
                                         @foreach($districts as $district)
                                             <option value="{{ $district->id }}">{{ $district->value }}</option>
                                         @endforeach
@@ -241,14 +244,19 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="division">Division <span class="text-danger text-bold" title="Required Field">*</span></label>                                
-                                    <input type="text" name="division" id="edit_division" class="form-control" placeholder="Enter Division" required>
-                                    <span class="text-danger divisionError"></span>
+                                    <label for="edit_district_id">District <span class="text-danger text-bold" title="Required Field">*</span></label>                                
+                                    <select name="district_id" id="edit_district_id" class="form-control" required>
+                                        @foreach($districts as $district)
+                                            <option value="{{ $district->id }}">{{ $district->value }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger districtError"></span>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="district">District <span class="text-danger text-bold" title="Required Field">*</span></label>
-                                    <input type="text" name="district" id="edit_district" class="form-control" placeholder="Enter District" required>
-                                    <span class="text-danger districtError"></span>
+                                    <label for="edit_city_id">City <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                    <select name="city_id" id="edit_city_id" class="form-control" required>                                      
+                                    </select>
+                                    <span class="text-danger cityError"></span>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -260,11 +268,11 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="image">Previous Image <span class="text-danger text-bold" title="Required Field">*</span></label>                                
-                                    <img src="" id="previous_image" style="width:80px;height:80px;"/>
+                                    <label for="image">Previous Driver Photo <span class="text-danger text-bold" title="Required Field">*</span></label>                                
+                                    <img src="" id="previous_driver_photo" style="width:80px;height:80px;"/>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="image">Update Image <span class="text-danger text-bold" title="Required Field">*</span></label>                                
+                                    <label for="image">Update Driver Photo <span class="text-danger text-bold" title="Required Field">*</span></label>                                
                                     <input type="file" name="image" id="edit_image" class="form-control">
                                     <span class="text-danger imageError"></span>
                                 </div>

@@ -88,9 +88,11 @@ $("#createDriver").click(function (e) {
                         '<td><img src="http://quicarbd.com/'+ response.data.driver_photo +'" style="width:80px;height:80px;"/></td>\n' +
                         '<td>'+ status +'</td>\n' +
                         '<td style="vertical-align: middle;text-align: center;">\n' +                        
-                            '<button class="btn btn-info" data-toggle="modal" id="editDriver" data-target="#editDriverModal" data-id="'+ response.data.id +'" data-name="'+ response.data.name +'"\n' + 
+                            '<button class="btn btn-info" data-toggle="modal" id="editDriver" data-id="'+ response.data.id +'" data-name="'+ response.data.name +'"\n' + 
                                 'data-email="'+ response.data.email +'" data-phone="'+ response.data.phone +'" data-dob="'+ response.data.dob +'" data-owner_id="'+ response.data.owner_id +'" data-nid="'+ response.data.nid +'"\n' + 
-                                'data-division="'+ response.data.division +'" data-district="'+ response.data.district +'" data-address="'+ response.data.address +'" data-img="http://quicarbd.com/'+ response.data.driver_photo +'"\n' + 
+                                'data-district_id="'+ response.data.district_id +'" data-city_id="'+ response.data.city_id +'" data-address="'+ response.data.address +'" data-driver_photo="http://quicarbd.com/'+ response.data.driver_photo +'"\n' + 
+                                'data-nid_font_pic="http://quicarbd.com/'+ response.data.nid_font_pic +'"\n' + 'data-nid_back_pic="http://quicarbd.com/'+ response.data.nid_back_pic +'"\n' + 
+                                'data-license_font_pic="http://quicarbd.com/'+ response.data.license_font_pic +'"\n' + 'data-license_back_pic="http://quicarbd.com/'+ response.data.license_back_pic +'"\n' + 
                                 'data-license="http://quicarbd.com/'+ response.data.license +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +                            
                             '<button class="btn btn-danger" data-toggle="modal" id="deleteDriver" data-target="#deleteDriverModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
@@ -102,8 +104,8 @@ $("#createDriver").click(function (e) {
                 $("#dob").val('');
                 $("#owner_id").val('');
                 $("#nid").val('');
-                $("#division").val('');
-                $("#district").val('');
+                $("#district_id").val('');
+                $("#city_id").val('');
                 $("#address").val('');
                 toastr.success('Driver Created.')
             }
@@ -113,8 +115,16 @@ $("#createDriver").click(function (e) {
 
 //open edit Driver modal
 $(document).on('click', '#editDriver', function () {
-    console.log('yess');
+
+    $.get('/admin/hotel/package/get-city/'+$(this).data('district_id'), function(data) {
+        for( var i = 0; i < data.length; i++){
+            //$("#edit_city_id").append('<option value="'+ data[i].id +'"' + (data[i].id == $(this).data('city_id') ? selected : "" )+'>'+ data[i].name +'</option>');
+            $("#edit_city_id").append('<option value="'+ data[i].id +'">'+ data[i].name +'</option>');
+        }    
+    }); 
+
     $('#editDriverModal').modal('show');
+    
     $('#edit_id').val($(this).data('id'));
     $('#edit_name').val($(this).data('name'));
     $('#edit_email').val($(this).data('email'));
@@ -122,10 +132,10 @@ $(document).on('click', '#editDriver', function () {
     $('#edit_dob').val($(this).data('dob'));
     $('#edit_owner_id').val($(this).data('owner_id'));
     $('#edit_nid').val($(this).data('nid'));
-    $('#edit_division').val($(this).data('division'));
-    $('#edit_district').val($(this).data('district'));
+    $('#edit_district_id').val($(this).data('district_id'));
+    $('#edit_city_id').val($(this).data('city_id'));
     $('#edit_address').val($(this).data('address'));
-    $("#previous_image").attr("src", $(this).data('img'));
+    $("#previous_driver_photo").attr("src", $(this).data('driver_photo'));
     $("#previous_license").attr("src", $(this).data('license'));
 });
 
@@ -141,8 +151,8 @@ $("#updateDriver").click(function (e) {
     form_data.append('dob', $("#edit_dob").val());
     form_data.append('owner_id', $("#edit_owner_id :selected").val());
     form_data.append('nid', $("#edit_nid").val());
-    form_data.append('division', $("#edit_division").val());
-    form_data.append('district', $("#edit_district").val());
+    form_data.append('district_id', $("#edit_district_id").val());
+    form_data.append('city_id', $("#edit_city_id").val());
     form_data.append('address', $("#edit_address").val());
 
     $.ajax({
@@ -210,11 +220,13 @@ $("#updateDriver").click(function (e) {
                         '<td><img src="http://quicarbd.com/'+ response.data.driver_photo +'" style="width:80px;height:80px;"/></td>\n' +
                         '<td>'+ status +'</td>\n' +
                         '<td style="vertical-align: middle;text-align: center;">\n' +                        
-                            '<button class="btn btn-info" data-toggle="modal" id="editDriver" data-target="#editDriverModal" data-id="'+ response.data.id +'" data-name="'+ response.data.name +'"\n' + 
-                                'data-email="'+ response.data.email +'" data-phone="'+ response.data.phone +'" data-dob="'+ response.data.dob +'" data-owner_id="'+ response.data.owner_id +'" data-nid="'+ response.data.nid +'"\n' + 
-                                'data-division="'+ response.data.division +'" data-district="'+ response.data.district +'" data-address="'+ response.data.address +'" data-img="http://quicarbd.com/'+ response.data.img +'"\n' + 
-                                'data-license="http://quicarbd.com/'+ response.data.license +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +                            
-                            '<button class="btn btn-danger" data-toggle="modal" id="deleteDriver" data-target="#deleteDriverModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
+                        '<button class="btn btn-info" data-toggle="modal" id="editDriver" data-id="'+ response.data.id +'" data-name="'+ response.data.name +'"\n' + 
+                            'data-email="'+ response.data.email +'" data-phone="'+ response.data.phone +'" data-dob="'+ response.data.dob +'" data-owner_id="'+ response.data.owner_id +'" data-nid="'+ response.data.nid +'"\n' + 
+                            'data-district_id="'+ response.data.district_id +'" data-city_id="'+ response.data.city_id +'" data-address="'+ response.data.address +'" data-driver_photo="http://quicarbd.com/'+ response.data.driver_photo +'"\n' + 
+                            'data-nid_font_pic="http://quicarbd.com/'+ response.data.nid_font_pic +'"\n' + 'data-nid_back_pic="http://quicarbd.com/'+ response.data.nid_back_pic +'"\n' + 
+                            'data-license_font_pic="http://quicarbd.com/'+ response.data.license_font_pic +'"\n' + 'data-license_back_pic="http://quicarbd.com/'+ response.data.license_back_pic +'"\n' + 
+                            'data-license="http://quicarbd.com/'+ response.data.license +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +                            
+                        '<button class="btn btn-danger" data-toggle="modal" id="deleteDriver" data-target="#deleteDriverModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
                     '</tr>'+
                 '');
