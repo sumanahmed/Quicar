@@ -35,7 +35,7 @@
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <a href="#" class="btn btn-raised btn-info" data-toggle="modal" id="editDriver" data-id="{{ $driver->id }}" data-name="{{ $driver->name }}"
                                                     data-email="{{ $driver->email }}" data-phone="{{ $driver->phone }}" data-dob="{{ $driver->dob }}" data-owner_id="{{ $driver->owner_id }}" data-nid="{{ $driver->nid }}"
-                                                    data-district_id="{{ $driver->district_id }}" data-city_id="{{ $driver->city_id }}" data-address="{{ $driver->address }}" data-driver_photo="http://quicarbd.com/{{ $driver->driver_photo }}"
+                                                    data-district_id="{{ $driver->district_id }}" data-city_id="{{ $driver->city_id }}" data-address="{{ $driver->address }}" data-license="{{ $driver->license }}" data-driver_photo="http://quicarbd.com/{{ $driver->driver_photo }}"
                                                     data-nid_font_pic="http://quicarbd.com/{{ $driver->nid_font_pic }}" data-nid_back_pic="http://quicarbd.com/{{ $driver->nid_back_pic }}" 
                                                     data-license_font_pic="http://quicarbd.com/{{ $driver->license_font_pic }}" data-license_back_pic="http://quicarbd.com/{{ $driver->license_back_pic }}"
                                                     data-license="http://quicarbd.com/{{ $driver->license }}"><i class="fas fa-edit"></i>
@@ -115,7 +115,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="district_id">District <span class="text-danger text-bold" title="Required Field">*</span></label>                                
                                     <select name="district_id" id="district_id" class="form-control" required>
-                                        <select selected disabled>select</select>
+                                        <option selected disabled>select</option>
                                         @foreach($districts as $district)
                                             <option value="{{ $district->id }}">{{ $district->value }}</option>
                                         @endforeach
@@ -267,25 +267,65 @@
                                 </div>
                             </div>
                             <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="license">License <span class="text-danger text-bold" title="Required Field">*</span></label>                                
+                                    <input type="text" name="license" id="license" class="form-control" placeholder="License" required>
+                                    <span class="text-danger licenseError"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="image">Previous Driver Photo <span class="text-danger text-bold" title="Required Field">*</span></label>                                
+                                    <label for="image">Current Driver Photo <span class="text-danger text-bold" title="Required Field">*</span></label>                                
                                     <img src="" id="previous_driver_photo" style="width:80px;height:80px;"/>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="image">Update Driver Photo <span class="text-danger text-bold" title="Required Field">*</span></label>                                
-                                    <input type="file" name="image" id="edit_image" class="form-control">
+                                    <input type="file" name="driver_photo" id="edit_driver_photo" class="form-control">
                                     <span class="text-danger imageError"></span>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="license">Previous License <span class="text-danger text-bold" title="Required Field">*</span></label>  
-                                    <img src="" id="previous_license" style="width:80px;height:80px;"/>
+                                    <label for="license">Current NID Front Pic <span class="text-danger text-bold" title="Required Field">*</span></label>  
+                                    <img src="" id="previous_nid_font_pic" style="width:80px;height:80px;"/>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="license">Update License <span class="text-danger text-bold" title="Required Field">*</span></label>
-                                    <input type="file" name="license" id="edit_license" class="form-control">
-                                    <span class="text-danger licenseError"></span>
+                                    <label for="license">Update NID Front <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                    <input type="file" name="nid_font_pic" id="edit_nid_font_pic" class="form-control">
+                                    <span class="text-danger nidFrontError"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="license">Current NID Back Pic <span class="text-danger text-bold" title="Required Field">*</span></label>  
+                                    <img src="" id="previous_nid_back_pic" style="width:80px;height:80px;"/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="license">Update NID Back <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                    <input type="file" name="nid_back_pic" id="edit_nid_back_pic" class="form-control">
+                                    <span class="text-danger nidBackError"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="license">Current License Front <span class="text-danger text-bold" title="Required Field">*</span></label>  
+                                    <img src="" id="previous_license_font_pic" style="width:80px;height:80px;"/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="license">Update License Front <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                    <input type="file" name="license_font_pic" id="edit_license_font_pic" class="form-control">
+                                    <span class="text-danger licenseFrontError"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="license">Current License Back <span class="text-danger text-bold" title="Required Field">*</span></label>  
+                                    <img src="" id="previous_license_back_pic" style="width:80px;height:80px;"/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="license">Update License Back <span class="text-danger text-bold" title="Required Field">*</span></label>
+                                    <input type="file" name="license_back_pic" id="edit_license_back_pic" class="form-control">
+                                    <span class="text-danger licenseBackError"></span>
                                 </div>
                             </div>
                         </div>
