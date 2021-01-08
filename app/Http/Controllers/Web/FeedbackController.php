@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Feedback;
+use App\Http\Lib\Helper;
+use App\Model\Owner;
 use Validator;
 use Response;
 
@@ -18,14 +20,21 @@ class FeedbackController extends Controller
 
     //feedback reply
     public function reply(Request $request){
+        $helper = new Helper();
         $validators=Validator::make($request->all(),[
-            'reply' => 'required',
+            'replay' => 'required',
         ]);
         if($validators->fails()){
             return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
         }else{
-            $feedback          = Feedback::find($request->id);
-            $feedback->replay   = $request->reply;
+            $feedback = Feedback::find($request->id);
+
+            $id     = Owner::find($feedback->owner_id)->n_key;
+            $title  = 'Feedback Reply';            
+            $msg    = $request->replay;
+            $helper->sendSingleNotification($id, $title, $msg);
+            
+            $feedback->replay   = $request->replay;
             if($feedback->update()){
                 return Response::json([
                     'status'    => 201,

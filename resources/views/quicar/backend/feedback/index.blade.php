@@ -14,9 +14,7 @@
                                 <thead class="thead-dark">
                                 <tr>                                  
                                     <th>Feedback</th>                                   
-                                    <th>Reply</th>                                   
-                                    <th>Date</th>                                   
-                                    <th>Time</th>                                   
+                                    <th>Reply</th>                                 
                                     <th style="vertical-align: middle;text-align: center;">Action</th>
                                 </tr>
                                 </thead>
@@ -26,10 +24,8 @@
                                         <tr class="feedback-{{ $feedback->id }}">
                                             <td>{{ $feedback->review }}</td>
                                             <td>{{ $feedback->replay }}</td>
-                                            <td>{{ $feedback->date }}</td>
-                                            <td>{{ $feedback->time }}</td>
                                             <td style="vertical-align: middle;text-align: center;">
-                                                <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="replyFeedback" data-target="#replyFeedbackModal" data-id="{{ $feedback->id }}" data-feedback="{{ $feedback->feedback }}" data-reply="{{ $feedback->replay }}" title="Reply"><i class="fas fa-reply"></i></a>
+                                                <a href="#" class="btn btn-raised btn-warning" data-toggle="modal" id="replyFeedback" data-target="#replyFeedbackModal" data-id="{{ $feedback->id }}" data-feedback="{{ $feedback->review }}" data-replay="{{ $feedback->replay }}" title="Reply"><i class="fas fa-reply"></i></a>
                                                 <button href="#" class="btn btn-raised btn-danger" data-toggle="modal" id="deleteFeedback" data-target="#deleteFeedbackModal" data-id="{{ $feedback->id }}" title="Delete"><i class="fas fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
@@ -70,8 +66,8 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="name">Reply <span class="text-danger text-bold" title="Required Field">*</span></label>                                
-                                <textarea id="feedback_reply" class="form-control" rows="4"></textarea>
-                                <span class="text-danger replyError"></span>
+                                <textarea id="feedback_replay" class="form-control" rows="4"></textarea>
+                                <span class="text-danger replayError"></span>
                             </div>
                         </div>
                     </div>
@@ -79,7 +75,7 @@
                 <div class="modal-footer">
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <button type="button" class="btn btn-success tx-13" id="feedbackReply">Reply</button>
+                            <button type="button" class="btn btn-success tx-13" id="feedbackReplay">Reply</button>
                             <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>

@@ -93,7 +93,7 @@ $("#createDriver").click(function (e) {
                                 'data-district_id="'+ response.data.district_id +'" data-city_id="'+ response.data.city_id +'" data-address="'+ response.data.address +'" data-license="'+ response.data.license +'" data-driver_photo="http://quicarbd.com/'+ response.data.driver_photo +'"\n' + 
                                 'data-nid_font_pic="http://quicarbd.com/'+ response.data.nid_font_pic +'"\n' + 'data-nid_back_pic="http://quicarbd.com/'+ response.data.nid_back_pic +'"\n' + 
                                 'data-license_font_pic="http://quicarbd.com/'+ response.data.license_font_pic +'"\n' + 'data-license_back_pic="http://quicarbd.com/'+ response.data.license_back_pic +'"\n' + 
-                                'data-license="http://quicarbd.com/'+ response.data.license +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +                            
+                                'title="Edit"><i class="fas fa-edit"></i></button>\n' +                            
                             '<button class="btn btn-danger" data-toggle="modal" id="deleteDriver" data-target="#deleteDriverModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
                     '</tr>'+
@@ -230,7 +230,7 @@ $("#updateDriver").click(function (e) {
                             'data-district_id="'+ response.data.district_id +'" data-city_id="'+ response.data.city_id +'" data-address="'+ response.data.address +'" data-license="'+ response.data.license +'" data-driver_photo="http://quicarbd.com/'+ response.data.driver_photo +'"\n' + 
                             'data-nid_font_pic="http://quicarbd.com/'+ response.data.nid_font_pic +'"\n' + 'data-nid_back_pic="http://quicarbd.com/'+ response.data.nid_back_pic +'"\n' + 
                             'data-license_font_pic="http://quicarbd.com/'+ response.data.license_font_pic +'"\n' + 'data-license_back_pic="http://quicarbd.com/'+ response.data.license_back_pic +'"\n' + 
-                            'data-license="http://quicarbd.com/'+ response.data.license +'" title="Edit"><i class="fas fa-edit"></i></button>\n' +                            
+                            'title="Edit"><i class="fas fa-edit"></i></button>\n' +                            
                         '<button class="btn btn-danger" data-toggle="modal" id="deleteDriver" data-target="#deleteDriverModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
                     '</tr>'+

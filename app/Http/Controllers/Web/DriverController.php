@@ -199,11 +199,20 @@ class DriverController extends Controller
     //destroy driver
     public function destroy(Request $request){
         $driver = Driver::find($request->id);
-        if(($driver->image != null) && file_exists($driver->image)){
-            unlink($driver->image);
+        if(($driver->driver_photo != null) && file_exists($driver->driver_photo)){
+            unlink($driver->driver_photo);
         }   
-        if(($driver->license != null) && file_exists($driver->license)){
-            unlink($driver->license);
+        if(($driver->nid_font_pic != null) && file_exists($driver->nid_font_pic)){
+            unlink($driver->nid_font_pic);
+        }
+        if(($driver->nid_back_pic != null) && file_exists($driver->nid_back_pic)){
+            unlink($driver->nid_back_pic);
+        }
+        if(($driver->license_font_pic != null) && file_exists($driver->license_font_pic)){
+            unlink($driver->license_font_pic);
+        }
+        if(($driver->license_back_pic != null) && file_exists($driver->license_back_pic)){
+            unlink($driver->license_back_pic);
         }
         $driver->delete();
         return Response::json([

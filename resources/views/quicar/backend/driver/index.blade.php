@@ -38,7 +38,7 @@
                                                     data-district_id="{{ $driver->district_id }}" data-city_id="{{ $driver->city_id }}" data-address="{{ $driver->address }}" data-license="{{ $driver->license }}" data-driver_photo="http://quicarbd.com/{{ $driver->driver_photo }}"
                                                     data-nid_font_pic="http://quicarbd.com/{{ $driver->nid_font_pic }}" data-nid_back_pic="http://quicarbd.com/{{ $driver->nid_back_pic }}" 
                                                     data-license_font_pic="http://quicarbd.com/{{ $driver->license_font_pic }}" data-license_back_pic="http://quicarbd.com/{{ $driver->license_back_pic }}"
-                                                    data-license="http://quicarbd.com/{{ $driver->license }}"><i class="fas fa-edit"></i>
+                                                    ><i class="fas fa-edit"></i>
                                                 </a>
                                                 <button class="btn btn-danger" data-toggle="modal" id="deleteDriver" data-target="#deleteDriverModal" data-id="{{ $driver->id }}" title="Delete"><i class="fas fa-trash"></i></button>
                                             </td>
@@ -269,7 +269,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="license">License <span class="text-danger text-bold" title="Required Field">*</span></label>                                
-                                    <input type="text" name="license" id="license" class="form-control" placeholder="License" required>
+                                    <input type="text" name="license" id="edit_license" class="form-control" placeholder="License" required>
                                     <span class="text-danger licenseError"></span>
                                 </div>
                             </div>
