@@ -1,5 +1,5 @@
 @extends('quicar.backend.layout.admin')
-@section('title','Users')
+@section('title','SMS & Notification')
 @section('content')
     <div class="content-body">
         <div class="container-fluid pd-x-0">
@@ -41,11 +41,11 @@
                                 </div>
                                 
                                 <div class="form-row">
-                                    <div class="form-group col-md-3">                                
+                                    <div class="form-group col-md-4">                                
                                         <input type="radio" name="notification" id="notification" value="1" checked>
                                         <label class="col-form-label">Notification</label>
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-5">
                                         <input type="radio" name="notification" id="sms_notification" value="2">
                                         <label class="col-form-label">SMS & Notification </label>                                
                                     </div>
