@@ -28,7 +28,7 @@
                                         <tr class="car_package-{{ $car_package->id }}">
                                             <td>{{ $car_package->name }}</td>
                                             <td>{{ $car_package->duration }}</td>
-                                            <td>{{ $car_package->district }}</td>
+                                            <td>{{ $car_package->district_id != 0 ? \App\Model\CarDistrict::find($car_package->district_id)->value : '' }}</td>
                                             <td>{{ $car_package->price }}</td>
                                             @if($car_package->status == 0)
                                                 <td>Pending</td>

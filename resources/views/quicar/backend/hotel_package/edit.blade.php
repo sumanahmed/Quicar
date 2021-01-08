@@ -207,7 +207,7 @@
                                             <label for="facilities"> Factilites <span class="text-danger" title="Required">*</span></label>                                            
                                             <select id="facilities" name="facilities[]" class="form-control selectable" multiple required>  
                                                 @foreach($amenities as $amenity)                                              
-                                                    <option value="{{ $amenity->id }}">{{ $amenity->name }}</option>
+                                                    <option value="{{ $amenity->id }}"  @if(in_array($amenity->id, json_decode($hotel_package->facilities))) selected @endif>{{ $amenity->name }}</option>
                                                 @endforeach
                                             </select>
                                             @if($errors->has('facilities'))

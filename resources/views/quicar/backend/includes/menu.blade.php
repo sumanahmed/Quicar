@@ -23,7 +23,7 @@
                 <ul>
                     <li id="car_package"><a href="{{ route('backend.car.package.index') }}">Car Package</a></li>
                     <li id="hotel_package"><a href="{{ route('backend.hotel.package.index') }}">Hotel Package</a></li>
-                    <li id="travel_package"><a href="#">Travel Package</a></li>
+                    <li id="travel_package"><a href="{{ route('backend.travel.package.index') }}">Travel Package</a></li>
                 </ul>
             </li>
             <li class="nav-item with-sub banners menu-order-dropdown">

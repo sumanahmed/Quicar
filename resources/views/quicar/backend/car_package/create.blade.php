@@ -88,7 +88,8 @@
                                     </div>
                                     <div class="col-3">                                        
                                         <div class="form-group">
-                                            <label for="quicar_charge"> Quicar Charge(%) <span class="text-danger" title="Required">*</span></label>
+                                            <label for="quicar_ch
+                                            arge"> Quicar Charge(%) <span class="text-danger" title="Required">*</span></label>
                                             <input type="text" id="quicar_charge" name="quicar_charge" class="form-control" placeholder="Quicar Charge" readonly required>
                                         </div>
                                     </div>

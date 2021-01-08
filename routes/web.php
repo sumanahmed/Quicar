@@ -102,6 +102,17 @@ Route::group(['prefix'=>'admin/hotel/package', 'middleware' => 'admin'], functio
     Route::get('/get-charge/{owner_id}', 'Web\HotelPackageController@getCharge')->name('backend.hotel.package.get_charge'); 
 });
 
+Route::group(['prefix'=>'admin/travel/package', 'middleware' => 'admin'], function(){
+    Route::get('/', 'Web\TravelPackageController@index')->name('backend.travel.package.index');
+    Route::get('/create', 'Web\TravelPackageController@create')->name('backend.travel.package.create');
+    Route::post('/store', 'Web\TravelPackageController@store')->name('backend.travel.package.store');
+    Route::get('/edit/{id}', 'Web\TravelPackageController@edit')->name('backend.travel.package.edit');
+    Route::post('/update/{id}', 'Web\TravelPackageController@update')->name('backend.travel.package.update');
+    Route::get('/destroy/{id}', 'Web\TravelPackageController@destroy')->name('backend.travel.package.destroy');   
+    Route::get('/get-city/{district_id}', 'Web\TravelPackageController@getCity')->name('backend.travel.package.get_city'); 
+    Route::get('/get-charge/{owner_id}', 'Web\TravelPackageController@getCharge')->name('backend.travel.package.get_charge'); 
+});
+
 Route::group(['prefix'=>'admin/brands', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\CarBrandController@index')->name('backend.brand.index');
     Route::post('/store', 'Web\CarBrandController@store')->name('backend.brand.store');

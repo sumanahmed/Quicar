@@ -62,7 +62,7 @@
                                         <div class="form-group">
                                             <label for="district_id">District <span class="text-danger" title="Required">*</span></label>
                                             <select id="district_id" name="district_id" class="form-control selectable" required>
-                                                <option selected disabled>Select</option>
+                                                <option disabled>Select</option>
                                                 @foreach($districts as $district)
                                                     <option value="{{ $district->id }}" @if($district->id ==  $car_package->district_id) selected @endif>{{ $district->value }}</option>
                                                 @endforeach
@@ -74,7 +74,7 @@
                                             <label for="spot_id">Tour Spot <span class="text-danger" title="Required">*</span></label>                                            
                                             <select id="spot_id" name="spot_id[]" class="form-control selectable" multiple required>                                                
                                                 @foreach($spots as $spot)
-                                                    <option value="{{ $spot->id }}" selected>{{ $spot->name }}</option>
+                                                    <option value="{{ $spot->id }}"  @if(in_array($spot->id, json_decode($car_package->spot_id))) selected @endif>{{ $spot->name }}</option>
                                                 @endforeach
                                             </select>
                                             <span class="text-danger errorYear"></span>
