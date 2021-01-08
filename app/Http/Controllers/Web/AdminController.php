@@ -17,6 +17,7 @@ use App\Model\TopDestination;
 use App\User;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use App\Http\Lib\Helper;
 use Validator;
 use Response;
 
@@ -360,57 +361,20 @@ class AdminController extends Controller
     }
 
     //show owner complain page
-    public function ownerComplainSend(Request $request){      
+    public function ownerComplainSend(Request $request){   
+        $helper = new Helper();   
         $complain = Complain::find($request->id);
+
+        $id     = Owner::find($complain->owner_id)->n_key;
+        $title  = 'Complain Reply';            
+        $msg    = $request->reply;
+        $helper->sendSingleNotification($id, $title, $msg);
+
         $complain->reply_message = $request->reply;
         $complain->status = 1;
         $complain->answer_give = 1;
         $complain->answer_time = date('H:i:s');
         $complain->update();
-
-        $token = Owner::find($complain->owner_id)->n_key;
-
-        define('API_ACCESS_KEY','AAAAASeLFFk:APA91bH1mQPDwxElZ5PIV_0_6_mjZr9XkoX7zIkWPPlMeMWDfg9cs13OoC4kHgNqXmHst1qWsR80gJVuvN0mHKkLh68WSaU8sCqBMptAr8NaiB4tXh_mnyuLlFrH0sBshhrIyvzjqyH1');
-        $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
-
-        // $token='dFEPwUvKRYCicAqiIuVnrz:APA91bErVnBTRnmA7_9W3MEuZB8k0AjwgTKPpTDjbS_WB8ZhI0HbAuQ78wfPV-CBWHoaQfKfYxiAATjAfEI2LF2u5JBT-N214Yn-HoksFigXJ5xbUu6ackwi6cUnD-GXdumzMXPfLK-s';
-
-        // https://www.mail-signatures.com/wp-content/uploads/2019/02/How-to-find-direct-link-to-image_Fb-Picture.png
-
-        // $topic="quicar_owner";
-        //$token="ffQMZevoQeSZ0X0L4hg3oR:APA91bFZs5x89xE2FTaOxqYpeCTI7cvb2WzToLBJtsw-Se1YjcWrXgC9Uneu2af5hYBciFHZ6DhquP4X-lMq56BOTflRzWsdfTfeOqvkxNTE6NzKZ-Kt8vdfTC9DuP1xr5IJI-M-I5fB";
-
-        $notification = [
-            'title' => 'Report Reply',
-            'body'  => $request->reply,
-            'id'    => $complain->id,
-            'image' => '',
-            'type'  => '1'
-        ];
-        // $extraNotificationData = ["message" => $notification];
-
-        $fcmNotification = [
-        //'registration_ids' => $tokenList, //multple token array
-        'to' => $token, //single token
-        // 'to' => '/topics/'.$topic, //single token
-        'data' => $notification
-        ];
-
-        $headers = [
-            'Authorization: key=' . API_ACCESS_KEY,
-            'Content-Type: application/json'
-        ];
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,$fcmUrl);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
-        $result = curl_exec($ch);
-        curl_close($ch);
-        echo $result;
     }
 
     //show partner message 

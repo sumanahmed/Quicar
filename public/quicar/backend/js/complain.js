@@ -26,7 +26,7 @@ $("#complainReply").click(function (e) {
                 }
             }else{
                 $('#replyComplainModal').modal('hide');               
-                toastr.success('Feedback Replied Successfully.')
+                toastr.success('Complain Replied Successfully.')
                 location.reload();
             }
         }

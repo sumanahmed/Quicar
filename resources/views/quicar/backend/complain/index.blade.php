@@ -49,7 +49,7 @@
                                             @else 
                                                 <td>No Answer</td>
                                             @endif
-                                            <td>{{ $complain->answer_time }}</td>
+                                            <td>{{ date('H:i:s a', strtotime($complain->answer_time)) }}</td>
                                             <td style="vertical-align: middle;text-align: center;">
                                                 <a href="#" class="btn btn-raised btn-warning btn-sm" data-toggle="modal" id="replyComplain" data-target="#replyComplainModal" data-id="{{ $complain->id }}" data-message="{{ $complain->message }}" title="Reply"><i class="fas fa-reply"></i></a>
                                                 <button href="#" class="btn btn-raised btn-danger btn-sm" data-toggle="modal" id="deleteFeedback" data-target="#deleteFeedbackModal" data-id="{{ $complain->id }}" title="Delete"><i class="fas fa-trash-alt"></i></button>
@@ -84,7 +84,7 @@
                     <div class="mg-b-0" style="padding: 2px 15px !important;">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="name">Feedback</label>                                
+                                <label for="name">Complain</label>                                
                                 <textarea id="complain_message" class="form-control" rows="4" readonly></textarea>
                                 <input type="hidden" id="complain_id" />
                             </div>
