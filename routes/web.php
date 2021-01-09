@@ -113,6 +113,12 @@ Route::group(['prefix'=>'admin/travel/package', 'middleware' => 'admin'], functi
     Route::get('/get-charge/{owner_id}', 'Web\TravelPackageController@getCharge')->name('backend.travel.package.get_charge'); 
 });
 
+Route::group(['prefix'=>'admin/cashback', 'middleware' => 'admin'], function(){
+    Route::get('/car-package', 'Web\CashbackCarPackageController@index')->name('backend.cashback.car_package');
+    Route::get('/hotel-package', 'Web\CashbackHotelPackageController@index')->name('backend.cashback.hotel_package');
+    Route::get('/travel-package', 'Web\CashbackTravelPackageController@index')->name('backend.cashback.travel_package');
+});
+
 Route::group(['prefix'=>'admin/brands', 'middleware' => 'admin'], function(){
     Route::get('/', 'Web\CarBrandController@index')->name('backend.brand.index');
     Route::post('/store', 'Web\CarBrandController@store')->name('backend.brand.store');

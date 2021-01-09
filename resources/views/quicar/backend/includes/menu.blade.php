@@ -26,6 +26,17 @@
                     <li id="travel_package"><a href="{{ route('backend.travel.package.index') }}">Travel Package</a></li>
                 </ul>
             </li>
+            <li class="nav-item with-sub cash-back menu-order-dropdown">
+                <a href="#" class="nav-link">
+                <i data-feather="truck"></i>
+                    <span>Cashback</span>
+                </a>
+                <ul>
+                    <li id="cashback_car_package"><a href="{{ route('backend.cashback.car_package') }}">Car Package</a></li>
+                    <li id="cashback_hotel_package"><a href="{{ route('backend.cashback.hotel_package') }}">Hotel Package</a></li>
+                    <li id="cashback_travel_package"><a href="{{ route('backend.cashback.travel_package') }}">Travel Package</a></li>
+                </ul>
+            </li>
             <li class="nav-item with-sub banners menu-order-dropdown">
                 <a href="#" class="nav-link">
                 <i data-feather="truck"></i>
