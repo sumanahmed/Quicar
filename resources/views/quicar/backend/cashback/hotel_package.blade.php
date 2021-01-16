@@ -114,7 +114,7 @@
 @endsection
 @section('scripts')
     <script>
-        $(".packages").addClass('show');
-        $("#hotel_package").addClass('active');
+        $(".cash-back").addClass('show');
+        $("#cashback_travel_package").addClass('active');
     </script>
 @endsection

@@ -237,3 +237,10 @@ Route::group(['prefix'=>'admin/feedbacks', 'middleware' => 'admin'], function(){
     Route::post('/reply', 'Web\FeedbackController@reply')->name('backend.feedback.reply');
     Route::post('/destroy', 'Web\FeedbackController@destroy')->name('backend.feedback.destroy');
 });
+
+Route::group(['prefix'=>'admin/policy', 'middleware' => 'admin'], function(){
+    Route::get('/user', 'Web\PolicyController@showPolicyUser')->name('backend.policy.user');
+    Route::post('/user/update', 'Web\PolicyController@updatePolicyUser')->name('backend.policy.user.update');    
+    Route::get('/partner', 'Web\PolicyController@showPolicyPartner')->name('backend.policy.partner');
+    Route::post('/partner/update', 'Web\PolicyController@updatePolicyPartner')->name('backend.policy.partner.update');
+});

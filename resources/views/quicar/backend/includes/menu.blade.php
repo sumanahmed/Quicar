@@ -54,11 +54,20 @@
                     <span>Rides</span>
                 </a>
                 <ul>
-                    <li id="current_ride"><a href="{{ route('backend.ride.current_ride') }}">Current Ride</a></li>
-                    <li id="upcomming_ride"><a href="#">Upcomming Ride</a></li>
-                    <li id="package_ride"><a href="#">Package Ride</a></li>
+                    <li id="current_ride"><a href="{{ route('backend.ride.current_ride') }}">Current Ride</a></li>                                        
                     <li id="complete_ride"><a href="{{ route('backend.ride.complete_ride') }}">Complete Ride</a></li>
                     <li id="cancel_ride"><a href="{{ route('backend.ride.cancel_ride') }}">Cancel Ride</a></li>
+                </ul>
+            </li>
+            <li class="nav-item with-sub menu-ride-dropdown">
+                <a href="#" class="nav-link">
+                <i data-feather="truck"></i>
+                    <span>Package Rides</span>
+                </a>
+                <ul>
+                    <li id="car_package_ride"><a href="">Car Package Ride</a></li>
+                    <li id="hotel_package_ride"><a href="">Hotel Package Ride</a></li>
+                    <li id="travel_package_ride"><a href="">Travel Package Ride</a></li>
                 </ul>
             </li>
             <li class="nav-item with-sub complain-sub">
@@ -92,6 +101,16 @@
                     <li id="income"><a href="{{ route('backend.account.income') }}">Income</a></li>
                     <li id="user_account"><a href="{{ route('backend.account.user_account') }}">User Account</a></li>
                     <li id="owner_account"><a href="{{ route('backend.account.owner_account') }}">Partner Account</a></li>
+                </ul>
+            </li>
+            <li class="nav-item policy with-sub account-sub">
+                <a href="#" class="nav-link">
+                <i data-feather="square"></i>
+                    <span>Policy</span>
+                </a>
+                <ul>
+                    <li id="userPolicy"><a href="{{ route('backend.policy.user') }}">User Policy</a></li>
+                    <li id="partnerPolicy"><a href="{{ route('backend.policy.partner') }}">Partner Policy</a></li>
                 </ul>
             </li>
             <li class="nav-item settings with-sub">
